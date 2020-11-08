@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -22,16 +21,18 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label alignment="CENTER" layoutX="14.0" layoutY="41.0" prefHeight="47.0" prefWidth="165.0" text="PDF file path" />
+                        <Label alignment="CENTER" layoutX="14.0" layoutY="29.0" prefHeight="47.0" prefWidth="165.0" text="PDF file path" />
                         <Label alignment="CENTER" layoutX="14.0" layoutY="102.0" prefHeight="47.0" prefWidth="165.0" text="Result path" />
-                        <TextField id="P1PathToPDFtf" fx:id="P1PathToPDFtf" layoutX="179.0" layoutY="52.0" prefHeight="25.0" prefWidth="556.0" />
-                        <TextField id="P1PathToResulttf" fx:id="P1PathToResulttf" layoutX="179.0" layoutY="113.0" prefHeight="25.0" prefWidth="556.0" />
-                        <Button id="P1ConvertButton" fx:id="P1ConvertButton" layoutX="359.0" layoutY="193.0" mnemonicParsing="false" onAction="#p1Convert" prefHeight="38.0" prefWidth="197.0" text="Convert" />
-                        <Label id="P1ResultLabel" fx:id="P1ResultLabel" alignment="CENTER" layoutX="179.0" layoutY="291.0" prefHeight="52.0" prefWidth="557.0">
+                        <Button id="P1ConvertButton" fx:id="P1ConvertButton" layoutX="303.0" layoutY="225.0" mnemonicParsing="false" onAction="#p1Convert" prefHeight="30.0" prefWidth="176.0" text="Convert" />
+                        <Label id="P1ResultLabel" fx:id="P1ResultLabel" alignment="CENTER" layoutX="194.0" layoutY="199.0" prefHeight="52.0" prefWidth="557.0">
                            <font>
                               <Font size="16.0" />
                            </font></Label>
-                        <Button id = "P1MultipleFileChooser" fx:id = "P1MultipleFileChooser" onAction="#multiFileChooser" layoutX="364.0" layoutY="386.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="175.0" text="Multiple file chooser" />
+                        <Button id="P1MultipleFileChooser" fx:id="P1MultipleFileChooser" layoutX="9.0" layoutY="340.0" mnemonicParsing="false" onAction="#multiFileChooser" prefHeight="25.0" prefWidth="175.0" text="Multiple file chooser" />
+                        <Label id="P1SelectedPDFFile" fx:id="P1SelectedPDFFile" alignment="CENTER" layoutX="194.0" layoutY="41.0" prefHeight="24.0" prefWidth="495.0" />
+                        <Button id="P1ChoosePDFFile" fx:id="P1ChoosePDFFile" layoutX="302.0" layoutY="76.0" mnemonicParsing="false" onAction="#singlePDFChooser" prefHeight="25.0" prefWidth="175.0" text="Choose PDF file" />
+                        <Label id = "P1ChooseDestinationFolderLb" fx:id="P1ChooseDestinationFolderLb" layoutX="194.0" layoutY="117.0" prefHeight="17.0" prefWidth="511.0" />
+                        <Button id="P1ChooseDestinationFolderBtn" fx:id="P1ChooseDestinationFolderBtn"  onAction="#singleDirectoryChooser" layoutX="303.0" layoutY="162.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="173.0" text="Choose destination folder" />
                      </children>
                   </AnchorPane>
             </content>
