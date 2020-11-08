@@ -10,32 +10,47 @@ import java.io.File;
 import java.io.IOException;
 
 public class PDFtoImage {
-    public static String convertToImages(String sourcePath, String extension, String resultPath) {
-        PDDocument document;
-        PDFRenderer pdfRenderer;
-        BufferedImage bim;
-        String conversionResult;
-        int nameCounter = 0;
-        File filesList[];
-        File directoryDirectory = new File(resultPath);
+
+//    private String sourcePath;
+//    private String extension;
+//    private String resultPath;
+//
+//    public PDFtoImage(String sourcePath, String extension, String resultPath) {
+//        this.sourcePath = sourcePath;
+//        this.extension = extension;
+//        this.resultPath = resultPath;
+//    }
+
+    public static boolean convertToImages(String sourcePath, String extension, String resultPath) {
+        PDDocument sourceFile = readSourceFile(sourcePath);
+        converter(sourceFile,resultPath,extension);
+
+        return true;
+    }
+    private static void converter(PDDocument loadedSourceFile, String resultPath, String extension) {
+        PDFRenderer pdfRenderer = new PDFRenderer(loadedSourceFile);
+        BufferedImage actualPage;
+        for (int page = 0; page < loadedSourceFile.getNumberOfPages(); page++) {
+            try {
+                actualPage = pdfRenderer.renderImageWithDPI(page, 300, ImageType.RGB);
+                ImageIOUtil.writeImage(actualPage, String.format(resultPath, page + 1, extension), 300);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+    private static PDDocument readSourceFile(String sourcePath) {
+        PDDocument loadedDocument = null;
 
         try {
-            document = PDDocument.load(new File(sourcePath));
-            pdfRenderer = new PDFRenderer(document);
-            for (int page = 0; page <document.getNumberOfPages(); page++) {
-                bim = pdfRenderer.renderImageWithDPI(page, 300, ImageType.RGB);
-                ImageIOUtil.writeImage(bim, String.format(resultPath + String.valueOf(nameCounter) + ".jpg", page + 1, extension),300);
-                nameCounter++;
-            }
-            document.close();
-
+            loadedDocument = PDDocument.load(new File(sourcePath));
+            //loadedDocument.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        filesList = directoryDirectory.listFiles();
-        conversionResult = filesList.length == 0 ? "Conversion failed!" : "Conversion successful!";
-
-        return conversionResult;
+        return loadedDocument;
     }
+
+
 }

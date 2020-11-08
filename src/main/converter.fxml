@@ -31,6 +31,7 @@
                            <font>
                               <Font size="16.0" />
                            </font></Label>
+                        <Button id = "P1MultipleFileChooser" fx:id = "P1MultipleFileChooser" onAction="#multiFileChooser" layoutX="364.0" layoutY="386.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="175.0" text="Multiple file chooser" />
                      </children>
                   </AnchorPane>
             </content>
