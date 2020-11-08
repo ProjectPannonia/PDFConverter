@@ -11,46 +11,23 @@ import java.io.IOException;
 
 public class PDFtoImage {
 
-//    private String sourcePath;
-//    private String extension;
-//    private String resultPath;
-//
-//    public PDFtoImage(String sourcePath, String extension, String resultPath) {
-//        this.sourcePath = sourcePath;
-//        this.extension = extension;
-//        this.resultPath = resultPath;
-//    }
 
-    public static boolean convertToImages(String sourcePath, String extension, String resultPath) {
-        PDDocument sourceFile = readSourceFile(sourcePath);
-        converter(sourceFile,resultPath,extension);
-
-        return true;
-    }
-    private static void converter(PDDocument loadedSourceFile, String resultPath, String extension) {
-        PDFRenderer pdfRenderer = new PDFRenderer(loadedSourceFile);
-        BufferedImage actualPage;
-        for (int page = 0; page < loadedSourceFile.getNumberOfPages(); page++) {
-            try {
-                actualPage = pdfRenderer.renderImageWithDPI(page, 300, ImageType.RGB);
-                ImageIOUtil.writeImage(actualPage, String.format(resultPath, page + 1, extension), 300);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
-    private static PDDocument readSourceFile(String sourcePath) {
-        PDDocument loadedDocument = null;
+    public static void convertToImages(String pdfChooserLabel, String extension, String destinationLabel) {
+        PDDocument document;
+        PDFRenderer pdfRenderer;
+        BufferedImage bufferedImage;
 
         try {
-            loadedDocument = PDDocument.load(new File(sourcePath));
-            //loadedDocument.close();
+            document= PDDocument.load(new File(pdfChooserLabel));
+            pdfRenderer = new PDFRenderer(document);
+
+            for (int page = 0; page < document.getNumberOfPages(); page++) {
+                bufferedImage = pdfRenderer.renderImageWithDPI(page, 300, ImageType.RGB);
+                ImageIOUtil.writeImage(bufferedImage, String.format(destinationLabel + "pdf-%d.%s", page + 1, extension), 300);
+            }
+            document.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return loadedDocument;
     }
-
-
 }
