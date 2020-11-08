@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
    <children>
       <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="769.0" text="PDF converter">
          <font>
@@ -25,9 +24,10 @@
                      <children>
                         <Label alignment="CENTER" layoutX="14.0" layoutY="41.0" prefHeight="47.0" prefWidth="165.0" text="PDF file path" />
                         <Label alignment="CENTER" layoutX="14.0" layoutY="102.0" prefHeight="47.0" prefWidth="165.0" text="Result path" />
-                        <TextField layoutX="179.0" layoutY="52.0" prefHeight="25.0" prefWidth="556.0" />
-                        <TextField layoutX="179.0" layoutY="113.0" prefHeight="25.0" prefWidth="556.0" />
-                        <Button layoutX="306.0" layoutY="244.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="197.0" text="Convert" />
+                        <TextField id="P1PathToPDFtf" fx:id="P1PathToPDFtf" layoutX="179.0" layoutY="52.0" prefHeight="25.0" prefWidth="556.0" />
+                        <TextField id="P1PathToResulttf" fx:id="P1PathToResulttf" layoutX="179.0" layoutY="113.0" prefHeight="25.0" prefWidth="556.0" />
+                        <Button id="P1ConvertButton" fx:id="P1ConvertButton" layoutX="359.0" layoutY="193.0" mnemonicParsing="false" onAction="#p1Convert" prefHeight="38.0" prefWidth="197.0" text="Convert" />
+                        <Label id="P1ResultLabel" fx:id="P1ResultLabel" layoutX="179.0" layoutY="291.0" prefHeight="52.0" prefWidth="557.0" />
                      </children>
                   </AnchorPane>
             </content>
