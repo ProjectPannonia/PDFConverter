@@ -7,7 +7,14 @@ import java.io.IOException;
 
 public class ImageSplitter {
 
-    public static void writeFilesToDisk(BufferedImage[] images) {
+    public static void imageSplit(String pathToContainFolder) {
+        File folder = new File(pathToContainFolder);
+        File[] files = folder.listFiles();
+        BufferedImage[] imagesFromFolder = cutImagesIntoTwo(files);
+        writeFilesToDisk(imagesFromFolder);
+    }
+
+    private static void writeFilesToDisk(BufferedImage[] images) {
         int fileNameCounter = 0;
         File outPut;
 
@@ -21,11 +28,11 @@ public class ImageSplitter {
             }
         }
     }
-    public static File[] readWholeFolder(File folder) {
+    private static File[] readWholeFolder(File folder) {
         File[] files = folder.listFiles();
         return files;
     }
-    public static BufferedImage[] cutImagesIntoTwo(File[] files) {
+    private static BufferedImage[] cutImagesIntoTwo(File[] files) {
         File[] originalImages = files;
         BufferedImage[] convertedImages = new BufferedImage[originalImages.length * 2];
 
@@ -53,7 +60,7 @@ public class ImageSplitter {
         }
         return convertedImages;
     }
-    public static BufferedImage readImage(String url){
+    private static BufferedImage readImage(String url){
         BufferedImage source = null;
         int width;
         int height;
