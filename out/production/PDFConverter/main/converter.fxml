@@ -41,8 +41,10 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="20.0" layoutY="77.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="152.0" text="Choose one file" />
-                        <Button layoutX="20.0" layoutY="125.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="152.0" text="Choose multiple files" />
+                        <Button id="P2ChooseOneFileBtn" fx:id="P2ChooseOneFileBtn" layoutX="20.0" layoutY="77.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="152.0" text="Choose one file" />
+                        <Button id="P2ChooseMultipleFilesBtn" fx:id="P2ChooseMultipleFilesBtn" layoutX="20.0" layoutY="125.0" mnemonicParsing="false" onAction="#convertMultipleFiles" prefHeight="25.0" prefWidth="152.0" text="Choose multiple files" />
+                        <Label  id="P2ChooseFile" fx:id="P2ChooseFile" layoutX="200.0" layoutY="75.0" prefHeight="29.0" prefWidth="513.0" />
+                        <Label  id="P2ChooseFolder" fx:id="P2ChooseFolder" layoutX="200.0" layoutY="123.0" prefHeight="29.0" prefWidth="513.0" />
                      </children></AnchorPane>
             </content>
           </Tab>

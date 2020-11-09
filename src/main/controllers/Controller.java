@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import main.service.ImageSplitter;
 import main.service.PDFtoImage;
 
 import java.io.File;
@@ -14,17 +15,24 @@ import java.util.List;
 public class Controller {
 
     @FXML
-    Button P1ConvertButton, P1MultipleFileChooser, P1ChooseDestinationFolderBtn;
-
+    Button  P1ConvertButton,
+            P1MultipleFileChooser,
+            P1ChooseDestinationFolderBtn,
+            P2ChooseOneFileBtn,
+            P2ChooseMultipleFilesBtn,
+            P2SplitImage;
     @FXML
-    Label P1ResultLabel, P1SelectedPDFFile, P1ChooseDestinationFolderLb;
+    Label   P1ResultLabel,
+            P1SelectedPDFFile,
+            P1ChooseDestinationFolderLb,
+            P2ChooseFile,
+            P2ChooseFolder;
 
     @FXML
     public void p1Convert(ActionEvent e) {
         String pdfChooserLabel = P1SelectedPDFFile.getText();
         String destinationLabel = P1ChooseDestinationFolderLb.getText() + "\\";
         if (pdfChooserLabel != null && pdfChooserLabel != "" && destinationLabel != null && destinationLabel != "") {
-            System.out.println("kezdem");
             P1ResultLabel.setText("Working");
             System.out.println(pdfChooserLabel + ", " + destinationLabel);
             PDFtoImage.convertToImages(pdfChooserLabel,"JPG",destinationLabel);
@@ -56,5 +64,21 @@ public class Controller {
             String destinationFolderPath = directory.getAbsolutePath();
             P1ChooseDestinationFolderLb.setText(destinationFolderPath);
         }
+    }
+    @FXML
+    public void p2ChooseFolder(ActionEvent e) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File directory = directoryChooser.showDialog(null);
+        String pathToDirectory;
+
+        if(directory != null) {
+            pathToDirectory = directory.getAbsolutePath();
+            P2ChooseFile.setText(pathToDirectory);
+            ImageSplitter.imageSplit(pathToDirectory);
+        }
+    }
+    @FXML
+    public void p2SplitImage(ActionEvent e) {
+
     }
 }
