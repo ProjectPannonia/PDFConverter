@@ -16,22 +16,24 @@ public class Controller {
 
     @FXML
     Button  P1ConvertButton,
-            P1MultipleFileChooser,
             P1ChooseDestinationFolderBtn,
             P2ChooseOneFileBtn,
             P2ChooseMultipleFilesBtn,
-            P2SplitImage;
+            P2SplitImage,
+            P2SelectConversionPath;
     @FXML
     Label   P1ResultLabel,
             P1SelectedPDFFile,
             P1ChooseDestinationFolderLb,
             P2ChooseFile,
-            P2ChooseFolder;
+            P2ChooseFolder,
+            P2DestinationPathLb;
 
     @FXML
     public void p1Convert(ActionEvent e) {
         String pdfChooserLabel = P1SelectedPDFFile.getText();
         String destinationLabel = P1ChooseDestinationFolderLb.getText() + "\\";
+
         if (pdfChooserLabel != null && pdfChooserLabel != "" && destinationLabel != null && destinationLabel != "") {
             P1ResultLabel.setText("Working");
             System.out.println(pdfChooserLabel + ", " + destinationLabel);
@@ -39,7 +41,7 @@ public class Controller {
         }
     }
     @FXML
-    public void multiFileChooser(ActionEvent e) {
+    public void p1multiFileChooser(ActionEvent e) {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
         List<File> f = fc.showOpenMultipleDialog(null);
@@ -48,7 +50,7 @@ public class Controller {
         }
     }
     @FXML
-    public void singlePDFChooser(ActionEvent e) {
+    public void p1singlePDFChooser(ActionEvent e) {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files","*.pdf"));
         File f = fc.showOpenDialog(null);
@@ -57,7 +59,7 @@ public class Controller {
         }
     }
     @FXML
-    public void singleDirectoryChooser(ActionEvent e) {
+    public void p1singleDirectoryChooser(ActionEvent e) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         File directory = directoryChooser.showDialog(null);
         if (directory != null) {
@@ -69,16 +71,33 @@ public class Controller {
     public void p2ChooseFolder(ActionEvent e) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         File directory = directoryChooser.showDialog(null);
-        String pathToDirectory;
+        String pathToDirectory = null;
 
         if(directory != null) {
-            pathToDirectory = directory.getAbsolutePath();
+            pathToDirectory = directory.getAbsolutePath() + "\\";
             P2ChooseFile.setText(pathToDirectory);
-            ImageSplitter.imageSplit(pathToDirectory);
+        }
+    }
+    @FXML
+    public void p2SelectDestination(ActionEvent e) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File direcotry = directoryChooser.showDialog(null);
+        String pathToDirectory = null;
+
+        if (direcotry != null) {
+            pathToDirectory = direcotry.getAbsolutePath() + "\\";
+            P2DestinationPathLb.setText(pathToDirectory);
+
         }
     }
     @FXML
     public void p2SplitImage(ActionEvent e) {
+        String pathToFile = P2ChooseFile.getText();
+        String conversionDestinationPath = P2DestinationPathLb.getText();
+        if (pathToFile != null) {
+            ImageSplitter.splitImage(pathToFile,conversionDestinationPath);
+        }
 
     }
+
 }

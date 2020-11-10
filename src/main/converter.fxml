@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.Controller" stylesheets="@../style.css">
    <children>
       <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="769.0" text="PDF converter">
          <font>
@@ -23,16 +23,15 @@
                      <children>
                         <Label alignment="CENTER" layoutX="14.0" layoutY="29.0" prefHeight="47.0" prefWidth="165.0" text="PDF file path" />
                         <Label alignment="CENTER" layoutX="14.0" layoutY="102.0" prefHeight="47.0" prefWidth="165.0" text="Result path" />
-                        <Button id="P1ConvertButton" fx:id="P1ConvertButton" layoutX="303.0" layoutY="225.0" mnemonicParsing="false" onAction="#p1Convert" prefHeight="30.0" prefWidth="176.0" text="Convert" />
-                        <Label id="P1ResultLabel" fx:id="P1ResultLabel" alignment="CENTER" layoutX="113.0" layoutY="273.0" prefHeight="52.0" prefWidth="557.0">
+                        <Button id="P1ConvertButton" fx:id="P1ConvertButton" layoutX="292.0" layoutY="163.0" mnemonicParsing="false" onAction="#p1Convert" prefHeight="30.0" prefWidth="176.0" text="Convert" />
+                        <Label id="P1ResultLabel" fx:id="P1ResultLabel" alignment="CENTER" layoutX="24.0" layoutY="211.0" prefHeight="233.0" prefWidth="736.0">
                            <font>
                               <Font size="16.0" />
                            </font></Label>
-                        <Button id="P1MultipleFileChooser" fx:id="P1MultipleFileChooser" layoutX="303.0" layoutY="340.0" mnemonicParsing="false" onAction="#multiFileChooser" prefHeight="30.0" prefWidth="176.0" text="Multiple file chooser" />
-                        <Label id="P1SelectedPDFFile" fx:id="P1SelectedPDFFile" alignment="CENTER" layoutX="194.0" layoutY="41.0" prefHeight="24.0" prefWidth="495.0" />
-                        <Button id="P1ChoosePDFFile" fx:id="P1ChoosePDFFile" layoutX="303.0" layoutY="76.0" mnemonicParsing="false" onAction="#singlePDFChooser" prefHeight="30.0" prefWidth="176.0" text="Choose PDF file" />
-                        <Label id="P1ChooseDestinationFolderLb" fx:id="P1ChooseDestinationFolderLb" layoutX="194.0" layoutY="117.0" prefHeight="17.0" prefWidth="511.0" />
-                        <Button id="P1ChooseDestinationFolderBtn" fx:id="P1ChooseDestinationFolderBtn" layoutX="303.0" layoutY="162.0" mnemonicParsing="false" onAction="#singleDirectoryChooser" prefHeight="30.0" prefWidth="176.0" text="Choose destination folder" />
+                        <Label id="P1SelectedPDFFile" fx:id="P1SelectedPDFFile" styleClass="pathLabels" alignment="CENTER" layoutX="194.0" layoutY="41.0" prefHeight="24.0" prefWidth="371.0" />
+                        <Button id="P1ChoosePDFFile" fx:id="P1ChoosePDFFile" layoutX="589.0" layoutY="38.0" mnemonicParsing="false" onAction="#p1singlePDFChooser" prefHeight="30.0" prefWidth="176.0" text="Choose PDF file" />
+                        <Label id="P1ChooseDestinationFolderLb" fx:id="P1ChooseDestinationFolderLb" styleClass="pathLabels" layoutX="194.0" layoutY="117.0" prefHeight="24.0" prefWidth="371.0" />
+                        <Button id="P1ChooseDestinationFolderBtn" fx:id="P1ChooseDestinationFolderBtn" layoutX="589.0" layoutY="111.0" mnemonicParsing="false" onAction="#p1singleDirectoryChooser" prefHeight="30.0" prefWidth="176.0" text="Choose destination folder" />
                      </children>
                   </AnchorPane>
             </content>
@@ -41,11 +40,41 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button id="P2ChooseOneFileBtn" fx:id="P2ChooseOneFileBtn" layoutX="20.0" layoutY="77.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="152.0" text="Choose one file" />
-                        <Button id="P2ChooseMultipleFilesBtn" fx:id="P2ChooseMultipleFilesBtn" layoutX="20.0" layoutY="125.0" mnemonicParsing="false" onAction="#p2ChooseFolder" prefHeight="25.0" prefWidth="152.0" text="Choose multiple files" />
-                        <Label  id="P2ChooseFile" fx:id="P2ChooseFile" layoutX="200.0" layoutY="75.0" prefHeight="29.0" prefWidth="513.0" />
-                        <Label  id="P2ChooseFolder" fx:id="P2ChooseFolder" layoutX="200.0" layoutY="123.0" prefHeight="29.0" prefWidth="513.0" />
-                        <Button id = "P2SplitImage" fx:id="P2SplitImage" onAction="#p2SplitImage" layoutX="123.0" layoutY="218.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="154.0" text="Split image" />
+                        <Button id="P2ChooseOneFileBtn" fx:id="P2ChooseOneFileBtn" layoutX="14.0" layoutY="293.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="152.0" text="Choose one file">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
+                        <Button id="P2ChooseMultipleFilesBtn" fx:id="P2ChooseMultipleFilesBtn" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#p2ChooseFolder" prefHeight="25.0" prefWidth="152.0" text="Browse...">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
+                        <Label id="P2ChooseFile" fx:id="P2ChooseFile" layoutX="194.0" layoutY="62.0" prefHeight="29.0" prefWidth="513.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label id="P2ChooseFolder" fx:id="P2ChooseFolder" layoutX="208.0" layoutY="359.0" prefHeight="29.0" prefWidth="513.0" />
+                        <Button id="P2SplitImage" fx:id="P2SplitImage" layoutX="265.0" layoutY="218.0" mnemonicParsing="false" onAction="#p2SplitImage" prefHeight="25.0" prefWidth="250.0" text="Convert">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
+                        <Button id="P2SelectConversionPath" fx:id="P2SelectConversionPath" layoutX="14.0" layoutY="141.0" mnemonicParsing="false" onAction="#p2SelectDestination" prefHeight="31.0" prefWidth="152.0" text="Browse...">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
+                        <Label id="P2DestinationPathLb" fx:id="P2DestinationPathLb" layoutX="191.0" layoutY="110.0" prefHeight="29.0" prefWidth="245.0" text="Conversion destination folder:">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label layoutX="194.0" layoutY="27.0" prefHeight="35.0" prefWidth="260.0" text="Images:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="187.0" layoutY="139.0" prefHeight="35.0" prefWidth="544.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
                      </children></AnchorPane>
             </content>
           </Tab>
