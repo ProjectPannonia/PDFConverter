@@ -26,8 +26,8 @@ public class Controller {
             P1SelectedPDFFile,
             P1ChooseDestinationFolderLb,
             P2ChooseFile,
-            P2ChooseFolder,
-            P2DestinationPathLb;
+            P2DestinationPathLb,
+            P2ChooseDestinationPath;
 
     @FXML
     public void p1Convert(ActionEvent e) {

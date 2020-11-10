@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.Controller" stylesheets="@../style.css">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.Controller">
    <children>
       <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="769.0" text="PDF converter">
          <font>
@@ -28,9 +28,9 @@
                            <font>
                               <Font size="16.0" />
                            </font></Label>
-                        <Label id="P1SelectedPDFFile" fx:id="P1SelectedPDFFile" styleClass="pathLabels" alignment="CENTER" layoutX="194.0" layoutY="41.0" prefHeight="24.0" prefWidth="371.0" />
+                        <Label id="P1SelectedPDFFile" fx:id="P1SelectedPDFFile" alignment="CENTER" layoutX="194.0" layoutY="41.0" prefHeight="24.0" prefWidth="371.0" styleClass="pathLabels" />
                         <Button id="P1ChoosePDFFile" fx:id="P1ChoosePDFFile" layoutX="589.0" layoutY="38.0" mnemonicParsing="false" onAction="#p1singlePDFChooser" prefHeight="30.0" prefWidth="176.0" text="Choose PDF file" />
-                        <Label id="P1ChooseDestinationFolderLb" fx:id="P1ChooseDestinationFolderLb" styleClass="pathLabels" layoutX="194.0" layoutY="117.0" prefHeight="24.0" prefWidth="371.0" />
+                        <Label id="P1ChooseDestinationFolderLb" fx:id="P1ChooseDestinationFolderLb" layoutX="194.0" layoutY="117.0" prefHeight="24.0" prefWidth="371.0" styleClass="pathLabels" />
                         <Button id="P1ChooseDestinationFolderBtn" fx:id="P1ChooseDestinationFolderBtn" layoutX="589.0" layoutY="111.0" mnemonicParsing="false" onAction="#p1singleDirectoryChooser" prefHeight="30.0" prefWidth="176.0" text="Choose destination folder" />
                      </children>
                   </AnchorPane>
@@ -48,11 +48,11 @@
                            <font>
                               <Font size="14.0" />
                            </font></Button>
-                        <Label id="P2ChooseFile" fx:id="P2ChooseFile" layoutX="194.0" layoutY="62.0" prefHeight="29.0" prefWidth="513.0">
+                        <Label id="P2ChooseFile" fx:id="P2ChooseFile" layoutX="194.0" layoutY="62.0" prefHeight="29.0" prefWidth="513.0" styleClass="pathLabels">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <Label id="P2ChooseFolder" fx:id="P2ChooseFolder" layoutX="208.0" layoutY="359.0" prefHeight="29.0" prefWidth="513.0" />
+                        <Label id="P2ChooseDestinationPath" fx:id="P2ChooseDestinationPath" layoutX="191.0" layoutY="142.0" prefHeight="29.0" prefWidth="513.0" styleClass="pathLabels" />
                         <Button id="P2SplitImage" fx:id="P2SplitImage" layoutX="265.0" layoutY="218.0" mnemonicParsing="false" onAction="#p2SplitImage" prefHeight="25.0" prefWidth="250.0" text="Convert">
                            <font>
                               <Font size="14.0" />
@@ -61,7 +61,7 @@
                            <font>
                               <Font size="14.0" />
                            </font></Button>
-                        <Label id="P2DestinationPathLb" fx:id="P2DestinationPathLb" layoutX="191.0" layoutY="110.0" prefHeight="29.0" prefWidth="245.0" text="Conversion destination folder:">
+                        <Label layoutX="191.0" layoutY="110.0" prefHeight="29.0" prefWidth="245.0" text="Conversion destination folder:">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
@@ -70,7 +70,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="187.0" layoutY="139.0" prefHeight="35.0" prefWidth="544.0">
+                        <Label layoutX="179.0" layoutY="183.0" prefHeight="35.0" prefWidth="544.0">
                            <font>
                               <Font size="14.0" />
                            </font>
