@@ -44,7 +44,7 @@
                         <Button id="P2SelectConversionPath" fx:id="P2SelectConversionPath" layoutX="9.0" layoutY="138.0" mnemonicParsing="false" onAction="#p2SelectDestination" styleClass="browseButtons" text="Browse..." />
 
                         <Label layoutX="204.0" layoutY="113.0" styleClass="infoLabels" text="Conversion destination folder:" />
-                        <Label layoutX="194.0" layoutY="27.0" styleClass="infoLabels" text="Images:" />
+                        <Label layoutX="204.0" layoutY="27.0" styleClass="infoLabels" text="Images:" />
                         <Label layoutX="179.0" layoutY="183.0" prefHeight="35.0" prefWidth="544.0" />
                      </children>
               </AnchorPane>

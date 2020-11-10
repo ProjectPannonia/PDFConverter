@@ -38,13 +38,13 @@
                      <children>
                         <Button id="P2ChooseOneFileBtn" fx:id="P2ChooseOneFileBtn" layoutX="14.0" layoutY="293.0" mnemonicParsing="false" styleClass="browseButtons" text="Choose one file" />
                         <Button id="P2ChooseMultipleFilesBtn" fx:id="P2ChooseMultipleFilesBtn" layoutX="9.0" layoutY="61.0" mnemonicParsing="false" onAction="#p2ChooseFolder" styleClass="browseButtons" text="Browse..." />
-                        <Label id="P2ChooseFile" fx:id="P2ChooseFile" layoutX="194.0" layoutY="62.0" styleClass="pathLabels" />
-                        <Label id="P2ChooseDestinationPath" fx:id="P2ChooseDestinationPath" layoutX="191.0" layoutY="142.0" />
-                        <Button id="P2SplitImage" fx:id="P2SplitImage" layoutX="265.0" layoutY="218.0" mnemonicParsing="false" onAction="#p2SplitImage" styleClass="browseButtons" />
+                        <Label id="P2ChooseFile" fx:id="P2ChooseFile" layoutX="204.0" layoutY="61.0" styleClass="pathLabels" />
+                        <Label id="P2ChooseDestinationPath" fx:id="P2ChooseDestinationPath" layoutX="204.0" layoutY="141.0" styleClass="pathLabels" />
+                        <Button id="P2SplitImage" fx:id="P2SplitImage" layoutX="265.0" layoutY="218.0" mnemonicParsing="false" onAction="#p2SplitImage" styleClass="browseButtons" text="Split images" />
                         <Button id="P2SelectConversionPath" fx:id="P2SelectConversionPath" layoutX="9.0" layoutY="138.0" mnemonicParsing="false" onAction="#p2SelectDestination" styleClass="browseButtons" text="Browse..." />
 
                         <Label layoutX="204.0" layoutY="113.0" styleClass="infoLabels" text="Conversion destination folder:" />
-                        <Label layoutX="194.0" layoutY="27.0" styleClass="infoLabels" text="Images:" />
+                        <Label layoutX="204.0" layoutY="29.0" styleClass="infoLabels" text="Images:" />
                         <Label layoutX="179.0" layoutY="183.0" prefHeight="35.0" prefWidth="544.0" />
                      </children>
               </AnchorPane>
