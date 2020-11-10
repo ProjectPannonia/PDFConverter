@@ -1,4 +1,21 @@
 .pathLabels {
     -fx-border-style: solid;
     -fx-border-color: black;
+    -fx-pref-width: 400;
+    -fx-pref-height: 30;
+}
+.infoLabels {
+    -fx-pref-width: 250;
+    -fx-pref-height: 25;
+    -fx-font: 15px black;
+    -fx-text-alignment: left;
+    -fx-background-color: red;
+}
+.appTitle {
+    -fx-pref-width: 796px;
+    -fx-alignment:center;
+}
+.browseButtons {
+    -fx-pref-width: 176;
+    -fx-pref-height: 30;
 }
