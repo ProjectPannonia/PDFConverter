@@ -1,8 +1,12 @@
 package main.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -10,9 +14,10 @@ import main.service.ImageSplitter;
 import main.service.PDFtoImage;
 
 import java.io.File;
-import java.util.List;
 
 public class Controller {
+
+    private final ObservableList<String> fileFormats = FXCollections.observableArrayList("JPG","PNG");
 
     @FXML
     Button  P1ConvertButton,
@@ -25,6 +30,15 @@ public class Controller {
             P1ChooseDestinationFolderLb,
             P2ChooseSourceFolderLb,
             P2ChooseDestinationPath;
+    @FXML
+    ChoiceBox P1DestinationFormat;
+
+
+
+    @FXML
+    public void initialize() {
+        P1DestinationFormat.setItems(fileFormats);
+    }
 
     // PDF TO IMAGE
     @FXML
@@ -49,12 +63,13 @@ public class Controller {
     public void p1Convert(ActionEvent e) {
         String pathToPDFFile = P1OriginalPDFFilePathLabel.getText();
         String pathToConversionDestination = P1ChooseDestinationFolderLb.getText() + "\\";
-
+        String destinationFormat = P1DestinationFormat.getValue().toString();
         if (pathToPDFFile != null && pathToPDFFile != "" && pathToConversionDestination != null && pathToConversionDestination != "") {
             System.out.println(pathToPDFFile + ", " + pathToConversionDestination);
             PDFtoImage.convertToImages(pathToPDFFile,"JPG",pathToConversionDestination);
         }
     }
+
 
     // SPLIT IMAGES
     @FXML

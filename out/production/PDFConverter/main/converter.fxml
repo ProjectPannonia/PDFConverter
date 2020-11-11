@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -10,7 +11,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.Controller">
    <children>
-      <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" styleClass="appTitle" text="PDF converter">
+      <Label alignment="CENTER" layoutX="2.0" layoutY="20.0" prefHeight="46.0" styleClass="appTitle" text="PDF converter">
          <font>
             <Font size="24.0" />
          </font>
@@ -30,6 +31,7 @@
                          <Label id="P1ChooseDestinationFolderLb" fx:id="P1ChooseDestinationFolderLb" alignment="CENTER" layoutX="204.0" layoutY="141.0" styleClass="pathLabels" />
 
                          <Button id="P1ConvertButton" fx:id="P1ConvertButton" layoutX="302.0" layoutY="216.0" mnemonicParsing="false" onAction="#p1Convert" styleClass="browseButtons" text="Convert" />
+                        <ChoiceBox id="P1DestinationFormat" fx:id="P1DestinationFormat" layoutX="608.0" layoutY="144.0" prefHeight="25.0" prefWidth="157.0" />
                      </children>
                   </AnchorPane>
             </content>
