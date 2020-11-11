@@ -66,7 +66,7 @@ public class Controller {
         String destinationFormat = P1DestinationFormat.getValue().toString();
         if (pathToPDFFile != null && pathToPDFFile != "" && pathToConversionDestination != null && pathToConversionDestination != "") {
             System.out.println(pathToPDFFile + ", " + pathToConversionDestination);
-            PDFtoImage.convertToImages(pathToPDFFile,"JPG",pathToConversionDestination);
+            PDFtoImage.convertToImages(pathToPDFFile,destinationFormat,pathToConversionDestination);
         }
     }
 
