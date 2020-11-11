@@ -21,13 +21,15 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="204.0" layoutY="113.0" styleClass="infoLabels" text="Converted images destination folder" />
-                        <Button id="P1ConvertButton" fx:id="P1ConvertButton" layoutX="302.0" layoutY="216.0" mnemonicParsing="false" onAction="#p1Convert" styleClass="browseButtons" text="Convert" />
-                        <Label id="P1SelectedPDFFile" fx:id="P1SelectedPDFFile" alignment="CENTER" layoutX="204.0" layoutY="61.0" styleClass="pathLabels" />
-                        <Button id="P1ChoosePDFFile" fx:id="P1ChoosePDFFile" layoutX="9.0" layoutY="61.0" mnemonicParsing="false" onAction="#p1singlePDFChooser" styleClass="browseButtons" text="Choose PDF file" />
-                        <Label id="P1ChooseDestinationFolderLb" fx:id="P1ChooseDestinationFolderLb" layoutX="204.0" layoutY="141.0" styleClass="pathLabels" />
-                        <Button id="P1ChooseDestinationFolderBtn" fx:id="P1ChooseDestinationFolderBtn" layoutX="9.0" layoutY="138.0" mnemonicParsing="false" onAction="#p1singleDirectoryChooser" styleClass="browseButtons" text="Choose destination folder" />
-                        <Label layoutX="204.0" layoutY="29.0" styleClass="infoLabels" text="Original PDF file location:" />
+                         <Label layoutX="204.0" layoutY="29.0" styleClass="infoLabels" text="Original PDF file location:" />
+                         <Button id="P1ChoosePDFFile" fx:id="P1ChoosePDFFile" layoutX="9.0" layoutY="61.0" mnemonicParsing="false" onAction="#p1ChooseSourcePDF" styleClass="browseButtons" text="Choose PDF file" />
+                         <Label id="P1OriginalPDFFilePathLabel" fx:id="P1OriginalPDFFilePathLabel" alignment="CENTER" layoutX="204.0" layoutY="61.0" styleClass="pathLabels" />
+
+                         <Label layoutX="204.0" layoutY="113.0" styleClass="infoLabels" text="Converted images destination folder" />
+                         <Button id="P1ChooseDestinationFolderBtn" fx:id="P1ChooseDestinationFolderBtn" layoutX="9.0" layoutY="138.0" mnemonicParsing="false" onAction="#p1ChooseConversionDestinationFolder" styleClass="browseButtons" text="Choose destination folder" />
+                         <Label id="P1ChooseDestinationFolderLb" fx:id="P1ChooseDestinationFolderLb" alignment="CENTER" layoutX="204.0" layoutY="141.0" styleClass="pathLabels" />
+
+                         <Button id="P1ConvertButton" fx:id="P1ConvertButton" layoutX="302.0" layoutY="216.0" mnemonicParsing="false" onAction="#p1Convert" styleClass="browseButtons" text="Convert" />
                      </children>
                   </AnchorPane>
             </content>
@@ -36,16 +38,18 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button id="P2ChooseOneFileBtn" fx:id="P2ChooseOneFileBtn" layoutX="14.0" layoutY="293.0" mnemonicParsing="false" styleClass="browseButtons" text="Choose one file" />
-                        <Button id="P2ChooseMultipleFilesBtn" fx:id="P2ChooseMultipleFilesBtn" layoutX="9.0" layoutY="61.0" mnemonicParsing="false" onAction="#p2ChooseFolder" styleClass="browseButtons" text="Browse..." />
-                        <Label id="P2ChooseFile" fx:id="P2ChooseFile" layoutX="204.0" layoutY="61.0" styleClass="pathLabels" />
-                        <Label id="P2ChooseDestinationPath" fx:id="P2ChooseDestinationPath" layoutX="204.0" layoutY="141.0" styleClass="pathLabels" />
-                        <Button id="P2SplitImage" fx:id="P2SplitImage" layoutX="302.0" layoutY="216.0" mnemonicParsing="false" onAction="#p2SplitImage" styleClass="browseButtons" text="Split images" />
-                        <Button id="P2SelectConversionPath" fx:id="P2SelectConversionPath" layoutX="9.0" layoutY="138.0" mnemonicParsing="false" onAction="#p2SelectDestination" styleClass="browseButtons" text="Browse..." />
+                         <Label layoutX="204.0" layoutY="29.0" styleClass="infoLabels" text="Path to raw images:" />
+                         <Button id="P2ChooseMultipleFilesBtn" fx:id="P2ChooseMultipleFilesBtn" layoutX="9.0" layoutY="61.0" mnemonicParsing="false" onAction="#p2ChooseSourceImagesFolder" styleClass="browseButtons" text="Browse..." />
+                         <Label id="P2ChooseDestinationFolderLb" fx:id="P2ChooseDestinationFolderLb" layoutX="204.0" layoutY="61.0" styleClass="pathLabels" />
 
-                        <Label layoutX="204.0" layoutY="113.0" styleClass="infoLabels" text="Conversion destination folder:" />
-                        <Label layoutX="204.0" layoutY="29.0" styleClass="infoLabels" text="Images:" />
-                        <Label layoutX="179.0" layoutY="183.0" prefHeight="35.0" prefWidth="544.0" />
+                         <Label layoutX="204.0" layoutY="113.0" styleClass="infoLabels" text="Conversion destination folder:" />
+                         <Button id="P2SelectConversionPath" fx:id="P2SelectConversionPath" layoutX="9.0" layoutY="138.0" mnemonicParsing="false" onAction="#p2ChooseConversionDestinationFolder" styleClass="browseButtons" text="Browse..." />
+                         <Label id="P2ChooseDestinationPath" fx:id="P2ChooseDestinationPath" layoutX="204.0" layoutY="141.0" styleClass="pathLabels" />
+
+
+                         <Button id="P2SplitImage" fx:id="P2SplitImage" layoutX="302.0" layoutY="216.0" mnemonicParsing="false" onAction="#p2SplitImagesBtn" styleClass="browseButtons" text="Split images" />
+
+                         <!--<Button id="P2ChooseOneFileBtn" fx:id="P2ChooseOneFileBtn" layoutX="14.0" layoutY="293.0" mnemonicParsing="false" styleClass="browseButtons" text="Choose one file" />-->
                      </children>
               </AnchorPane>
             </content>
