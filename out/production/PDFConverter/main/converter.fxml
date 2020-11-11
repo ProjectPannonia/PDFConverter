@@ -56,13 +56,22 @@
               </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Another empty tab">
+            <Tab text="PDF modifier">
                 <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <children>
-                            <Button layoutX="20.0" layoutY="77.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="152.0" text="Choose one file" />
-                            <Button layoutX="20.0" layoutY="125.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="152.0" text="Choose multiple files" />
-                        </children></AnchorPane>
+                                <Label layoutX="204.0" layoutY="29.0" styleClass="infoLabels" text="Path to source pdf:" />
+                                <Button id="P3ChooseSourcePDF" fx:id="P3ChooseSourcePDF" layoutX="9.0" layoutY="61.0" mnemonicParsing="false" onAction="#p2ChooseSourceImagesFolder" styleClass="browseButtons" text="Browse..." />
+                                <Label id="P3PathToSourcePDFTf" fx:id="P3PathToSourcePDFTf" layoutX="204.0" layoutY="61.0" styleClass="pathLabels" />
+
+                                <Label layoutX="204.0" layoutY="113.0" styleClass="infoLabels" text="Modified file destination folder:" />
+                                <Button id="P3ChooseModifiedFileFolder" fx:id="P3ChooseModifiedFileFolder" layoutX="9.0" layoutY="138.0" mnemonicParsing="false" onAction="#p2ChooseConversionDestinationFolder" styleClass="browseButtons" text="Browse..." />
+                                <Label id="P3PathForModifiedPDFTf" fx:id="P3PathForModifiedPDFTf" layoutX="204.0" layoutY="141.0" styleClass="pathLabels" />
+
+
+                                <Button id="P3ModifyFile" fx:id="P3ModifyFile" layoutX="302.0" layoutY="216.0" mnemonicParsing="false" onAction="#p3ModifyThisFile" styleClass="browseButtons" text="Modify" />
+                        </children>
+                    </AnchorPane>
                 </content>
             </Tab>
         </tabs>

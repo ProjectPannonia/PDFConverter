@@ -24,12 +24,18 @@ public class Controller {
             P1ChooseDestinationFolderBtn,
             P2ChooseMultipleFilesBtn,
             P2SplitImage,
-            P2SelectConversionPath;
+            P2SelectConversionPath,
+            P3ChooseSourcePDF,
+            P3ChooseModifiedFileFolder,
+            P3ModifyFile;
     @FXML
     Label   P1OriginalPDFFilePathLabel,
             P1ChooseDestinationFolderLb,
             P2ChooseSourceFolderLb,
-            P2ChooseDestinationPath;
+            P2ChooseDestinationPath,
+            P3PathToSourcePDFTf,
+            P3PathForModifiedPDFTf;
+
     @FXML
     ChoiceBox P1DestinationFormat;
 
@@ -105,4 +111,8 @@ public class Controller {
 
     }
 
+    @FXML
+    public void p3ModifyThisFile(ActionEvent e) {
+        
+    }
 }
