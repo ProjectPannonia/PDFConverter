@@ -23,15 +23,15 @@ public class Controller {
             P2SelectConversionPath;
     @FXML
     Label   P1ResultLabel,
-            P1SelectedPDFFile,
+            P1OriginalPDFFilePathLabel,
             P1ChooseDestinationFolderLb,
-            P2ChooseFile,
+            P2ChooseDestinationFolderLb,
             P2DestinationPathLb,
             P2ChooseDestinationPath;
 
     @FXML
     public void p1Convert(ActionEvent e) {
-        String pdfChooserLabel = P1SelectedPDFFile.getText();
+        String pdfChooserLabel = P1OriginalPDFFilePathLabel.getText();
         String destinationLabel = P1ChooseDestinationFolderLb.getText() + "\\";
 
         if (pdfChooserLabel != null && pdfChooserLabel != "" && destinationLabel != null && destinationLabel != "") {
@@ -55,7 +55,7 @@ public class Controller {
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files","*.pdf"));
         File f = fc.showOpenDialog(null);
         if(f != null) {
-            P1SelectedPDFFile.setText(f.getAbsolutePath());
+            P1OriginalPDFFilePathLabel.setText(f.getAbsolutePath());
         }
     }
     @FXML
@@ -75,7 +75,7 @@ public class Controller {
 
         if(directory != null) {
             pathToDirectory = directory.getAbsolutePath() + "\\";
-            P2ChooseFile.setText(pathToDirectory);
+            P2ChooseDestinationFolderLb.setText(pathToDirectory);
         }
     }
     @FXML
@@ -92,7 +92,7 @@ public class Controller {
     }
     @FXML
     public void p2SplitImage(ActionEvent e) {
-        String pathToFile = P2ChooseFile.getText();
+        String pathToFile = P2ChooseDestinationFolderLb.getText();
         String conversionDestinationPath = P2DestinationPathLb.getText();
         if (pathToFile != null) {
             ImageSplitter.splitImage(pathToFile,conversionDestinationPath);
