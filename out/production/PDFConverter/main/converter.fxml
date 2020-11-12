@@ -30,8 +30,11 @@
                          <Button id="P1ChooseDestinationFolderBtn" fx:id="P1ChooseDestinationFolderBtn" layoutX="9.0" layoutY="138.0" mnemonicParsing="false" onAction="#p1ChooseConversionDestinationFolder" styleClass="browseButtons" text="Choose destination folder" />
                          <Label id="P1ChooseDestinationFolderLb" fx:id="P1ChooseDestinationFolderLb" alignment="CENTER" layoutX="204.0" layoutY="141.0" styleClass="pathLabels" />
 
-                         <Button id="P1ConvertButton" fx:id="P1ConvertButton" layoutX="302.0" layoutY="216.0" mnemonicParsing="false" onAction="#p1Convert" styleClass="browseButtons" text="Convert" />
-                        <ChoiceBox id="P1DestinationFormat" fx:id="P1DestinationFormat" layoutX="608.0" layoutY="144.0" prefHeight="25.0" prefWidth="157.0" />
+                         <Button id="P1ConvertButton" fx:id="P1ConvertButton" layoutX="302.0" layoutY="335.0" mnemonicParsing="false" onAction="#p1Convert" styleClass="browseButtons" text="Convert" />
+                        <ChoiceBox id="P1DestinationFormat" fx:id="P1DestinationFormat" layoutX="204.0" layoutY="218.0" prefHeight="25.0" prefWidth="157.0" />
+                        <Label layoutX="204.0" layoutY="193.0" styleClass="infoLabels" text="Destination format:" />
+                        <Label layoutX="204.0" layoutY="251.0" styleClass="infoLabels" text="DPI:" />
+                        <ChoiceBox id="P1TargetDpi" fx:id="P1TargetDpi" layoutX="204.0" layoutY="282.0" prefHeight="25.0" prefWidth="157.0" />
                      </children>
                   </AnchorPane>
             </content>
@@ -61,11 +64,11 @@
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <children>
                                 <Label layoutX="204.0" layoutY="29.0" styleClass="infoLabels" text="Path to source pdf:" />
-                                <Button id="P3ChooseSourcePDF" fx:id="P3ChooseSourcePDF" layoutX="9.0" layoutY="61.0" mnemonicParsing="false" onAction="#p2ChooseSourceImagesFolder" styleClass="browseButtons" text="Browse..." />
+                                <Button id="P3ChooseSourcePDF" fx:id="P3ChooseSourcePDF" layoutX="9.0" layoutY="61.0" mnemonicParsing="false" onAction="#p3ChooseSourcePDF" styleClass="browseButtons" text="Browse..." />
                                 <Label id="P3PathToSourcePDFTf" fx:id="P3PathToSourcePDFTf" layoutX="204.0" layoutY="61.0" styleClass="pathLabels" />
 
                                 <Label layoutX="204.0" layoutY="113.0" styleClass="infoLabels" text="Modified file destination folder:" />
-                                <Button id="P3ChooseModifiedFileFolder" fx:id="P3ChooseModifiedFileFolder" layoutX="9.0" layoutY="138.0" mnemonicParsing="false" onAction="#p2ChooseConversionDestinationFolder" styleClass="browseButtons" text="Browse..." />
+                                <Button id="P3ChooseModifiedFileFolder" fx:id="P3ChooseModifiedFileFolder" layoutX="9.0" layoutY="138.0" mnemonicParsing="false" onAction="#setP3ChooseModifiedFileFolder" styleClass="browseButtons" text="Browse..." />
                                 <Label id="P3PathForModifiedPDFTf" fx:id="P3PathForModifiedPDFTf" layoutX="204.0" layoutY="141.0" styleClass="pathLabels" />
 
 

@@ -1,7 +1,6 @@
 package main.controllers;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,12 +11,14 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import main.service.ImageSplitter;
 import main.service.PDFtoImage;
+import main.service.modify.PdfModifier;
 
 import java.io.File;
 
 public class Controller {
 
-    private final ObservableList<String> fileFormats = FXCollections.observableArrayList("JPG","PNG");
+    private final ObservableList<String> fileFormats = FXCollections.observableArrayList("JPG","PNG","TIF");
+    private final ObservableList<String> targetDpi = FXCollections.observableArrayList("300","400");
 
     @FXML
     Button  P1ConvertButton,
@@ -37,13 +38,15 @@ public class Controller {
             P3PathForModifiedPDFTf;
 
     @FXML
-    ChoiceBox P1DestinationFormat;
+    ChoiceBox   P1DestinationFormat,
+                P1TargetDpi;
 
 
 
     @FXML
     public void initialize() {
         P1DestinationFormat.setItems(fileFormats);
+        P1TargetDpi.setItems(targetDpi);
     }
 
     // PDF TO IMAGE
@@ -111,8 +114,35 @@ public class Controller {
 
     }
 
+    // PDF modifier
+    @FXML
+    private void p3ChooseSourcePDF(ActionEvent e) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF files","*.pdf"));
+        File file = fileChooser.showOpenDialog(null);
+
+        if( file != null) {
+            P3PathToSourcePDFTf.setText(file.getAbsolutePath());
+        }
+    }
+    @FXML
+    private void setP3ChooseModifiedFileFolder(ActionEvent e) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File direcotry = directoryChooser.showDialog(null);
+        String pathToDirectory = null;
+
+        if (direcotry != null) {
+            pathToDirectory = direcotry.getAbsolutePath() + "\\";
+            System.out.println(pathToDirectory);
+            P3PathForModifiedPDFTf.setText(pathToDirectory);
+
+        }
+    }
     @FXML
     public void p3ModifyThisFile(ActionEvent e) {
-        
+        String pathToSourceFile = P3PathToSourcePDFTf.getText();
+        String modifiedFileDestinationPath = P3PathForModifiedPDFTf.getText();
+        System.out.println("From p3ModifyThisFIle: " + pathToSourceFile + ", " + modifiedFileDestinationPath);
+        PdfModifier.modifyPdf(pathToSourceFile,modifiedFileDestinationPath);
     }
 }
