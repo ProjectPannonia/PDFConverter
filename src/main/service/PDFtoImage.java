@@ -30,4 +30,18 @@ public class PDFtoImage {
             e.printStackTrace();
         }
     }
+    public static void convertToImages(String pdfChooserLabel) {
+        PDDocument document;
+        PDFRenderer pdfRenderer;
+        BufferedImage bufferedImage;
+
+        try {
+            document = PDDocument.load(new File(pdfChooserLabel));
+            System.out.println(document.getNumberOfPages());
+            System.out.println(document.getDocumentCatalog());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
