@@ -18,7 +18,7 @@ import java.io.File;
 public class Controller {
 
     private final ObservableList<String> fileFormats = FXCollections.observableArrayList("JPG","PNG","TIF");
-    private final ObservableList<String> targetDpi = FXCollections.observableArrayList("300","400");
+    private final ObservableList<String> targetDpi = FXCollections.observableArrayList("100", "200", "300", "400", "500", "600");
 
     @FXML
     Button  P1ConvertButton,
