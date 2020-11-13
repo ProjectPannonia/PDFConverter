@@ -73,9 +73,11 @@ public class Controller {
         String pathToPDFFile = P1OriginalPDFFilePathLabel.getText();
         String pathToConversionDestination = P1ChooseDestinationFolderLb.getText() + "\\";
         String destinationFormat = P1DestinationFormat.getValue().toString();
+        int destinationDpi = Integer.valueOf(P1TargetDpi.getValue().toString());
+
         if (pathToPDFFile != null && pathToPDFFile != "" && pathToConversionDestination != null && pathToConversionDestination != "") {
             System.out.println(pathToPDFFile + ", " + pathToConversionDestination);
-            PDFtoImage.convertToImages(pathToPDFFile,destinationFormat,pathToConversionDestination);
+            PDFtoImage.convertToImages(pathToPDFFile,destinationFormat,pathToConversionDestination, destinationDpi);
         }
     }
 

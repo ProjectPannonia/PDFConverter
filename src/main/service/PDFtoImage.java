@@ -12,7 +12,7 @@ import java.io.IOException;
 public class PDFtoImage {
 
 
-    public static void convertToImages(String pdfChooserLabel, String extension, String destinationLabel) {
+    public static void convertToImages(String pdfChooserLabel, String extension, String destinationLabel, int targetDpi) {
         PDDocument document;
         PDFRenderer pdfRenderer;
         BufferedImage bufferedImage;
@@ -23,7 +23,7 @@ public class PDFtoImage {
 
             for (int page = 0; page < document.getNumberOfPages(); page++) {
                 bufferedImage = pdfRenderer.renderImageWithDPI(page, 300, ImageType.RGB);
-                ImageIOUtil.writeImage(bufferedImage, String.format(destinationLabel + "pdf-%d.%s", page + 1, extension), 300);
+                ImageIOUtil.writeImage(bufferedImage, String.format(destinationLabel + "pdf-%d.%s", page + 1, extension), targetDpi);
             }
             document.close();
         } catch (IOException e) {
