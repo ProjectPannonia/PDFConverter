@@ -1,12 +1,13 @@
 package main.service.imagesToPdf;
 
 public class PdfFile {
-    private int id;
+    private int id = 0;
     private String fileName;
     private String format;
     private String path;
 
     public PdfFile(String fileName, String format, String path) {
+        this.id = id++;
         this.fileName = fileName;
         this.format = format;
         this.path = path;

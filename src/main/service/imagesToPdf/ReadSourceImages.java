@@ -10,7 +10,8 @@ public class ReadSourceImages {
     private static ObservableList<PdfFile> filesInFolder = FXCollections.observableArrayList();
 
     public static ObservableList<PdfFile> readSourceFiles(String filePath) {
-        return null;
+        readSourceFolder(filePath);
+        return filesInFolder;
     }
     private static void readSourceFolder(String filePath) {
         readFilesFromSourceFolder(new File(filePath));
