@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import main.service.imagesToPdf.PdfFile;
+import main.service.imagesToPdf.ReadSourceImages;
 import main.service.splitImage.ImageSplitter;
 import main.service.pdfToImage.PDFtoImage;
 import main.service.modify.PdfModifier;
@@ -17,6 +19,7 @@ public class Controller {
 
     private final ObservableList<String> fileFormats = FXCollections.observableArrayList("JPG","PNG","TIF");
     private final ObservableList<String> targetDpi = FXCollections.observableArrayList("100", "200", "300", "400", "500", "600");
+    private ObservableList<PdfFile> sourceFilesForTable = FXCollections.observableArrayList();
 
     // 1.
     @FXML
@@ -49,11 +52,12 @@ public class Controller {
 
     // 4.
     @FXML
-    Button  P4ChoosePDFFile,
+    Button  P4ChooseImagesSourceFolderBt,
             P4ChooseDestinationFolderBtn,
             P4ConvertButton;
     @FXML
-    Label xyz;
+    Label   P4SourceImagesPathTf,
+            P4ChooseDestinationFolderLb;
 
     @FXML
     TableView P4SourceImagesTable;
@@ -174,5 +178,15 @@ public class Controller {
     }
 
     // 4. Images to PDF
-
+    @FXML
+    public void p4SourceImages(ActionEvent e) {
+        String sourceFilesPath = null;
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File directory = directoryChooser.showDialog(null);
+        if (directory != null) {
+            sourceFilesPath = directory.getAbsolutePath();
+            P4SourceImagesPathTf.setText(sourceFilesPath);
+            sourceFilesForTable = ReadSourceImages.readSourceFiles(sourceFilesPath);
+        }
+    }
 }

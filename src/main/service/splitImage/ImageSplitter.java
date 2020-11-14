@@ -17,13 +17,10 @@ public class ImageSplitter {
     }
 
     private static void readFolder(String pathToRawFiles) {
-        File rawFilesFolder = new File(pathToRawFiles);
-        System.out.println("Image splitter, readFolder: " + pathToRawFiles + ", " + rawFilesFolder.getAbsolutePath());
-        readFilesFromFolder(rawFilesFolder);
+        readFilesFromFolder(new File(pathToRawFiles));
     }
     private static void readFilesFromFolder(File folder) {
-        File[] filesInFolder = folder.listFiles();
-        imageHalving(filesInFolder);
+        imageHalving(folder.listFiles());
     }
     private static void imageHalving(File[] wholeImages) {
         imagesInFolder = new ArrayList<>();
