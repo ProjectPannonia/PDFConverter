@@ -4,13 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import main.service.ImageSplitter;
-import main.service.PDFtoImage;
+import main.service.splitImage.ImageSplitter;
+import main.service.pdfToImage.PDFtoImage;
 import main.service.modify.PdfModifier;
 
 import java.io.File;
@@ -20,26 +18,53 @@ public class Controller {
     private final ObservableList<String> fileFormats = FXCollections.observableArrayList("JPG","PNG","TIF");
     private final ObservableList<String> targetDpi = FXCollections.observableArrayList("100", "200", "300", "400", "500", "600");
 
+    // 1.
     @FXML
     Button  P1ConvertButton,
-            P1ChooseDestinationFolderBtn,
-            P2ChooseMultipleFilesBtn,
-            P2SplitImage,
-            P2SelectConversionPath,
-            P3ChooseSourcePDF,
-            P3ChooseModifiedFileFolder,
-            P3ModifyFile;
+            P1ChooseDestinationFolderBtn;
     @FXML
     Label   P1OriginalPDFFilePathLabel,
-            P1ChooseDestinationFolderLb,
-            P2ChooseSourceFolderLb,
-            P2ChooseDestinationPath,
-            P3PathToSourcePDFTf,
-            P3PathForModifiedPDFTf;
-
+            P1ChooseDestinationFolderLb;
     @FXML
     ChoiceBox   P1DestinationFormat,
                 P1TargetDpi;
+
+    // 2.
+    @FXML
+    Button  P2ChooseMultipleFilesBtn,
+            P2SplitImage,
+            P2SelectConversionPath;
+    @FXML
+    Label   P2ChooseSourceFolderLb,
+            P2ChooseDestinationPath;
+
+    // 3.
+    @FXML
+    Button  P3ChooseSourcePDF,
+            P3ChooseModifiedFileFolder,
+            P3ModifyFile;
+    @FXML
+    Label   P3PathToSourcePDFTf,
+            P3PathForModifiedPDFTf;
+
+    // 4.
+    @FXML
+    Button  P4ChoosePDFFile,
+            P4ChooseDestinationFolderBtn,
+            P4ConvertButton;
+    @FXML
+    Label xyz;
+
+    @FXML
+    TableView P4SourceImagesTable;
+    @FXML
+    TableColumn P4SourceImageId,
+                P4SourceImageName,
+                P4SourceImageFormat,
+                P4SourceImagePath;
+    @FXML
+    ChoiceBox P4DestinationFormat;
+
 
 
 
@@ -49,7 +74,7 @@ public class Controller {
         P1TargetDpi.setItems(targetDpi);
     }
 
-    // PDF TO IMAGE
+    // 1. PDF TO IMAGE
     @FXML
     public void p1ChooseSourcePDF(ActionEvent e) {
         FileChooser fc = new FileChooser();
@@ -82,7 +107,7 @@ public class Controller {
     }
 
 
-    // SPLIT IMAGES
+    // 2. SPLIT IMAGES
     @FXML
     public void p2ChooseSourceImagesFolder(ActionEvent e) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -116,7 +141,7 @@ public class Controller {
 
     }
 
-    // PDF modifier
+    // 3. PDF modifier
     @FXML
     private void p3ChooseSourcePDF(ActionEvent e) {
         FileChooser fileChooser = new FileChooser();
@@ -147,4 +172,7 @@ public class Controller {
         System.out.println("From p3ModifyThisFIle: " + pathToSourceFile + ", " + modifiedFileDestinationPath);
         PdfModifier.modifyPdf(pathToSourceFile,modifiedFileDestinationPath);
     }
+
+    // 4. Images to PDF
+
 }

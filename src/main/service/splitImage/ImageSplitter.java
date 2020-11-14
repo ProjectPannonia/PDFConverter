@@ -1,4 +1,4 @@
-package main.service;
+package main.service.splitImage;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
