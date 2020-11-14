@@ -62,11 +62,11 @@ public class Controller {
     private TableView<PdfFile> table = new TableView<PdfFile>();
     @FXML
     TableView P4SourceImagesTable;
-//    @FXML
-//    TableColumn P4SourceImageId,
-//                P4SourceImageName,
-//                P4SourceImageFormat,
-//                P4SourceImagePath;
+    @FXML
+    TableColumn P4SourceImageId,
+                P4SourceImageName,
+                P4SourceImageFormat,
+                P4SourceImagePath;
     @FXML
     ChoiceBox P4DestinationFormat;
 
