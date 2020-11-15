@@ -20,7 +20,7 @@ public class Controller {
 
     private final ObservableList<String> fileFormats = FXCollections.observableArrayList("JPG","PNG","TIF");
     private final ObservableList<String> targetDpi = FXCollections.observableArrayList("100", "200", "300", "400", "500", "600");
-    private ObservableList<PdfFile> sourceFilesForTable = FXCollections.observableArrayList(new PdfFile("bab.pdf","pdf","D:\\xyz"),new PdfFile("krumpli.pdf","pdf","D:\\xyz"));
+    private ObservableList<PdfFile> sourceFilesForTable = FXCollections.observableArrayList(new PdfFile(1,"bab.pdf","pdf","D:\\xyz"),new PdfFile(2,"krumpli.pdf","pdf","D:\\xyz"));
 
     // 1.
     @FXML
@@ -59,11 +59,11 @@ public class Controller {
     @FXML
     Label   P4SourceImagesPathTf,
             P4ChooseDestinationFolderLb;
-    private TableView<PdfFile> table = new TableView<PdfFile>();
+    
     @FXML
-    TableView P4SourceImagesTable;
+    private TableView<PdfFile> P4SourceImagesTable;
     @FXML
-    TableColumn P4SourceImageId,
+    TableColumn<PdfFile,String> P4SourceImageId,
                 P4SourceImageName,
                 P4SourceImageFormat,
                 P4SourceImagePath;
@@ -77,20 +77,15 @@ public class Controller {
     public void initialize() {
         P1DestinationFormat.setItems(fileFormats);
         P1TargetDpi.setItems(targetDpi);
-        P4SourceImagesTable = new TableView<PdfFile>();
+
         P4SourceImagesTable.setEditable(true);
-        TableColumn id = new TableColumn("ID");
-        id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        TableColumn fileName = new TableColumn("File name");
-        fileName.setCellValueFactory(new PropertyValueFactory<>("fileName"));
-        TableColumn format = new TableColumn("Format");
-        format.setCellValueFactory(new PropertyValueFactory<>("format"));
-        TableColumn path = new TableColumn("Path");
-        path.setCellValueFactory(new PropertyValueFactory<>("path"));
+
+        P4SourceImageId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        P4SourceImageName.setCellValueFactory(new PropertyValueFactory<>("fileName"));
+        P4SourceImageFormat.setCellValueFactory(new PropertyValueFactory<>("format"));
+        P4SourceImagePath.setCellValueFactory(new PropertyValueFactory<>("path"));
 
         P4SourceImagesTable.setItems(sourceFilesForTable);
-        P4SourceImagesTable.getColumns().addAll(id,fileName,format,path);
-        System.out.println(P4SourceImagesTable.getColumns());
     }
 
     // 1. PDF TO IMAGE
