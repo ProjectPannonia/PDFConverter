@@ -87,7 +87,7 @@
                         <children>
 
                             <Label layoutX="204.0" layoutY="14.0" styleClass="infoLabels" text="Images folder:" />
-                            <Button id="P4ChooseImagesSourceFolderBt" fx:id="P4ChooseImagesSourceFolderBt" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" onAction="#p4SourceImages" styleClass="browseButtons" text="Browse images folder..." />
+                            <Button id="P4ChooseImagesSourceFolderBt" fx:id="P4ChooseImagesSourceFolderBt" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" onAction="#p4BrowseFiles" styleClass="browseButtons" text="Browse images folder..." />
                             <Label id="P4SourceImagesPathTf" fx:id="P4SourceImagesPathTf" alignment="CENTER" layoutX="204.0" layoutY="46.0" styleClass="pathLabels" />
                             <TableView id="P4SourceImagesTable" fx:id="P4SourceImagesTable" layoutX="15.0" layoutY="87.0" prefHeight="172.0" prefWidth="757.0">
                            <columns>

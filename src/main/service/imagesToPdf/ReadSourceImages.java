@@ -24,9 +24,9 @@ public class ReadSourceImages {
             String fileName = img.getName();
             String fileFormat = getFileFormat(fileName);
             String filePath = img.getAbsolutePath();
-            //PdfFile file = new PdfFile(fileName,fileFormat,filePath);
+            PdfFile file = new PdfFile(i,fileName,fileFormat,filePath);
 
-            //filesInFolder.add(file);
+            filesInFolder.add(file);
         }
     }
     public static String getFileFormat(String fileName) {

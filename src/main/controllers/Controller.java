@@ -20,7 +20,7 @@ public class Controller {
 
     private final ObservableList<String> fileFormats = FXCollections.observableArrayList("JPG","PNG","TIF");
     private final ObservableList<String> targetDpi = FXCollections.observableArrayList("100", "200", "300", "400", "500", "600");
-    private ObservableList<PdfFile> sourceFilesForTable = FXCollections.observableArrayList(new PdfFile(1,"bab.pdf","pdf","D:\\xyz"),new PdfFile(2,"krumpli.pdf","pdf","D:\\xyz"));
+    private ObservableList<PdfFile> sourceFilesForTable = FXCollections.observableArrayList();
 
     // 1.
     @FXML
@@ -77,6 +77,8 @@ public class Controller {
     public void initialize() {
         P1DestinationFormat.setItems(fileFormats);
         P1TargetDpi.setItems(targetDpi);
+
+
 
         P4SourceImagesTable.setEditable(true);
 
@@ -189,9 +191,7 @@ public class Controller {
 
     // 4. Images to PDF
     @FXML
-    public void p4SourceImages(ActionEvent e) {
-        //P4SourceImagesTable.setEditable(true);
-        //P4SourceImagesTable.getColumns().addAll(P4SourceImageId,P4SourceImageName,P4SourceImageFormat,P4SourceImagePath);
+    public void p4BrowseFiles(ActionEvent e) {
         String sourceFilesPath = null;
         DirectoryChooser directoryChooser = new DirectoryChooser();
         File directory = directoryChooser.showDialog(null);
@@ -199,17 +199,8 @@ public class Controller {
             sourceFilesPath = directory.getAbsolutePath();
             System.out.println("Files folder path: " + sourceFilesPath);
             P4SourceImagesPathTf.setText(sourceFilesPath);
-            sourceFilesForTable = ReadSourceImages.readSourceFiles(sourceFilesPath);
-            for(PdfFile file : sourceFilesForTable) {
-                System.out.println("Source files for table: " + file.getId() + ", " + file.getFileName() + ", " + file.getFormat() + ", " + file.getPath());
-                //P4SourceImagesTable.getColumns().add(sourceFilesForTable);
-//                P4SourceImageId.setCellFactory(new PropertyValueFactory<PdfFile,String>("id"));
-//                P4SourceImageId.setCellFactory(new PropertyValueFactory<PdfFile,String>("fileName"));
-//                P4SourceImageId.setCellFactory(new PropertyValueFactory<PdfFile,String>("format"));
-//                P4SourceImageId.setCellFactory(new PropertyValueFactory<PdfFile,String>("path"));
-                //P4SourceImagesTable.setItems(sourceFilesForTable);
-            }
-
+            ObservableList<PdfFile>  files = ReadSourceImages.readSourceFiles(sourceFilesPath);
+            sourceFilesForTable.addAll(files);
         }
     }
 }
