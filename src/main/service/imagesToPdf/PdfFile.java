@@ -1,5 +1,6 @@
 package main.service.imagesToPdf;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -8,12 +9,14 @@ public class PdfFile {
     private SimpleStringProperty fileName;
     private SimpleStringProperty format;
     private SimpleStringProperty path;
+    private SimpleBooleanProperty selected;
 
     public PdfFile(Integer id, String fileName, String format, String path) {
         this.id = new SimpleIntegerProperty(id);
         this.fileName = new SimpleStringProperty(fileName);
         this.format = new SimpleStringProperty(format);
         this.path = new SimpleStringProperty(path);
+        this.selected = new SimpleBooleanProperty(false);
     }
 
     public int getId() {

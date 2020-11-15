@@ -21,8 +21,8 @@ public class ReadSourceImages {
         File img;
         for(int i = 0; i < images.length; i++) {
             img = images[i];
-            String fileName = img.getName();
-            String fileFormat = getFileFormat(fileName);
+            String fileName = getFileName(img.getName());
+            String fileFormat = getFileFormat(img.getName());
             String filePath = img.getAbsolutePath();
             PdfFile file = new PdfFile(i,fileName,fileFormat,filePath);
 
@@ -32,5 +32,9 @@ public class ReadSourceImages {
     public static String getFileFormat(String fileName) {
         int dotPosition = fileName.indexOf(".");
         return fileName.substring(dotPosition + 1);
+    }
+    public static String getFileName(String fileName) {
+        int dotPosition = fileName.indexOf(".");
+        return fileName.substring(0,dotPosition);
     }
 }

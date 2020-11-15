@@ -48,7 +48,7 @@ public class Controller {
             P3ChooseModifiedFileFolder,
             P3ModifyFile;
     @FXML
-    Label   P3PathToSourcePDFTf,
+    private Label   P3PathToSourcePDFTf,
             P3PathForModifiedPDFTf;
 
     // 4.
@@ -62,13 +62,17 @@ public class Controller {
     
     @FXML
     private TableView<PdfFile> P4SourceImagesTable;
+
     @FXML
     TableColumn<PdfFile,String> P4SourceImageId,
                 P4SourceImageName,
                 P4SourceImageFormat,
                 P4SourceImagePath;
     @FXML
-    ChoiceBox P4DestinationFormat;
+    TableColumn<PdfFile,Boolean> P4SourceImageSelectCol;
+
+    @FXML
+    private ChoiceBox P4DestinationFormat;
 
 
 
@@ -86,7 +90,7 @@ public class Controller {
         P4SourceImageName.setCellValueFactory(new PropertyValueFactory<>("fileName"));
         P4SourceImageFormat.setCellValueFactory(new PropertyValueFactory<>("format"));
         P4SourceImagePath.setCellValueFactory(new PropertyValueFactory<>("path"));
-
+        P4SourceImageSelectCol.setCellValueFactory(new PropertyValueFactory<>("selected"));
         P4SourceImagesTable.setItems(sourceFilesForTable);
     }
 

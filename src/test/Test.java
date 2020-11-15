@@ -11,5 +11,9 @@ public class Test {
 
         assertEquals("pdf",ReadSourceImages.getFileFormat("xyz.pdf"));
     }
+    @org.junit.jupiter.api.Test
+    public void testGetFileName() {
+        assertEquals("xyz",ReadSourceImages.getFileName("xyz.pdf"));
+    }
 
 }
