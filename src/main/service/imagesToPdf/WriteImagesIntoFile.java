@@ -55,7 +55,24 @@ public class WriteImagesIntoFile {
 
         return wantedFileName;
     }
-    public static BufferedImage[] cutImageIntoTo(PDImageXObject originalImage) {
-        // get the buffered image from the PDImageXOBject, create the two half buffered image and return two new PDImageXObject with the two half bufferedImage
+    /*  -> Get a buffered image from a given PDImageXOBject
+        -> cut the image into 2
+        -> create 2 new PDImageXOBject from the image parts
+     */
+    public static PDImageXObject[] cutImageIntoTo(PDImageXObject originalImage) {
+        PDImageXObject[] splittedImages = new PDImageXObject[2];
+        splittedImages[0] = originalImage;
+        splittedImages[1] = originalImage;
+
+        try {
+            BufferedImage originalBIMG = originalImage.getImage();
+            int width = originalBIMG.getWidth();
+            int height = originalBIMG.getHeight();
+            BufferedImage first = originalBIMG.getSubimage(0, 0, width/2, height);
+            BufferedImage second = originalBIMG.getSubimage(width/2,0, width/2, height);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return splittedImages;
     }
 }
