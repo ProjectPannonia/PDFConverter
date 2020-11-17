@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -48,7 +49,7 @@
                      <children>
                          <Label layoutX="204.0" layoutY="29.0" styleClass="infoLabels" text="Path to raw images:" />
                          <Button id="P2ChooseMultipleFilesBtn" fx:id="P2ChooseMultipleFilesBtn" layoutX="9.0" layoutY="61.0" mnemonicParsing="false" onAction="#p2ChooseSourceImagesFolder" styleClass="browseButtons" text="Browse..." />
-                         <Label id="P2ChooseDestinationFolderLb" fx:id="P2ChooseDestinationFolderLb" layoutX="204.0" layoutY="61.0" styleClass="pathLabels" />
+                         <Label id="P2ChooseSourceFolderLb" fx:id="P2ChooseSourceFolderLb" layoutX="204.0" layoutY="61.0" styleClass="pathLabels" />
 
                          <Label layoutX="204.0" layoutY="113.0" styleClass="infoLabels" text="Conversion destination folder:" />
                          <Button id="P2SelectConversionPath" fx:id="P2SelectConversionPath" layoutX="9.0" layoutY="138.0" mnemonicParsing="false" onAction="#p2ChooseConversionDestinationFolder" styleClass="browseButtons" text="Browse..." />
@@ -102,17 +103,16 @@
                                 </columnResizePolicy>
                             </TableView>
 
-                            <Label layoutX="14.0" layoutY="262.0" styleClass="infoLabels" text="Converted images destination folder" />
-                            <Button id="P4ChooseDestinationFolderBtn" fx:id="P4ChooseDestinationFolderBtn" layoutX="14.0" layoutY="293.0" mnemonicParsing="false" onAction="#p1ChooseConversionDestinationFolder" styleClass="browseButtons" text="Choose destination folder" />
-                            <Label id="P4ChooseDestinationFolderLb" fx:id="P4ChooseDestinationFolderLb" alignment="CENTER" layoutX="204.0" layoutY="293.0" styleClass="pathLabels" />
+                            <Label layoutX="14.0" layoutY="262.0" styleClass="infoLabels" text="Conversion destination:" />
+                            <Button id="P4ChooseDestinationFolderBtn" fx:id="P4ChooseDestinationFolderBtn" layoutX="571.0" layoutY="260.0" mnemonicParsing="false" onAction="#p4ChooseConversionDestination" styleClass="browseButtons" text="Choose destination folder" />
+                            <Label id="P4ChooseDestinationFolderLb" fx:id="P4ChooseDestinationFolderLb" alignment="CENTER" layoutX="204.0" layoutY="260.0" styleClass="pathLabels" />
 
-                            <Label layoutX="14.0" layoutY="334.0" styleClass="infoLabels" text="Destination format:" />
-                            <ChoiceBox id="P4DestinationFormat" fx:id="P4DestinationFormat" layoutX="264.0" layoutY="334.0" prefHeight="25.0" prefWidth="157.0" />
+                            <Label layoutX="12.0" layoutY="297.0" styleClass="infoLabels" text="DPI:" />
+                            <ChoiceBox id="P4TargetDpi" fx:id="P4TargetDpi" layoutX="204.0" layoutY="297.0" prefHeight="25.0" prefWidth="157.0" />
 
-                            <Label layoutX="14.0" layoutY="372.0" styleClass="infoLabels" text="DPI:" />
-                            <ChoiceBox id="P4TargetDpi" fx:id="P4TargetDpi" layoutX="264.0" layoutY="372.0" prefHeight="25.0" prefWidth="157.0" />
-
-                            <Button id="P4ConvertButton" fx:id="P4ConvertButton" layoutX="302.0" layoutY="417.0" mnemonicParsing="false" onAction="#p1Convert" styleClass="browseButtons" text="Convert" />
+                            <Button id="P4ConvertButton" fx:id="P4ConvertButton" layoutX="302.0" layoutY="417.0" mnemonicParsing="false" onAction="#p4Convert" styleClass="browseButtons" text="Convert" />
+                        <Label layoutX="14.0" layoutY="332.0" prefWidth="140.0" styleClass="infoLabels" text="PDF file name:" />
+                        <TextField id="P4DestinationFileName" fx:id="P4DestinationFileName" layoutX="204.0" layoutY="332.0" />
                             
                         </children>
                     </AnchorPane>

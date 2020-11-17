@@ -10,6 +10,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import main.service.imagesToPdf.PdfFile;
 import main.service.imagesToPdf.ReadSourceImages;
+import main.service.imagesToPdf.WriteImagesIntoFile;
 import main.service.modify.PdfModifier;
 import main.service.pdfToImage.PDFtoImage;
 import main.service.splitImage.ImageSplitter;
@@ -18,7 +19,7 @@ import java.io.File;
 
 public class Controller {
 
-    private final ObservableList<String> fileFormats = FXCollections.observableArrayList("JPG","PNG","TIF");
+    private final ObservableList<String> fileFormats = FXCollections.observableArrayList("JPG","JPEG","PNG","TIF","TIFF","GIF","BMP");
     private final ObservableList<String> targetDpi = FXCollections.observableArrayList("100", "200", "300", "400", "500", "600");
     private ObservableList<PdfFile> sourceFilesForTable = FXCollections.observableArrayList();
 
@@ -48,7 +49,7 @@ public class Controller {
             P3ChooseModifiedFileFolder,
             P3ModifyFile;
     @FXML
-    private Label   P3PathToSourcePDFTf,
+    Label   P3PathToSourcePDFTf,
             P3PathForModifiedPDFTf;
 
     // 4.
@@ -61,7 +62,7 @@ public class Controller {
             P4ChooseDestinationFolderLb;
     
     @FXML
-    private TableView<PdfFile> P4SourceImagesTable;
+    TableView<PdfFile> P4SourceImagesTable;
 
     @FXML
     TableColumn<PdfFile,String> P4SourceImageId,
@@ -71,10 +72,12 @@ public class Controller {
     @FXML
     TableColumn<PdfFile,Boolean> P4SourceImageSelectCol;
 
+//    @FXML
+//    ChoiceBox P4DestinationFormat;
     @FXML
-    private ChoiceBox P4DestinationFormat;
-
-
+    TextField P4DestinationFileName;
+    @FXML
+    ChoiceBox P4TargetDpi;
 
 
     @FXML
@@ -84,6 +87,7 @@ public class Controller {
 
 
 
+        P4TargetDpi.setItems(targetDpi);
         P4SourceImagesTable.setEditable(true);
 
         P4SourceImageId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -147,7 +151,7 @@ public class Controller {
 
         if (direcotry != null) {
             pathToDirectory = direcotry.getAbsolutePath() + "\\";
-            P1ChooseDestinationFolderLb.setText(pathToDirectory);
+            P2ChooseDestinationPath.setText(pathToDirectory);
 
         }
     }
@@ -201,10 +205,31 @@ public class Controller {
         File directory = directoryChooser.showDialog(null);
         if (directory != null) {
             sourceFilesPath = directory.getAbsolutePath();
-            System.out.println("Files folder path: " + sourceFilesPath);
             P4SourceImagesPathTf.setText(sourceFilesPath);
             ObservableList<PdfFile>  files = ReadSourceImages.readSourceFiles(sourceFilesPath);
             sourceFilesForTable.addAll(files);
         }
+    }
+    @FXML
+    public void p4ChooseConversionDestination(ActionEvent e) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File directory = directoryChooser.showDialog(null);
+        if (directory != null) {
+            String destinationFolderPath = directory.getAbsolutePath();
+            P4ChooseDestinationFolderLb.setText(destinationFolderPath);
+        }
+    }
+    @FXML
+    public void p4Convert(ActionEvent e) {
+        String imagesPath = P4SourceImagesPathTf.getText();
+        System.out.println("Images path: " + imagesPath);
+        String destinationFileName = P4DestinationFileName.getText();
+        System.out.println("DestinationFilenName: " + destinationFileName);
+        String destinationPath = P4ChooseDestinationFolderLb.getText();
+        System.out.println("DestinationPath: " + destinationPath);
+        int destinationDpi = Integer.valueOf(P4TargetDpi.getValue().toString());
+        System.out.println("Destination dpi: " + destinationDpi);
+
+        WriteImagesIntoFile.uniteFilesIntoPdf(imagesPath,destinationFileName,destinationPath);
     }
 }

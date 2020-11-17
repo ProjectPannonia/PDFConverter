@@ -1,11 +1,11 @@
 .pathLabels {
     -fx-border-style: solid;
     -fx-border-color: black;
-    -fx-pref-width: 400;
+    -fx-pref-width: 350;
     -fx-pref-height: 30;
 }
 .infoLabels {
-    -fx-pref-width: 250;
+    -fx-pref-width: 180;
     -fx-pref-height: 25;
     -fx-font: 15px black;
     -fx-text-alignment: left;
