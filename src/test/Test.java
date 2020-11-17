@@ -1,6 +1,7 @@
 package test;
 
 import main.service.imagesToPdf.ReadSourceImages;
+import main.service.imagesToPdf.WriteImagesIntoFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,14 @@ public class Test {
         expectedResult.add("D:\\PDF converter tests\\images\\pdf-104.PNG");
        // assertEquals(expectedResult.size(), CreatePdfFile.getFileNamesFromFolder("D:\\PDF converter tests\\images\\").size());
 
+    }
+    @org.junit.jupiter.api.Test
+    public void testCheckFileNameOperativeness() {
+        assertEquals("default", WriteImagesIntoFile.checkFileNameOperativeness("bab.xyz"));
+        assertEquals("myFile",WriteImagesIntoFile.checkFileNameOperativeness("myFile"));
+        assertEquals("default",WriteImagesIntoFile.checkFileNameOperativeness("b*b"));
+        assertEquals("default", WriteImagesIntoFile.checkFileNameOperativeness("au*o"));
+        assertEquals("default", WriteImagesIntoFile.checkFileNameOperativeness("a.u*o"));
     }
 
 }

@@ -72,12 +72,10 @@ public class Controller {
     @FXML
     TableColumn<PdfFile,Boolean> P4SourceImageSelectCol;
 
-//    @FXML
-//    ChoiceBox P4DestinationFormat;
     @FXML
     TextField P4DestinationFileName;
     @FXML
-    ChoiceBox P4TargetDpi;
+    CheckBox P4SplitImagesCb;
 
 
     @FXML
@@ -86,8 +84,6 @@ public class Controller {
         P1TargetDpi.setItems(targetDpi);
 
 
-
-        P4TargetDpi.setItems(targetDpi);
         P4SourceImagesTable.setEditable(true);
 
         P4SourceImageId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -222,14 +218,13 @@ public class Controller {
     @FXML
     public void p4Convert(ActionEvent e) {
         String imagesPath = P4SourceImagesPathTf.getText();
-        System.out.println("Images path: " + imagesPath);
         String destinationFileName = P4DestinationFileName.getText();
-        System.out.println("DestinationFilenName: " + destinationFileName);
         String destinationPath = P4ChooseDestinationFolderLb.getText();
-        System.out.println("DestinationPath: " + destinationPath);
-        int destinationDpi = Integer.valueOf(P4TargetDpi.getValue().toString());
-        System.out.println("Destination dpi: " + destinationDpi);
 
-        WriteImagesIntoFile.uniteFilesIntoPdf(imagesPath,destinationFileName,destinationPath);
+
+        boolean splitImages = P4SplitImagesCb.isSelected();
+        System.out.println(splitImages);
+
+        WriteImagesIntoFile.uniteFilesIntoPdf(imagesPath,destinationFileName,destinationPath, splitImages);
     }
 }
