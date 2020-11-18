@@ -1,8 +1,10 @@
 package test;
 
+import main.service.imagesToPdf.ReadImagesFromFolder;
 import main.service.imagesToPdf.ReadSourceImages;
 import main.service.imagesToPdf.WriteImagesIntoFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,5 +41,8 @@ public class Test {
         assertEquals("default", WriteImagesIntoFile.checkFileNameOperativeness("au*o"));
         assertEquals("default", WriteImagesIntoFile.checkFileNameOperativeness("a.u*o"));
     }
-
+    @org.junit.jupiter.api.Test
+    public void testReadImagesFromFolder() throws IOException {
+        ReadImagesFromFolder.uniteImagesIntoPDF("D:\\PDF converter tests\\images");
+    }
 }

@@ -15,20 +15,22 @@ import java.util.List;
 public class WriteImagesIntoFile {
     public static void uniteFilesIntoPdf(String imagesRootPath, String givenFileName, String createdFileDestination, boolean splitWanted) {
         List<String> pathsInFolder = getFileNamesFromFolder(imagesRootPath);
+        PDDocument pDoc;
+        PDPage pdPage;
+            try {
+                pDoc = new PDDocument();
 
-        try {
-            PDDocument pDoc = new PDDocument();
-
-            for (int i = 0; i < pathsInFolder.size(); i++) {
-                PDPage pdPage = addPage();
-                pDoc.addPage(pdPage);
-                addImageToPage(pDoc, pdPage,pathsInFolder.get(i));
+                for (int i = 0; i < pathsInFolder.size(); i++) {
+                    pdPage = addPage();
+                    pDoc.addPage(pdPage);
+                    addImageToPage(pDoc, pdPage, pathsInFolder.get(i));
+                }
+                pDoc.save(createdFileDestination + "\\" + checkFileNameOperativeness(givenFileName) + ".pdf");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            pDoc.save(createdFileDestination + "\\" + checkFileNameOperativeness(givenFileName) + ".pdf");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
+
     public static PDPage addPage() {
         return new PDPage(PDRectangle.A4);
     }
@@ -75,4 +77,5 @@ public class WriteImagesIntoFile {
         }
         return splittedImages;
     }
+
 }
