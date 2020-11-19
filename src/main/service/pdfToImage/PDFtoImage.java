@@ -23,6 +23,7 @@ public class PDFtoImage {
 
             for (int page = 0; page < document.getNumberOfPages(); page++) {
                 bufferedImage = pdfRenderer.renderImageWithDPI(page, 300, ImageType.RGB);
+                // BufferedImage,String.format(fileName,extension),dpi
                 ImageIOUtil.writeImage(bufferedImage, String.format(destinationLabel + "pdf-%d.%s", page + 1, extension), targetDpi);
             }
             document.close();
@@ -30,18 +31,33 @@ public class PDFtoImage {
             e.printStackTrace();
         }
     }
-    public static void convertToImages(String pdfChooserLabel) {
-        PDDocument document;
-        PDFRenderer pdfRenderer;
+    public static void convertToImagesAndSplit(String pdfChooserLabel, String extension, String destinationLabel, int targetDpi, boolean split) {
+
         BufferedImage bufferedImage;
 
         try {
-            document = PDDocument.load(new File(pdfChooserLabel));
-            System.out.println(document.getNumberOfPages());
-            System.out.println(document.getDocumentCatalog());
+            PDDocument document= PDDocument.load(new File(pdfChooserLabel));
+            PDFRenderer pdfRenderer = new PDFRenderer(document);
+
+            for (int page = 0; page < document.getNumberOfPages(); page++) {
+                bufferedImage = pdfRenderer.renderImageWithDPI(page, 300, ImageType.RGB);
+                BufferedImage[] imageParts = cutIntoTwo(bufferedImage);
+
+                for (BufferedImage b : imageParts) {
+                    ImageIOUtil.writeImage(bufferedImage, String.format(destinationLabel , page + 1, extension), targetDpi);
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    private static BufferedImage[] cutIntoTwo(BufferedImage bufferedImage) {
+        int width = bufferedImage.getWidth();
+        int height = bufferedImage.getHeight();
+        BufferedImage first = bufferedImage.getSubimage(0, 0, width/2, height);
+        BufferedImage second = bufferedImage.getSubimage(width/2,0, width/2, height);
+
+        return new BufferedImage[]{first,second};
     }
 }

@@ -11,13 +11,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class ReadImagesFromFolder {
-    private static int tempPageCount = 1;
+    private static int tempPageCount = 0;
 
-    // 1. Main method called from controlller
+    // 1. Main method called -> from controller
     public static void uniteImagesIntoPDF(String imagesRoot) throws IOException {
-        int destinationDirectoryUpper = imagesRoot.lastIndexOf("\\");
+        int backSlashPosition = imagesRoot.lastIndexOf("\\");
 
-        String tempFilesRoot = imagesRoot.substring(0,destinationDirectoryUpper+1) + "\\temp\\";
+        String tempFilesRoot = imagesRoot.substring(0, backSlashPosition + 1) + "\\temp\\";
 
         // Temporary folder created?
        createTempFilesFolder(tempFilesRoot);
@@ -27,9 +27,6 @@ public class ReadImagesFromFolder {
     }
     // 2. Create a folder to store temporary images
     public static void createTempFilesFolder(String tempFilesRoot) {
-        //File tempFolder = new File(tempFilesRoot);
-        //tempFolder.setWritable(true);
-        //return tempFolder.isDirectory();
         Path path = Paths.get(tempFilesRoot);
         try {
             Files.createDirectories(path);
@@ -42,13 +39,16 @@ public class ReadImagesFromFolder {
     public static void createBImagesFromFolder(String imagesRoot, String tempFilesRoot) throws IOException {
         // Create files list from images folder
         File[] filesInFolder = new File(imagesRoot).listFiles();
-        System.out.println("Number of originals: " + filesInFolder.length);
+
+        //System.out.println("Number of originals: " + filesInFolder.length);
 
         // Iterating through the file list
-        for(int i = 0; i < filesInFolder.length; i++) {
+        for(File file : filesInFolder) {
             // Read every image and cut it into two pieces
-            cutIntoTwo(ImageIO.read(filesInFolder[i]), tempFilesRoot);
-            System.out.println(i + " original ready!");
+            BufferedImage originalImage = ImageIO.read(file);
+
+            cutIntoTwo(originalImage, tempFilesRoot);
+            //System.out.println(file + " original ready!");
         }
 
     }
@@ -65,15 +65,17 @@ public class ReadImagesFromFolder {
         BufferedImage second = original.getSubimage(width/2,0, width/2, height);
 
         // Write image parts into temporary folder
-        writeToTempFolder(first,tempFilesRoot);
-        writeToTempFolder(second,tempFilesRoot);
+        writeToTempFolder(new BufferedImage[]{first,second}, tempFilesRoot);
     }
     // 5. Write temp image into temp folder
-    public static void writeToTempFolder(BufferedImage piece, String tempFilesRoot) {
-        // public static boolean writeImage(BufferedImage image, String formatName, OutputStream output, int dpi, float quality) throws IOException {
+    public static void writeToTempFolder(BufferedImage[] imageParts, String tempFilesRoot) {
         try {
-            ImageIOUtil.writeImage(piece, String.format(tempFilesRoot + "pdf-%d.%s", tempPageCount + 1, "JPG"), 300);
-            tempPageCount++;
+            String createdFileName;
+            for (int i = 0; i <imageParts.length; i++) {
+                createdFileName = String.format(tempFilesRoot + "pdf-%d.%s", tempPageCount, "JPG");
+                ImageIOUtil.writeImage(imageParts[i], createdFileName, 300);
+                ReadImagesFromFolder.tempPageCount++;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

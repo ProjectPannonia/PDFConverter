@@ -43,6 +43,8 @@ public class Test {
     }
     @org.junit.jupiter.api.Test
     public void testReadImagesFromFolder() throws IOException {
-        ReadImagesFromFolder.uniteImagesIntoPDF("D:\\PDF converter tests\\images");
+        //SM_TASKalfa_2552ci_3252ci_4052ci_5052ci_6052ci_Rev4.pdf
+        //ReadImagesFromFolder.uniteImagesIntoPDF("D:\\PDF converter tests\\images");
+        ReadImagesFromFolder.uniteImagesIntoPDF("C:\\testfiles\\PDFConverter test files\\images");
     }
 }
