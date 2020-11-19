@@ -33,6 +33,8 @@ public class Controller {
     @FXML
     ChoiceBox   P1DestinationFormat,
                 P1TargetDpi;
+    @FXML
+    CheckBox P1SplitImageCb;
 
     // 2.
     @FXML

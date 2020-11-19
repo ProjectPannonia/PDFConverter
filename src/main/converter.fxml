@@ -9,7 +9,6 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -35,11 +34,12 @@
                          <Button id="P1ChooseDestinationFolderBtn" fx:id="P1ChooseDestinationFolderBtn" layoutX="9.0" layoutY="138.0" mnemonicParsing="false" onAction="#p1ChooseConversionDestinationFolder" styleClass="browseButtons" text="Choose destination folder" />
                          <Label id="P1ChooseDestinationFolderLb" fx:id="P1ChooseDestinationFolderLb" alignment="CENTER" layoutX="204.0" layoutY="141.0" styleClass="pathLabels" />
 
-                         <Button id="P1ConvertButton" fx:id="P1ConvertButton" layoutX="302.0" layoutY="335.0" mnemonicParsing="false" onAction="#p1Convert" styleClass="browseButtons" text="Convert" />
-                        <ChoiceBox id="P1DestinationFormat" fx:id="P1DestinationFormat" layoutX="204.0" layoutY="218.0" prefHeight="25.0" prefWidth="157.0" />
+                         <Button id="P1ConvertButton" fx:id="P1ConvertButton" layoutX="302.0" layoutY="400.0" mnemonicParsing="false" onAction="#p1Convert" styleClass="browseButtons" text="Convert" />
+                        <ChoiceBox id="P1DestinationFormat" fx:id="P1DestinationFormat" layoutX="400.0" layoutY="193.0" prefHeight="25.0" prefWidth="157.0" />
                         <Label layoutX="204.0" layoutY="193.0" styleClass="infoLabels" text="Destination format:" />
                         <Label layoutX="204.0" layoutY="251.0" styleClass="infoLabels" text="DPI:" />
-                        <ChoiceBox id="P1TargetDpi" fx:id="P1TargetDpi" layoutX="204.0" layoutY="282.0" prefHeight="25.0" prefWidth="157.0" />
+                        <ChoiceBox id="P1TargetDpi" fx:id="P1TargetDpi" layoutX="400.0" layoutY="251.0" prefHeight="25.0" prefWidth="157.0" />
+                        <CheckBox id="P1SplitImageCb" fx:id="P1SplitImageCb" layoutX="576.0" layoutY="142.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="131.0" text="Split" />
                      </children>
                   </AnchorPane>
             </content>
@@ -50,7 +50,7 @@
                      <children>
                          <Label layoutX="204.0" layoutY="29.0" styleClass="infoLabels" text="Path to raw images:" />
                          <Button id="P2ChooseMultipleFilesBtn" fx:id="P2ChooseMultipleFilesBtn" layoutX="9.0" layoutY="61.0" mnemonicParsing="false" onAction="#p2ChooseSourceImagesFolder" styleClass="browseButtons" text="Browse..." />
-                         <Label id="P2ChooseSourceFolderLb" fx:id="P2ChooseSourceFolderLb" layoutX="204.0" layoutY="61.0" styleClass="pathLabels" />
+                         <Label id="P2ChooseDestinationFolderLb" fx:id="P2ChooseDestinationFolderLb" layoutX="204.0" layoutY="61.0" styleClass="pathLabels" />
 
                          <Label layoutX="204.0" layoutY="113.0" styleClass="infoLabels" text="Conversion destination folder:" />
                          <Button id="P2SelectConversionPath" fx:id="P2SelectConversionPath" layoutX="9.0" layoutY="138.0" mnemonicParsing="false" onAction="#p2ChooseConversionDestinationFolder" styleClass="browseButtons" text="Browse..." />
@@ -87,36 +87,28 @@
                 <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <children>
+                            <Label layoutX="204.0" layoutY="14.0" styleClass="infoLabels" text="Original PDF file location:" />
+                            <Button id="P4ChoosePDFFile" fx:id="P4ChoosePDFFile" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" onAction="#p1ChooseSourcePDF" styleClass="browseButtons" text="Choose PDF file" />
+                            <Label id="P4OriginalPDFFilePathLabel" fx:id="P4OriginalPDFFilePathLabel" alignment="CENTER" layoutX="204.0" layoutY="46.0" styleClass="pathLabels" />
 
-                            <Label layoutX="204.0" layoutY="14.0" styleClass="infoLabels" text="Images folder:" />
-                            <Button id="P4ChooseImagesSourceFolderBt" fx:id="P4ChooseImagesSourceFolderBt" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" onAction="#p4BrowseFiles" styleClass="browseButtons" text="Browse images folder..." />
-                            <Label id="P4SourceImagesPathTf" fx:id="P4SourceImagesPathTf" alignment="CENTER" layoutX="204.0" layoutY="46.0" styleClass="pathLabels" />
-                            <TableView id="P4SourceImagesTable" fx:id="P4SourceImagesTable" layoutX="15.0" layoutY="87.0" prefHeight="172.0" prefWidth="757.0">
-                           <columns>
-                              <TableColumn id="P4SourceImageId" fx:id="P4SourceImageId" maxWidth="500.0" prefWidth="51.0" text="Id" />
-                              <TableColumn id="P4SourceImageName" fx:id="P4SourceImageName" maxWidth="2000.0" prefWidth="327.0" text="File name" />
-                              <TableColumn id="P4SourceImageFormat" fx:id="P4SourceImageFormat" maxWidth="1000.0" prefWidth="75.0" text="Format" />
-                              <TableColumn id="P4SourceImagePath" fx:id="P4SourceImagePath" maxWidth="2000.0" prefWidth="199.0" text="Path" />
-                              <TableColumn id="P4SourceImageSelectCol" fx:id="P4SourceImageSelectCol" maxWidth="800.0" prefWidth="75.0" text="Select" />
-                           </columns>
-                                <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                </columnResizePolicy>
-                            </TableView>
+                            <Label layoutX="14.0" layoutY="262.0" styleClass="infoLabels" text="Converted images destination folder" />
+                            <Button id="P4ChooseDestinationFolderBtn" fx:id="P4ChooseDestinationFolderBtn" layoutX="9.0" layoutY="293.0" mnemonicParsing="false" onAction="#p1ChooseConversionDestinationFolder" styleClass="browseButtons" text="Choose destination folder" />
+                            <Label id="P4ChooseDestinationFolderLb" fx:id="P4ChooseDestinationFolderLb" alignment="CENTER" layoutX="190.0" layoutY="293.0" styleClass="pathLabels" />
 
-                            <Label layoutX="14.0" layoutY="262.0" styleClass="infoLabels" text="Conversion destination:" />
-                            <Button id="P4ChooseDestinationFolderBtn" fx:id="P4ChooseDestinationFolderBtn" layoutX="571.0" layoutY="260.0" mnemonicParsing="false" onAction="#p4ChooseConversionDestination" styleClass="browseButtons" text="Choose destination folder" />
-                            <Label id="P4ChooseDestinationFolderLb" fx:id="P4ChooseDestinationFolderLb" alignment="CENTER" layoutX="204.0" layoutY="260.0" styleClass="pathLabels" />
-
-                            <Button id="P4ConvertButton" fx:id="P4ConvertButton" layoutX="302.0" layoutY="417.0" mnemonicParsing="false" onAction="#p4Convert" styleClass="browseButtons" text="Convert" />
-                        <Label layoutX="12.0" layoutY="300.0" prefWidth="140.0" styleClass="infoLabels" text="PDF file name:" />
-                        <TextField id="P4DestinationFileName" fx:id="P4DestinationFileName" layoutX="204.0" layoutY="300.0" />
-                        <CheckBox id="P4SplitImagesCb" fx:id="P4SplitImagesCb" layoutX="379.0" layoutY="299.0" mnemonicParsing="false" text="Split images">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </CheckBox>
-                            
+                            <Button id="P4ConvertButton" fx:id="P4ConvertButton" layoutX="302.0" layoutY="417.0" mnemonicParsing="false" onAction="#p1Convert" styleClass="browseButtons" text="Convert" />
+                            <ChoiceBox id="P4DestinationFormat" fx:id="P4DestinationFormat" layoutX="264.0" layoutY="334.0" prefHeight="25.0" prefWidth="157.0" />
+                            <Label layoutX="14.0" layoutY="334.0" styleClass="infoLabels" text="Destination format:" />
+                            <Label layoutX="14.0" layoutY="372.0" styleClass="infoLabels" text="DPI:" />
+                            <ChoiceBox id="P4TargetDpi" fx:id="P4TargetDpi" layoutX="264.0" layoutY="372.0" prefHeight="25.0" prefWidth="157.0" />
+                        <TableView id="" fx:id="" layoutX="15.0" layoutY="87.0" prefHeight="172.0" prefWidth="757.0">
+                          <columns>
+                            <TableColumn id="" fx:id="" editable="false" prefWidth="62.0" text="Id." />
+                            <TableColumn id="" fx:id="" prefWidth="219.0" text="Name" />
+                              <TableColumn id="" fx:id="" prefWidth="74.0" text="Format" />
+                              <TableColumn id="" fx:id="" prefWidth="153.0" text="Path" />
+                              <TableColumn prefWidth="75.0" />
+                          </columns>
+                        </TableView>
                         </children>
                     </AnchorPane>
                 </content>
