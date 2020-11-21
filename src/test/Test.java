@@ -3,6 +3,7 @@ package test;
 import main.service.imagesToPdf.ReadImagesFromFolder;
 import main.service.imagesToPdf.ReadSourceImages;
 import main.service.imagesToPdf.WriteImagesIntoFile;
+import main.service.pdfToImage.refactored.PdfToImage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,7 +45,12 @@ public class Test {
     @org.junit.jupiter.api.Test
     public void testReadImagesFromFolder() throws IOException {
         //SM_TASKalfa_2552ci_3252ci_4052ci_5052ci_6052ci_Rev4.pdf
-        //ReadImagesFromFolder.uniteImagesIntoPDF("D:\\PDF converter tests\\images");
-        ReadImagesFromFolder.uniteImagesIntoPDF("C:\\testfiles\\PDFConverter test files\\images");
+        ReadImagesFromFolder.uniteImagesIntoPDF("D:\\PDF converter tests\\images");
+        //ReadImagesFromFolder.uniteImagesIntoPDF("C:\\testfiles\\PDFConverter test files\\images");
+    }
+    @org.junit.jupiter.api.Test
+    public void testGetTempFolderPath() {
+        System.out.println(PdfToImage.getTempFolderPath("D:\\PDF converter tests\\images"));
+        assertEquals("D:\\PDF converter tests\\temp\\", PdfToImage.getTempFolderPath("D:\\PDF converter tests\\images"));
     }
 }

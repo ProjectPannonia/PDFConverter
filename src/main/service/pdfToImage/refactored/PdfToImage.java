@@ -1,0 +1,83 @@
+package main.service.pdfToImage.refactored;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.rendering.PDFRenderer;
+import org.apache.pdfbox.tools.imageio.ImageIOUtil;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+public class PdfToImage {
+
+    public static void convert(String sourceFilePath, String conversionDestinationPath, boolean split, int targetDpi, String targetFormat) {
+        System.out.println("Convert method");
+        PDDocument pdDocument = openSourceFile(sourceFilePath);
+        PDFRenderer sourceRenderer = new PDFRenderer(pdDocument);
+        imageWriter(split, conversionDestinationPath, sourceRenderer, pdDocument.getNumberOfPages(), targetDpi, targetFormat);
+    }
+    public static PDDocument openSourceFile(String sourceFilePath) {
+        System.out.println("OpenSourceFile method");
+        PDDocument openedFile = null;
+        try {
+            openedFile = PDDocument.load(new File(sourceFilePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return openedFile;
+    }
+    public static void imageWriter(boolean split, String conversionDestinationPath,PDFRenderer pdfRenderer, int numOfPages, int targetDpi, String targetFormat) {
+        System.out.println("Image writer method");
+        if(split) {
+            System.out.println("Image writer method -> split");
+            /* Cut image into two then write    -> create a temp folder for whole images
+                                                -> cut the whole images into two
+                                                -> write to the real destination folder */
+            String tempPath = getTempFolderPath(conversionDestinationPath);
+            createFolder(tempPath);
+            synchronized (PdfToImage.class) {
+                for (int i = 0; i < numOfPages; i++) {
+                    System.out.println("Image writer method -> for");
+                    try {
+                        specifiedImageWriter(tempPath, pdfRenderer.renderImage(i), i, targetDpi, targetFormat);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            synchronized (PdfToImage.class) {
+                for (int i = 0; i < numOfPages; i++) {
+
+                }
+            }
+        } else {
+            // Write the images to the destination folder
+        }
+    }
+    public synchronized static void specifiedImageWriter(String writeDestPath, BufferedImage image, int counter, int targetDpi, String targetFormat) {
+        System.out.println("SpecifiedImageWriter method.");
+        // image fileName dpi
+        try {
+            ImageIOUtil.writeImage(image, (writeDestPath + counter + "." + targetFormat), targetDpi);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void createFolder(String conversionDestinationPath) {
+        System.out.println("CreateFolder method");
+        Path destinationPath = Paths.get(conversionDestinationPath);
+        try {
+            Files.createDirectory(destinationPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static String getTempFolderPath(String conversionDestination) {
+        System.out.println("GetTempFolderPath method:");
+        int slashIndex = conversionDestination.lastIndexOf("\\");
+        return conversionDestination.substring(0, slashIndex).concat("\\temp\\");
+    }
+}

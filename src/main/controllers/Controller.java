@@ -5,12 +5,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import main.service.imagesToPdf.PdfFile;
 import main.service.imagesToPdf.ReadSourceImages;
 import main.service.imagesToPdf.WriteImagesIntoFile;
+import main.service.pdfToImage.refactored.PdfToImage;
 import main.service.modify.PdfModifier;
 import main.service.pdfToImage.PDFtoImage;
 import main.service.splitImage.ImageSplitter;
@@ -64,7 +64,7 @@ public class Controller {
             P4ChooseDestinationFolderLb;
     
     @FXML
-    TableView<PdfFile> P4SourceImagesTable;
+    TableView<PdfFile> P4SourceImagesTable = new TableView<>();
 
     @FXML
     TableColumn<PdfFile,String> P4SourceImageId,
@@ -86,14 +86,14 @@ public class Controller {
         P1TargetDpi.setItems(targetDpi);
 
 
-        P4SourceImagesTable.setEditable(true);
-
-        P4SourceImageId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        P4SourceImageName.setCellValueFactory(new PropertyValueFactory<>("fileName"));
-        P4SourceImageFormat.setCellValueFactory(new PropertyValueFactory<>("format"));
-        P4SourceImagePath.setCellValueFactory(new PropertyValueFactory<>("path"));
-        P4SourceImageSelectCol.setCellValueFactory(new PropertyValueFactory<>("selected"));
-        P4SourceImagesTable.setItems(sourceFilesForTable);
+//        P4SourceImagesTable.setEditable(true);
+//
+//        P4SourceImageId.setCellValueFactory(new PropertyValueFactory<>("id"));
+//        P4SourceImageName.setCellValueFactory(new PropertyValueFactory<>("fileName"));
+//        P4SourceImageFormat.setCellValueFactory(new PropertyValueFactory<>("format"));
+//        P4SourceImagePath.setCellValueFactory(new PropertyValueFactory<>("path"));
+//        P4SourceImageSelectCol.setCellValueFactory(new PropertyValueFactory<>("selected"));
+//        P4SourceImagesTable.setItems(sourceFilesForTable);
     }
 
     // 1. PDF TO IMAGE
@@ -119,12 +119,20 @@ public class Controller {
     public void p1Convert(ActionEvent e) {
         String pathToPDFFile = P1OriginalPDFFilePathLabel.getText();
         String pathToConversionDestination = P1ChooseDestinationFolderLb.getText() + "\\";
-        String destinationFormat = P1DestinationFormat.getValue().toString();
+        boolean splitChecked = P1SplitImageCb.isSelected();
         int destinationDpi = Integer.valueOf(P1TargetDpi.getValue().toString());
+        String destinationFormat = P1DestinationFormat.getValue().toString();
 
         if (pathToPDFFile != null && pathToPDFFile != "" && pathToConversionDestination != null && pathToConversionDestination != "") {
-            System.out.println(pathToPDFFile + ", " + pathToConversionDestination);
-            PDFtoImage.convertToImages(pathToPDFFile,destinationFormat,pathToConversionDestination, destinationDpi);
+            if(splitChecked){
+                System.out.println("Split checked!");
+                //PDFtoImage.convertToImagesAndSplitMod(pathToPDFFile, destinationFormat, pathToConversionDestination, destinationDpi, splitChecked);
+                PdfToImage.convert(pathToPDFFile, pathToConversionDestination, splitChecked, destinationDpi, destinationFormat);
+            }else {
+                System.out.println("Split unchecked!");
+                System.out.println(pathToPDFFile + ", " + pathToConversionDestination);
+                PDFtoImage.convertToImages(pathToPDFFile, destinationFormat, pathToConversionDestination, destinationDpi);
+            }
         }
     }
 

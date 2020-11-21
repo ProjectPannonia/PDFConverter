@@ -50,7 +50,7 @@
                      <children>
                          <Label layoutX="204.0" layoutY="29.0" styleClass="infoLabels" text="Path to raw images:" />
                          <Button id="P2ChooseMultipleFilesBtn" fx:id="P2ChooseMultipleFilesBtn" layoutX="9.0" layoutY="61.0" mnemonicParsing="false" onAction="#p2ChooseSourceImagesFolder" styleClass="browseButtons" text="Browse..." />
-                         <Label id="P2ChooseDestinationFolderLb" fx:id="P2ChooseDestinationFolderLb" layoutX="204.0" layoutY="61.0" styleClass="pathLabels" />
+                         <Label id="P2ChooseSourceFolderLb" fx:id="P2ChooseSourceFolderLb" layoutX="204.0" layoutY="61.0" styleClass="pathLabels" />
 
                          <Label layoutX="204.0" layoutY="113.0" styleClass="infoLabels" text="Conversion destination folder:" />
                          <Button id="P2SelectConversionPath" fx:id="P2SelectConversionPath" layoutX="9.0" layoutY="138.0" mnemonicParsing="false" onAction="#p2ChooseConversionDestinationFolder" styleClass="browseButtons" text="Browse..." />
