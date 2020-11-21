@@ -10,6 +10,7 @@ import javafx.stage.FileChooser;
 import main.service.imagesToPdf.PdfFile;
 import main.service.imagesToPdf.ReadSourceImages;
 import main.service.imagesToPdf.WriteImagesIntoFile;
+import main.service.pdfToImage.refactored.DataForImageGeneration;
 import main.service.pdfToImage.refactored.PdfToImage;
 import main.service.modify.PdfModifier;
 import main.service.pdfToImage.PDFtoImage;
@@ -126,8 +127,8 @@ public class Controller {
         if (pathToPDFFile != null && pathToPDFFile != "" && pathToConversionDestination != null && pathToConversionDestination != "") {
             if(splitChecked){
                 System.out.println("Split checked!");
-                //PDFtoImage.convertToImagesAndSplitMod(pathToPDFFile, destinationFormat, pathToConversionDestination, destinationDpi, splitChecked);
-                PdfToImage.convert(pathToPDFFile, pathToConversionDestination, splitChecked, destinationDpi, destinationFormat);
+                DataForImageGeneration data = new DataForImageGeneration(pathToPDFFile, pathToConversionDestination, splitChecked, destinationDpi, destinationFormat);
+                PdfToImage.convert(data);
             }else {
                 System.out.println("Split unchecked!");
                 System.out.println(pathToPDFFile + ", " + pathToConversionDestination);

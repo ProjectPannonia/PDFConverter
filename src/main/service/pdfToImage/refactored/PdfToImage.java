@@ -14,12 +14,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class PdfToImage {
-
-    public static void convert(String sourceFilePath, String conversionDestinationPath, boolean split, int targetDpi, String targetFormat) {
+    //(String sourceFilePath, String conversionDestinationPath, boolean split, int targetDpi, String targetFormat)
+    public static void convert(DataForImageGeneration data) {
         System.out.println("Convert method");
-        PDDocument pdDocument = openSourceFile(sourceFilePath);
+        PDDocument pdDocument = openSourceFile(data.getSourceFilePath());
         PDFRenderer sourceRenderer = new PDFRenderer(pdDocument);
-        imageWriter(split, conversionDestinationPath, sourceRenderer, pdDocument.getNumberOfPages(), targetDpi, targetFormat);
+        imageWriter(data.isSplit(), data.getDestinationPath(), sourceRenderer, pdDocument.getNumberOfPages(), data.getTargetDpi(), data.getTargetFormat());
     }
     public static PDDocument openSourceFile(String sourceFilePath) {
         System.out.println("OpenSourceFile method");
