@@ -41,7 +41,7 @@ public class PdfToImage {
                                                 -> write to the real destination folder */
             String tempPath = getTempFolderPath(conversionDestinationPath);
             createFolder(tempPath);
-            synchronized (PdfToImage.class) {
+            //synchronized (PdfToImage.class) {
                 for (int i = 0; i < numOfPages; i++) {
                     System.out.println("Image writer method -> for");
                     try {
@@ -50,20 +50,23 @@ public class PdfToImage {
                         e.printStackTrace();
                     }
                 }
-            }
-            synchronized (PdfToImage.class) {
+            //}
+           // synchronized (PdfToImage.class) {
                 File[] wholeImages = new File(tempPath).listFiles();
                 for (int i = 0; i < wholeImages.length; i++) {
                     try {
                         System.out.println("Image writer method -> for -> split");
                         //ImageIO.read(wholeImages[i]);
+                        //BufferedImage wholeImage = ImageIO.read(wholeImages[i]);
+                        String fileName = wholeImages[i].getName();
+                        int[] splittedTargetNames = getFileCounter(fileName);
                         BufferedImage[] images = imageCutter(ImageIO.read(wholeImages[i]));
-                        imagePartsWriter(conversionDestinationPath, images,targetDpi, targetFormat);
+                        imagePartsWriter(conversionDestinationPath, images,targetDpi, targetFormat, splittedTargetNames);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
-            }
+           // }
         } else {
             // Write the images to the destination folder
         }
@@ -77,13 +80,13 @@ public class PdfToImage {
             e.printStackTrace();
         }
     }
-    public /*synchronized*/ static void imagePartsWriter(String destPath, BufferedImage[] images, int targetDpi, String targetFormat) {
+    public /*synchronized*/ static void imagePartsWriter(String destPath, BufferedImage[] images, int targetDpi, String targetFormat, int[] pagesCounter) {
         for (int i = 0; i < images.length; i++) {
             try {
-                synchronized (PdfToImage.class) {
-                    ImageIOUtil.writeImage(images[i], (destPath + pageCounter + "." + targetFormat), targetDpi);
-                }
-                ++pageCounter;
+                //synchronized (PdfToImage.class) {
+                    ImageIOUtil.writeImage(images[i], (destPath + pagesCounter[i] + "." + targetFormat), targetDpi);
+                //}
+                //++pageCounter;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -111,5 +114,18 @@ public class PdfToImage {
         imageParts[1] = wholeImage.getSubimage(width/2,0, width/2, height);
 
         return imageParts;
+    }
+    public static int[] getFileCounter(String fileName) {
+        int dotPlace = fileName.indexOf(".");
+        int pageNumber = Integer.valueOf(fileName.substring(0,dotPlace));
+        int[] counters = new int[2];
+        if(pageNumber == 0) {
+            counters[0] = 0;
+            counters[1] = 1;
+        } else {
+            counters[0] = pageNumber * 2;
+            counters[1] = (pageNumber * 2) + 1;
+        }
+        return counters;
     }
 }
