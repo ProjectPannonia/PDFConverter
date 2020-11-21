@@ -7,8 +7,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="org.apache.pdfbox:pdfbox-tools:2.0.3" level="project" />
-    <orderEntry type="library" name="com.itextpdf:itextpdf:5.5.13.2" level="project" />
-    <orderEntry type="library" name="org.junit.jupiter:junit-jupiter:5.7.0" level="project" />
+    <orderEntry type="library" exported="" name="org.apache.pdfbox:pdfbox-tools:2.0.3" level="project" />
+    <orderEntry type="library" exported="" name="com.itextpdf:itextpdf:5.5.13.2" level="project" />
+    <orderEntry type="library" exported="" name="org.junit.jupiter:junit-jupiter:5.7.0" level="project" />
   </component>
 </module>
