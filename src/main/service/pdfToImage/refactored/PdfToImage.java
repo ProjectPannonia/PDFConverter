@@ -14,7 +14,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class PdfToImage {
-    static int pageCounter = 0;
 
     public static void convert(String sourceFilePath, String conversionDestinationPath, boolean split, int targetDpi, String targetFormat) {
         System.out.println("Convert method");
@@ -41,7 +40,7 @@ public class PdfToImage {
                                                 -> write to the real destination folder */
             String tempPath = getTempFolderPath(conversionDestinationPath);
             createFolder(tempPath);
-            //synchronized (PdfToImage.class) {
+
                 for (int i = 0; i < numOfPages; i++) {
                     System.out.println("Image writer method -> for");
                     try {
@@ -50,28 +49,27 @@ public class PdfToImage {
                         e.printStackTrace();
                     }
                 }
-            //}
-           // synchronized (PdfToImage.class) {
+
+
                 File[] wholeImages = new File(tempPath).listFiles();
                 for (int i = 0; i < wholeImages.length; i++) {
                     try {
                         System.out.println("Image writer method -> for -> split");
-                        //ImageIO.read(wholeImages[i]);
-                        //BufferedImage wholeImage = ImageIO.read(wholeImages[i]);
+
                         String fileName = wholeImages[i].getName();
-                        int[] splittedTargetNames = getFileCounter(fileName);
+                        int[] splittedTargetNames = generateSplittedFileNames(fileName);
                         BufferedImage[] images = imageCutter(ImageIO.read(wholeImages[i]));
                         imagePartsWriter(conversionDestinationPath, images,targetDpi, targetFormat, splittedTargetNames);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
-           // }
+
         } else {
             // Write the images to the destination folder
         }
     }
-    public /*synchronized*/ static void specifiedImageWriter(String writeDestPath, BufferedImage image, int counter, int targetDpi, String targetFormat) {
+    public static void specifiedImageWriter(String writeDestPath, BufferedImage image, int counter, int targetDpi, String targetFormat) {
         System.out.println("SpecifiedImageWriter method.");
         // image fileName dpi
         try {
@@ -80,13 +78,10 @@ public class PdfToImage {
             e.printStackTrace();
         }
     }
-    public /*synchronized*/ static void imagePartsWriter(String destPath, BufferedImage[] images, int targetDpi, String targetFormat, int[] pagesCounter) {
+    public static void imagePartsWriter(String destPath, BufferedImage[] images, int targetDpi, String targetFormat, int[] pagesCounter) {
         for (int i = 0; i < images.length; i++) {
             try {
-                //synchronized (PdfToImage.class) {
                     ImageIOUtil.writeImage(images[i], (destPath + pagesCounter[i] + "." + targetFormat), targetDpi);
-                //}
-                //++pageCounter;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -106,7 +101,7 @@ public class PdfToImage {
         int slashIndex = conversionDestination.lastIndexOf("\\");
         return conversionDestination.substring(0, slashIndex).concat("\\temp\\");
     }
-    public /*synchronized*/ static BufferedImage[] imageCutter(BufferedImage wholeImage) {
+    public static BufferedImage[] imageCutter(BufferedImage wholeImage) {
         BufferedImage[] imageParts = new BufferedImage[2];
         int width = wholeImage.getWidth();
         int height = wholeImage.getHeight();
@@ -115,7 +110,7 @@ public class PdfToImage {
 
         return imageParts;
     }
-    public static int[] getFileCounter(String fileName) {
+    public static int[] generateSplittedFileNames(String fileName) {
         int dotPlace = fileName.indexOf(".");
         int pageNumber = Integer.valueOf(fileName.substring(0,dotPlace));
         int[] counters = new int[2];
