@@ -1,4 +1,4 @@
-package main.service.pdfToImage.refactored;
+package main.service.pdfToImage;
 
 public class DataForImageGeneration {
     private String sourceFilePath;

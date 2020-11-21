@@ -3,7 +3,7 @@ package test;
 import main.service.imagesToPdf.ReadImagesFromFolder;
 import main.service.imagesToPdf.ReadSourceImages;
 import main.service.imagesToPdf.WriteImagesIntoFile;
-import main.service.pdfToImage.refactored.PdfToImage;
+import main.service.pdfToImage.PdfToImage;
 
 import java.io.IOException;
 import java.util.ArrayList;

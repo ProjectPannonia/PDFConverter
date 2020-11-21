@@ -1,4 +1,4 @@
-package main.service.pdfToImage;
+package main.service.pdfToImage.unused;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.ImageType;

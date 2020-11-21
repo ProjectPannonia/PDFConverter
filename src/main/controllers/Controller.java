@@ -10,10 +10,9 @@ import javafx.stage.FileChooser;
 import main.service.imagesToPdf.PdfFile;
 import main.service.imagesToPdf.ReadSourceImages;
 import main.service.imagesToPdf.WriteImagesIntoFile;
-import main.service.pdfToImage.refactored.DataForImageGeneration;
-import main.service.pdfToImage.refactored.PdfToImage;
 import main.service.modify.PdfModifier;
-import main.service.pdfToImage.PDFtoImage;
+import main.service.pdfToImage.DataForImageGeneration;
+import main.service.pdfToImage.PdfToImage;
 import main.service.splitImage.ImageSplitter;
 
 import java.io.File;
@@ -125,7 +124,7 @@ public class Controller {
         String destinationFormat = P1DestinationFormat.getValue().toString();
 
         if (pathToPDFFile != null && pathToPDFFile != "" && pathToConversionDestination != null && pathToConversionDestination != "") {
-            if(splitChecked){
+          /*  if(splitChecked){
                 System.out.println("Split checked!");
                 DataForImageGeneration data = new DataForImageGeneration(pathToPDFFile, pathToConversionDestination, splitChecked, destinationDpi, destinationFormat);
                 PdfToImage.convert(data);
@@ -134,7 +133,11 @@ public class Controller {
                 System.out.println(pathToPDFFile + ", " + pathToConversionDestination);
                 PDFtoImage.convertToImages(pathToPDFFile, destinationFormat, pathToConversionDestination, destinationDpi);
             }
+            */
+            DataForImageGeneration data = new DataForImageGeneration(pathToPDFFile, pathToConversionDestination, splitChecked, destinationDpi, destinationFormat);
+            PdfToImage.convert(data);
         }
+
     }
 
 

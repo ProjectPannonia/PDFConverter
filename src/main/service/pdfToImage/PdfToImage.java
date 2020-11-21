@@ -1,4 +1,4 @@
-package main.service.pdfToImage.refactored;
+package main.service.pdfToImage;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.ImageType;
@@ -14,7 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class PdfToImage {
-    //(String sourceFilePath, String conversionDestinationPath, boolean split, int targetDpi, String targetFormat)
+
     public static void convert(DataForImageGeneration data) {
         System.out.println("Convert method");
         PDDocument pdDocument = openSourceFile(data.getSourceFilePath());
@@ -44,12 +44,11 @@ public class PdfToImage {
                 for (int i = 0; i < numOfPages; i++) {
                     System.out.println("Image writer method -> for");
                     try {
-                        specifiedImageWriter(tempPath, pdfRenderer.renderImageWithDPI(i,targetDpi, ImageType.RGB), i, targetDpi, targetFormat);
+                        writerForTemporaryImages(tempPath, pdfRenderer.renderImageWithDPI(i,targetDpi, ImageType.RGB), i, targetDpi, targetFormat);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
-
 
                 File[] wholeImages = new File(tempPath).listFiles();
                 for (int i = 0; i < wholeImages.length; i++) {
@@ -59,7 +58,7 @@ public class PdfToImage {
                         String fileName = wholeImages[i].getName();
                         int[] splittedTargetNames = generateSplittedFileNames(fileName);
                         BufferedImage[] images = imageCutter(ImageIO.read(wholeImages[i]));
-                        imagePartsWriter(conversionDestinationPath, images,targetDpi, targetFormat, splittedTargetNames);
+                        writerForSplittedImages(conversionDestinationPath, images,targetDpi, targetFormat, splittedTargetNames);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -67,9 +66,20 @@ public class PdfToImage {
 
         } else {
             // Write the images to the destination folder
+            writerForNormalImage(conversionDestinationPath,pdfRenderer,numOfPages,targetDpi,targetFormat);
         }
     }
-    public static void specifiedImageWriter(String writeDestPath, BufferedImage image, int counter, int targetDpi, String targetFormat) {
+    public static void writerForNormalImage(String destPath, PDFRenderer renderer, int numOfPages, int targetDpi, String targetFormat){
+        for (int i = 0; i < numOfPages; i++) {
+            try {
+                BufferedImage renderedImage = renderer.renderImageWithDPI(i, targetDpi, ImageType.RGB);
+                ImageIOUtil.writeImage(renderedImage, (destPath + i + "." + targetFormat), targetDpi);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public static void writerForTemporaryImages(String writeDestPath, BufferedImage image, int counter, int targetDpi, String targetFormat) {
         System.out.println("SpecifiedImageWriter method.");
         // image fileName dpi
         try {
@@ -78,7 +88,7 @@ public class PdfToImage {
             e.printStackTrace();
         }
     }
-    public static void imagePartsWriter(String destPath, BufferedImage[] images, int targetDpi, String targetFormat, int[] pagesCounter) {
+    public static void writerForSplittedImages(String destPath, BufferedImage[] images, int targetDpi, String targetFormat, int[] pagesCounter) {
         for (int i = 0; i < images.length; i++) {
             try {
                     ImageIOUtil.writeImage(images[i], (destPath + pagesCounter[i] + "." + targetFormat), targetDpi);
