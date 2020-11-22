@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import main.service.imagesToPdf.PdfFile;
@@ -59,9 +60,10 @@ public class Controller {
     @FXML
     Button  P4ChooseImagesSourceFolderBt,
             P4ChooseDestinationFolderBtn,
-            P4ConvertButton;
+            P4ConvertButton,
+            QuitBt;
     @FXML
-    Label   P4SourceImagesPathTf,
+    Label   P4SourceImagesPathLb,
             P4ChooseDestinationFolderLb;
     
     @FXML
@@ -69,34 +71,33 @@ public class Controller {
 
     @FXML
     TableColumn<PdfFile,String> P4SourceImageId,
-                P4SourceImageName,
-                P4SourceImageFormat,
-                P4SourceImagePath;
+                                P4SourceImageName,
+                                P4SourceImageFormat,
+                                P4SourceImagePath;
     @FXML
     TableColumn<PdfFile,Boolean> P4SourceImageSelectCol;
 
     @FXML
-    TextField P4DestinationFileName;
+    TextField   P4DestinationFileName;
+    @FXML
+    ChoiceBox P4TargetDpi;
     @FXML
     CheckBox P4SplitImagesCb;
-
-    @FXML
-    Button QuitBt;
 
     @FXML
     public void initialize() {
         P1DestinationFormat.setItems(fileFormats);
         P1TargetDpi.setItems(targetDpi);
+        P4TargetDpi.setItems(targetDpi);
 
+        P4SourceImagesTable.setEditable(true);
 
-//        P4SourceImagesTable.setEditable(true);
-//
-//        P4SourceImageId.setCellValueFactory(new PropertyValueFactory<>("id"));
-//        P4SourceImageName.setCellValueFactory(new PropertyValueFactory<>("fileName"));
-//        P4SourceImageFormat.setCellValueFactory(new PropertyValueFactory<>("format"));
-//        P4SourceImagePath.setCellValueFactory(new PropertyValueFactory<>("path"));
-//        P4SourceImageSelectCol.setCellValueFactory(new PropertyValueFactory<>("selected"));
-//        P4SourceImagesTable.setItems(sourceFilesForTable);
+        P4SourceImageId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        P4SourceImageName.setCellValueFactory(new PropertyValueFactory<>("fileName"));
+        P4SourceImageFormat.setCellValueFactory(new PropertyValueFactory<>("format"));
+        P4SourceImagePath.setCellValueFactory(new PropertyValueFactory<>("path"));
+        //P4SourceImageSelectCol.setCellValueFactory(new PropertyValueFactory<>("selected"));
+        P4SourceImagesTable.setItems(sourceFilesForTable);
     }
 
     // 1. PDF TO IMAGE
@@ -127,20 +128,9 @@ public class Controller {
         String destinationFormat = P1DestinationFormat.getValue().toString();
 
         if (pathToPDFFile != null && pathToPDFFile != "" && pathToConversionDestination != null && pathToConversionDestination != "") {
-          /*  if(splitChecked){
-                System.out.println("Split checked!");
-                DataForImageGeneration data = new DataForImageGeneration(pathToPDFFile, pathToConversionDestination, splitChecked, destinationDpi, destinationFormat);
-                PdfToImage.convert(data);
-            }else {
-                System.out.println("Split unchecked!");
-                System.out.println(pathToPDFFile + ", " + pathToConversionDestination);
-                PDFtoImage.convertToImages(pathToPDFFile, destinationFormat, pathToConversionDestination, destinationDpi);
-            }
-            */
             DataForImageGeneration data = new DataForImageGeneration(pathToPDFFile, pathToConversionDestination, splitChecked, destinationDpi, destinationFormat);
             PdfToImage.convert(data);
         }
-
     }
 
 
@@ -218,7 +208,7 @@ public class Controller {
         File directory = directoryChooser.showDialog(null);
         if (directory != null) {
             sourceFilesPath = directory.getAbsolutePath();
-            P4SourceImagesPathTf.setText(sourceFilesPath);
+            P4SourceImagesPathLb.setText(sourceFilesPath);
             ObservableList<PdfFile>  files = ReadSourceImages.readSourceFiles(sourceFilesPath);
             sourceFilesForTable.addAll(files);
         }
@@ -234,13 +224,10 @@ public class Controller {
     }
     @FXML
     public void p4Convert(ActionEvent e) {
-        String imagesPath = P4SourceImagesPathTf.getText();
+        String imagesPath = P4SourceImagesPathLb.getText();
         String destinationFileName = P4DestinationFileName.getText();
         String destinationPath = P4ChooseDestinationFolderLb.getText();
-
-
         boolean splitImages = P4SplitImagesCb.isSelected();
-        System.out.println(splitImages);
 
         WriteImagesIntoFile.uniteFilesIntoPdf(imagesPath,destinationFileName,destinationPath, splitImages);
     }
