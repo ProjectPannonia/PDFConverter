@@ -31,18 +31,13 @@ public class PdfToImage {
         }
         return openedFile;
     }
-    public static void imageWriter(boolean split, String conversionDestinationPath,PDFRenderer pdfRenderer, int numOfPages, int targetDpi, String targetFormat) {
-        System.out.println("Image writer method");
+    private static void imageWriter(boolean split, String conversionDestinationPath,PDFRenderer pdfRenderer, int numOfPages, int targetDpi, String targetFormat) {
         if(split) {
-            /* Cut image into two then write
-                -> create a temp folder for whole images
-                -> cut the whole images into two
-                -> write to the real destination folder
-            */
+            /* -> Get pages from document -> Write pages to disk -> cut whole images into two -> write cutted images to disk */
             createTermoraryThenFinalFiles(conversionDestinationPath,pdfRenderer,targetDpi,targetFormat,numOfPages);
         } else {
-            // Write the images to the destination folder
-            writerForNormalImage(conversionDestinationPath,pdfRenderer,numOfPages,targetDpi,targetFormat);
+            // Write whole images to the destination folder
+            createWholeImagesFromDocument(conversionDestinationPath,pdfRenderer,numOfPages,targetDpi,targetFormat);
         }
     }
     private static void createTermoraryThenFinalFiles(String conversionDestPath, PDFRenderer renderer, int targetDpi, String targetFormat, int numOfPages) {
@@ -89,7 +84,7 @@ public class PdfToImage {
 
         File[] tempImages = new File(getTempFolderPath(destPath)).listFiles();
     }
-    public static void writerForNormalImage(String destPath, PDFRenderer renderer, int numOfPages, int targetDpi, String targetFormat){
+    public static void createWholeImagesFromDocument(String destPath, PDFRenderer renderer, int numOfPages, int targetDpi, String targetFormat){
         for (int i = 0; i < numOfPages; i++) {
             try {
                 BufferedImage renderedImage = renderer.renderImageWithDPI(i, targetDpi, ImageType.RGB);
