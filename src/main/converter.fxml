@@ -117,7 +117,15 @@
             </Tab>
             <Tab text="Get text from file">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="8.0" styleClass="infoLabels" text="Source format:" />
+                        <Button id="P5BrowseSourceFile" fx:id="P5BrowseSourceFile" layoutX="390.0" layoutY="6.0" mnemonicParsing="false" onAction="#p4BrowseFiles" styleClass="browseButtons" text="Browse...." />
+                        <ChoiceBox id="P5FileFormatCb" fx:id="P5FileFormatCb" layoutX="202.0" layoutY="8.0" prefHeight="25.0" prefWidth="157.0" />
+                        <Label layoutX="14.0" layoutY="43.0" styleClass="infoLabels" text="Destination format:" />
+                        <ChoiceBox id="P5DestFileFormatCb" fx:id="P5DestFileFormatCb" layoutX="202.0" layoutY="43.0" prefHeight="25.0" prefWidth="157.0" />
+                     </children>
+                  </AnchorPane>
               </content>
             </Tab>
         </tabs>

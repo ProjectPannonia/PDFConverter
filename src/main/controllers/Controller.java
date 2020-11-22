@@ -24,7 +24,8 @@ public class Controller {
     private final ObservableList<String> fileFormats = FXCollections.observableArrayList("JPG","JPEG","PNG","TIF","TIFF","GIF","BMP");
     private final ObservableList<String> targetDpi = FXCollections.observableArrayList("100", "200", "300", "400", "500", "600");
     private ObservableList<PdfFile> sourceFilesForTable = FXCollections.observableArrayList();
-
+    private final ObservableList<String> p5FileFormats = FXCollections.observableArrayList("PDF", "JPG","JPEG","PNG","TIF","TIFF","GIF","BMP");
+    private final ObservableList<String> p5DestFileFormats = FXCollections.observableArrayList("DOC", "DOCX","TXT");
     // 1.
     @FXML
     Button  P1ConvertButton,
@@ -84,12 +85,21 @@ public class Controller {
     @FXML
     CheckBox P4SplitImagesCb;
 
+    // 5.
+
+    @FXML
+    Button P5BrowseSourceFile;
+    @FXML
+    ChoiceBox   P5FileFormatCb,
+                P5DestFileFormatCb;
+
     @FXML
     public void initialize() {
         P1DestinationFormat.setItems(fileFormats);
         P1TargetDpi.setItems(targetDpi);
         P4TargetDpi.setItems(targetDpi);
-
+        P5FileFormatCb.setItems(p5FileFormats);
+        P5DestFileFormatCb.setItems(p5DestFileFormats);
         P4SourceImagesTable.setEditable(true);
 
         P4SourceImageId.setCellValueFactory(new PropertyValueFactory<>("id"));
