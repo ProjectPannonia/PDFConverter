@@ -78,7 +78,7 @@ public class Controller {
     TableColumn<PdfFile,Boolean> P4SourceImageSelectCol;
 
     @FXML
-    TextField   P4DestinationFileName;
+    TextField   P4ConvertedFileName;
     @FXML
     ChoiceBox P4TargetDpi;
     @FXML
@@ -225,7 +225,7 @@ public class Controller {
     @FXML
     public void p4Convert(ActionEvent e) {
         String imagesPath = P4SourceImagesPathLb.getText();
-        String destinationFileName = P4DestinationFileName.getText();
+        String destinationFileName = P4ConvertedFileName.getText();
         String destinationPath = P4ChooseDestinationFolderLb.getText();
         boolean splitImages = P4SplitImagesCb.isSelected();
 
