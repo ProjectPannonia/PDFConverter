@@ -15,15 +15,19 @@ import java.util.List;
 public class WriteImagesIntoFile {
     public static void uniteFilesIntoPdf(String imagesRootPath, String givenFileName, String createdFileDestination, boolean splitWanted) {
         List<String> pathsInFolder = getFileNamesFromFolder(imagesRootPath);
+        List<String> sortedPaths = sortFilenames(pathsInFolder);
+        for (String f : sortedPaths) {
+            System.out.println(f);
+        }
         PDDocument pDoc;
         PDPage pdPage;
             try {
                 pDoc = new PDDocument();
 
-                for (int i = 0; i < pathsInFolder.size(); i++) {
+                for (int i = 0; i < sortedPaths.size(); i++) {
                     pdPage = addPage();
                     pDoc.addPage(pdPage);
-                    addImageToPage(pDoc, pdPage, pathsInFolder.get(i));
+                    addImageToPage(pDoc, pdPage, sortedPaths.get(i));
                 }
                 pDoc.save(createdFileDestination + "\\" + checkFileNameOperativeness(givenFileName) + ".pdf");
             } catch (IOException e) {
@@ -77,5 +81,27 @@ public class WriteImagesIntoFile {
         }
         return splittedImages;
     }
+    public static int getNumberFromFilename(String filename) {
+        int dotPosition = filename.indexOf(".");
+        int backSlashPosition = filename.lastIndexOf("\\");
+        return Integer.valueOf(filename.substring(backSlashPosition + 1, dotPosition));
+    }
+    public static List<String> sortFilenames(List<String> filenames){
+        List<String> sortedFilenames = new ArrayList<>();
+        int actualCounter = 0;
 
+        while (sortedFilenames.size() != filenames.size()) {
+            for (int i = 0; i < filenames.size(); i++) {
+                String fileName = filenames.get(i);
+                int numValue = getNumberFromFilename(fileName);
+                if(numValue == actualCounter) {
+                    sortedFilenames.add(fileName);
+                    actualCounter++;
+                    break;
+                }
+            }
+        }
+
+        return sortedFilenames;
+    }
 }

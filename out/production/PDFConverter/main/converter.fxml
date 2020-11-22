@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -108,6 +109,8 @@
                           </columns>
                         </TableView>
                         <CheckBox id="P4SplitImagesCb" fx:id="P4SplitImagesCb" layoutX="573.0" layoutY="44.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="131.0" text="Split" />
+                        <Label layoutX="12.0" layoutY="378.0" styleClass="infoLabels" text="Converted filename:" />
+                        <TextField id="P4ConvertedFileName" fx:id="P4ConvertedFileName" layoutX="204.0" layoutY="378.0" prefHeight="20.0" prefWidth="353.0" />
                         </children>
                     </AnchorPane>
                 </content>
