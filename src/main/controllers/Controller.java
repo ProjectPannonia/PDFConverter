@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import main.service.getTextFromFiles.GetTextFromFiles;
 import main.service.imagesToPdf.PdfFile;
 import main.service.imagesToPdf.ReadSourceImages;
 import main.service.imagesToPdf.WriteImagesIntoFile;
@@ -88,17 +89,21 @@ public class Controller {
     // 5.
 
     @FXML
-    Button P5BrowseSourceFile;
+    Button  P5BrowseSourceFile,
+            P5BrowseDestinationPathBt,
+            P5ConvertButton;
     @FXML
-    ChoiceBox   P5FileFormatCb,
-                P5DestFileFormatCb;
+    ChoiceBox P5DestFileFormatCb;
+    @FXML
+    Label   P5DestinationPathLb,
+            P5SourceFilePathLb;
 
     @FXML
     public void initialize() {
         P1DestinationFormat.setItems(fileFormats);
         P1TargetDpi.setItems(targetDpi);
         P4TargetDpi.setItems(targetDpi);
-        P5FileFormatCb.setItems(p5FileFormats);
+        //P5FileFormatCb.setItems(p5FileFormats);
         P5DestFileFormatCb.setItems(p5DestFileFormats);
         P4SourceImagesTable.setEditable(true);
 
@@ -242,6 +247,36 @@ public class Controller {
         WriteImagesIntoFile.uniteFilesIntoPdf(imagesPath,destinationFileName,destinationPath, splitImages);
     }
 
+    // 5.
+    @FXML
+    public void p5BrowseFiles(ActionEvent e) {
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("*","*"));
+        File file = fc.showOpenDialog(null);
+        String sourceFilePath = file.getAbsolutePath();
+
+        if(file != null && sourceFilePath != null) {
+            P5SourceFilePathLb.setText(sourceFilePath);
+        }
+    }
+    @FXML
+    public void p5BrowseDestFolder(ActionEvent e) {
+        //String destinationFormat = P5DestFileFormatCb.getValue().toString();
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File directory = directoryChooser.showDialog(null);
+        if(directory != null) {
+            P5DestinationPathLb.setText(directory.getAbsolutePath());
+        }
+    }
+    @FXML
+    public void p5Convert(ActionEvent e) {
+        String sourceFilePath = P5SourceFilePathLb.getText();
+        //String sourceFileFormat = GetTextFromFiles.getFileFormat(sourceFilePath);
+        String destinationFolderPath = P5DestinationPathLb.getText();
+        String destinationFormat = P5DestFileFormatCb.getValue().toString();
+        //System.out.println(sourceFileFormat);
+        GetTextFromFiles.convertToText(destinationFolderPath, destinationFormat, sourceFilePath);
+    }
     @FXML
     public void quit(ActionEvent e) {
         Platform.exit();

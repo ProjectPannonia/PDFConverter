@@ -119,11 +119,16 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="14.0" layoutY="8.0" styleClass="infoLabels" text="Source format:" />
-                        <Button id="P5BrowseSourceFile" fx:id="P5BrowseSourceFile" layoutX="390.0" layoutY="6.0" mnemonicParsing="false" onAction="#p4BrowseFiles" styleClass="browseButtons" text="Browse...." />
-                        <ChoiceBox id="P5FileFormatCb" fx:id="P5FileFormatCb" layoutX="202.0" layoutY="8.0" prefHeight="25.0" prefWidth="157.0" />
-                        <Label layoutX="14.0" layoutY="43.0" styleClass="infoLabels" text="Destination format:" />
-                        <ChoiceBox id="P5DestFileFormatCb" fx:id="P5DestFileFormatCb" layoutX="202.0" layoutY="43.0" prefHeight="25.0" prefWidth="157.0" />
+                        <Label layoutX="14.0" layoutY="8.0" styleClass="infoLabels" text="Source:" />
+                        <Button id="P5BrowseSourceFile" fx:id="P5BrowseSourceFile" layoutX="202.0" layoutY="6.0" mnemonicParsing="false" onAction="#p5BrowseFiles" styleClass="browseButtons" text="Browse...." />
+                        <Label layoutX="200.0" layoutY="44.0" styleClass="infoLabels" text="Destination format:" />
+                        <Label layoutX="12.0" layoutY="44.0" styleClass="infoLabels" text="Destination folder:" />
+                        <Label id="P5DestinationPathLb" fx:id="P5DestinationPathLb" alignment="CENTER" layoutX="390.0" layoutY="70.0" styleClass="pathLabels" />
+                        <Label id="P5SourceFilePathLb" fx:id="P5SourceFilePathLb" alignment="CENTER" layoutX="390.0" layoutY="6.0" styleClass="pathLabels" />
+                        <Label layoutX="390.0" layoutY="44.0" styleClass="infoLabels" text="Destination path:" />
+                        <ChoiceBox id="P5DestFileFormatCb" fx:id="P5DestFileFormatCb" layoutX="202.0" layoutY="76.0" prefHeight="25.0" prefWidth="157.0" />
+                        <Button id="P5BrowseDestinationPathBt" fx:id="P5BrowseDestinationPathBt" layoutX="12.0" layoutY="74.0" mnemonicParsing="false" onAction="#p5BrowseDestFolder" styleClass="browseButtons" text="Browse...." />
+                        <Button id="P5ConvertButton" fx:id="P5ConvertButton" layoutX="271.0" layoutY="190.0" mnemonicParsing="false" onAction="#p5Convert" styleClass="browseButtons" text="Convert" />
                      </children>
                   </AnchorPane>
               </content>
