@@ -1,5 +1,6 @@
 package main.controllers;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -79,6 +80,8 @@ public class Controller {
     @FXML
     CheckBox P4SplitImagesCb;
 
+    @FXML
+    Button QuitBt;
 
     @FXML
     public void initialize() {
@@ -240,5 +243,10 @@ public class Controller {
         System.out.println(splitImages);
 
         WriteImagesIntoFile.uniteFilesIntoPdf(imagesPath,destinationFileName,destinationPath, splitImages);
+    }
+
+    @FXML
+    public void quit(ActionEvent e) {
+        Platform.exit();
     }
 }
