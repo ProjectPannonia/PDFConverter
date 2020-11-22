@@ -16,13 +16,11 @@ import java.nio.file.Paths;
 public class PdfToImage {
 
     public static void convert(DataForImageGeneration data) {
-        System.out.println("Convert method");
         PDDocument pdDocument = openSourceFile(data.getSourceFilePath());
         PDFRenderer sourceRenderer = new PDFRenderer(pdDocument);
         imageWriter(data.isSplit(), data.getDestinationPath(), sourceRenderer, pdDocument.getNumberOfPages(), data.getTargetDpi(), data.getTargetFormat());
     }
     public static PDDocument openSourceFile(String sourceFilePath) {
-        System.out.println("OpenSourceFile method");
         PDDocument openedFile = null;
         try {
             openedFile = PDDocument.load(new File(sourceFilePath));
