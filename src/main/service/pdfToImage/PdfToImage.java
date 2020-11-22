@@ -34,40 +34,60 @@ public class PdfToImage {
     public static void imageWriter(boolean split, String conversionDestinationPath,PDFRenderer pdfRenderer, int numOfPages, int targetDpi, String targetFormat) {
         System.out.println("Image writer method");
         if(split) {
-            System.out.println("Image writer method -> split");
-            /* Cut image into two then write    -> create a temp folder for whole images
-                                                -> cut the whole images into two
-                                                -> write to the real destination folder */
-            String tempPath = getTempFolderPath(conversionDestinationPath);
-            createFolder(tempPath);
-
-                for (int i = 0; i < numOfPages; i++) {
-                    System.out.println("Image writer method -> for");
-                    try {
-                        writerForTemporaryImages(tempPath, pdfRenderer.renderImageWithDPI(i,targetDpi, ImageType.RGB), i, targetDpi, targetFormat);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                File[] wholeImages = new File(tempPath).listFiles();
-                for (int i = 0; i < wholeImages.length; i++) {
-                    try {
-                        System.out.println("Image writer method -> for -> split");
-
-                        String fileName = wholeImages[i].getName();
-                        int[] splittedTargetNames = generateSplittedFileNames(fileName);
-                        BufferedImage[] images = imageCutter(ImageIO.read(wholeImages[i]));
-                        writerForSplittedImages(conversionDestinationPath, images,targetDpi, targetFormat, splittedTargetNames);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
+            /* Cut image into two then write
+                -> create a temp folder for whole images
+                -> cut the whole images into two
+                -> write to the real destination folder
+            */
+            createTermoraryThenFinalFiles(conversionDestinationPath,pdfRenderer,targetDpi,targetFormat,numOfPages);
         } else {
             // Write the images to the destination folder
             writerForNormalImage(conversionDestinationPath,pdfRenderer,numOfPages,targetDpi,targetFormat);
         }
+    }
+    private static void createTermoraryThenFinalFiles(String conversionDestPath, PDFRenderer renderer, int targetDpi, String targetFormat, int numOfPages) {
+        String tempPath = getTempFolderPath(conversionDestPath);
+        createFolder(tempPath);
+        for (int i = 0; i < numOfPages; i++) {
+            try {
+                BufferedImage renderedImage = renderer.renderImageWithDPI(i, targetDpi, ImageType.RGB);
+                ImageIOUtil.writeImage(renderedImage, (tempPath + i + "." + targetFormat), targetDpi);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        File[] tempImages = new File(tempPath).listFiles();
+        writerForFinal(tempImages, conversionDestPath, targetDpi, targetFormat);
+    }
+    private static void writerForFinal(File[] filesInFolder, String conversionDestinationPath, int targetDpi, String targetFormat) {
+        for (int file = 0; file < filesInFolder.length; file++) {
+            try {
+                String fileName = filesInFolder[file].getName();
+                int[] splittedTargetNames = generateSplittedFileNames(fileName);
+                BufferedImage[] images = imageCutter(ImageIO.read(filesInFolder[file]));
+                writerForSplittedImages(conversionDestinationPath, images,targetDpi, targetFormat, splittedTargetNames);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    //
+    public static void writerForTemporaryImages(String destPath, PDFRenderer renderer, int targetDpi, String targetFormat, int numOfPages) {
+        System.out.println("SpecifiedImageWriter method.");
+        // image fileName dpi
+        for (int i = 0; i < numOfPages; i++) {
+            try {
+                BufferedImage renderedImage = renderer.renderImageWithDPI(i, targetDpi, ImageType.RGB);
+                ImageIOUtil.writeImage(renderedImage, (destPath + i + "." + targetFormat), targetDpi);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        File[] tempImages = new File(getTempFolderPath(destPath)).listFiles();
     }
     public static void writerForNormalImage(String destPath, PDFRenderer renderer, int numOfPages, int targetDpi, String targetFormat){
         for (int i = 0; i < numOfPages; i++) {
@@ -79,15 +99,7 @@ public class PdfToImage {
             }
         }
     }
-    public static void writerForTemporaryImages(String writeDestPath, BufferedImage image, int counter, int targetDpi, String targetFormat) {
-        System.out.println("SpecifiedImageWriter method.");
-        // image fileName dpi
-        try {
-            ImageIOUtil.writeImage(image, (writeDestPath + counter + "." + targetFormat), targetDpi);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
     public static void writerForSplittedImages(String destPath, BufferedImage[] images, int targetDpi, String targetFormat, int[] pagesCounter) {
         for (int i = 0; i < images.length; i++) {
             try {
