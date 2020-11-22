@@ -59,7 +59,7 @@ public class PdfToImage {
         for (int file = 0; file < filesInFolder.length; file++) {
             try {
                 String fileName = filesInFolder[file].getName();
-                int[] splittedTargetNames = generateSplittedFileNames(fileName);
+                int[] splittedTargetNames = fileNameGenerator(fileName);
                 BufferedImage[] images = imageCutter(ImageIO.read(filesInFolder[file]));
                 writerForSplittedImages(conversionDestinationPath, images,targetDpi, targetFormat, splittedTargetNames);
             } catch (IOException e) {
@@ -67,23 +67,17 @@ public class PdfToImage {
             }
         }
     }
-
-
-    //
-    public static void writerForTemporaryImages(String destPath, PDFRenderer renderer, int targetDpi, String targetFormat, int numOfPages) {
-        System.out.println("SpecifiedImageWriter method.");
-        // image fileName dpi
-        for (int i = 0; i < numOfPages; i++) {
+    public static void writerForSplittedImages(String destPath, BufferedImage[] images, int targetDpi, String targetFormat, int[] pagesCounter) {
+        for (int i = 0; i < images.length; i++) {
             try {
-                BufferedImage renderedImage = renderer.renderImageWithDPI(i, targetDpi, ImageType.RGB);
-                ImageIOUtil.writeImage(renderedImage, (destPath + i + "." + targetFormat), targetDpi);
+                ImageIOUtil.writeImage(images[i], (destPath + pagesCounter[i] + "." + targetFormat), targetDpi);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
-        File[] tempImages = new File(getTempFolderPath(destPath)).listFiles();
     }
+
+    //
     public static void createWholeImagesFromDocument(String destPath, PDFRenderer renderer, int numOfPages, int targetDpi, String targetFormat){
         for (int i = 0; i < numOfPages; i++) {
             try {
@@ -95,17 +89,8 @@ public class PdfToImage {
         }
     }
 
-    public static void writerForSplittedImages(String destPath, BufferedImage[] images, int targetDpi, String targetFormat, int[] pagesCounter) {
-        for (int i = 0; i < images.length; i++) {
-            try {
-                    ImageIOUtil.writeImage(images[i], (destPath + pagesCounter[i] + "." + targetFormat), targetDpi);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+
     public static void createFolder(String conversionDestinationPath) {
-        System.out.println("CreateFolder method");
         Path destinationPath = Paths.get(conversionDestinationPath);
         try {
             Files.createDirectory(destinationPath);
@@ -127,7 +112,7 @@ public class PdfToImage {
 
         return imageParts;
     }
-    public static int[] generateSplittedFileNames(String fileName) {
+    public static int[] fileNameGenerator(String fileName) {
         int dotPlace = fileName.indexOf(".");
         int pageNumber = Integer.valueOf(fileName.substring(0,dotPlace));
         int[] counters = new int[2];
