@@ -17,6 +17,7 @@ import main.service.modify.PdfModifier;
 import main.service.pdfToImage.DataForImageGeneration;
 import main.service.pdfToImage.PdfToImage;
 import main.service.splitImage.ImageSplitter;
+import net.sourceforge.tess4j.TesseractException;
 
 import java.io.File;
 
@@ -275,7 +276,11 @@ public class Controller {
         String destinationFolderPath = P5DestinationPathLb.getText();
         String destinationFormat = P5DestFileFormatCb.getValue().toString();
         //System.out.println(sourceFileFormat);
-        GetTextFromFiles.convertToText(destinationFolderPath, destinationFormat, sourceFilePath);
+        try {
+            GetTextFromFiles.convertToText(destinationFolderPath, destinationFormat, sourceFilePath);
+        } catch (TesseractException tesseractException) {
+            tesseractException.printStackTrace();
+        }
     }
     @FXML
     public void quit(ActionEvent e) {
