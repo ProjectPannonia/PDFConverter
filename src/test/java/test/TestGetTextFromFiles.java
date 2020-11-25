@@ -16,6 +16,6 @@ public class TestGetTextFromFiles {
     }
     @Test
     public void testConvertToText() throws TesseractException {
-        GetTextFromFiles.convertToText("D:\\","JPG", "D:\\");
+        //GetTextFromFiles.convertToText("D:\\","JPG", "D:\\");
     }
 }

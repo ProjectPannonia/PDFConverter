@@ -7,8 +7,9 @@ import net.sourceforge.tess4j.TesseractException;
 import java.io.File;
 
 public class GetTextFromFiles {
-    public static void convertToText(String destinationFolderPath, String destinationFormat, String sourceFilePath) throws TesseractException {
-        File image = new File("src/main/resources/img/pdf-1.JPG");
+    public static void convertToText(String destinationFolderPath, String destinationFormat, String sourceFilePath, String destinationFileName) throws TesseractException {
+        //File image = new File("src/main/resources/img/pdf-1.JPG");
+        File image = new File(sourceFilePath);
         Tesseract tesseract = new Tesseract();
         tesseract.setDatapath("src/main/resources/tessdata/");
         tesseract.setLanguage("hun");

@@ -28,6 +28,7 @@ public class Controller {
     private ObservableList<PdfFile> sourceFilesForTable = FXCollections.observableArrayList();
     private final ObservableList<String> p5FileFormats = FXCollections.observableArrayList("PDF", "JPG","JPEG","PNG","TIF","TIFF","GIF","BMP");
     private final ObservableList<String> p5DestFileFormats = FXCollections.observableArrayList("DOC", "DOCX","TXT");
+    private final ObservableList<String> p5SourceLanguage = FXCollections.observableArrayList("ENG","HUN");
     // 1.
     @FXML
     Button  P1ConvertButton,
@@ -97,10 +98,13 @@ public class Controller {
             P5BrowseDestinationPathBt,
             P5ConvertButton;
     @FXML
-    ChoiceBox P5DestFileFormatCb;
+    ChoiceBox   P5DestFileFormatCb,
+                P5SourceLanguageCb;
     @FXML
     Label   P5DestinationPathLb,
             P5SourceFilePathLb;
+    @FXML
+    TextField P5DestinationFileNameTf;
 
     @FXML
     public void initialize() {
@@ -110,7 +114,7 @@ public class Controller {
         //P5FileFormatCb.setItems(p5FileFormats);
         P5DestFileFormatCb.setItems(p5DestFileFormats);
         P4SourceImagesTable.setEditable(true);
-
+        P5SourceLanguageCb.setItems(p5SourceLanguage);
         P4SourceImageId.setCellValueFactory( new PropertyValueFactory<>("id"));
         P4SourceImageName.setCellValueFactory(new PropertyValueFactory<>("fileName"));
         P4SourceImageFormat.setCellValueFactory(new PropertyValueFactory<>("format"));
@@ -275,12 +279,11 @@ public class Controller {
     @FXML
     public void p5Convert(ActionEvent e) {
         String sourceFilePath = P5SourceFilePathLb.getText();
-        //String sourceFileFormat = GetTextFromFiles.getFileFormat(sourceFilePath);
         String destinationFolderPath = P5DestinationPathLb.getText();
         String destinationFormat = P5DestFileFormatCb.getValue().toString();
-        //System.out.println(sourceFileFormat);
+        String destinationFileName = P5DestinationFileNameTf.getText();
         try {
-            GetTextFromFiles.convertToText(destinationFolderPath, destinationFormat, sourceFilePath);
+            GetTextFromFiles.convertToText(destinationFolderPath, destinationFormat, sourceFilePath,destinationFileName);
         } catch (TesseractException tesseractException) {
             tesseractException.printStackTrace();
         }
