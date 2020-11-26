@@ -99,7 +99,8 @@ public class Controller {
             P5ConvertButton;
     @FXML
     ChoiceBox   P5DestFileFormatCb,
-                P5SourceLanguageCb;
+                P5SourceLanguageCb,
+                P5SourceFilesAmountCb;
     @FXML
     Label   P5DestinationPathLb,
             P5SourceFilePathLb;

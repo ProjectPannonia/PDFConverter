@@ -11,13 +11,10 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Controller">
    <children>
       <Label alignment="CENTER" layoutX="2.0" layoutY="20.0" prefHeight="46.0" styleClass="appTitle" text="PDF converter">
          <font>
@@ -122,37 +119,30 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <GridPane layoutX="18.0" layoutY="17.0" prefHeight="334.0" prefWidth="726.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="301.0" minWidth="10.0" prefWidth="181.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.0" minWidth="10.0" prefWidth="158.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.0" minWidth="10.0" prefWidth="393.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints maxHeight="96.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="91.0" minHeight="0.0" prefHeight="33.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Label styleClass="infoLabels" text="Source path:" />
-                              <Label id="P5SourceFilePathLb" fx:id="P5SourceFilePathLb" alignment="CENTER" prefWidth="364.0" styleClass="pathLabels" GridPane.columnIndex="2" />
-                              <Button id="P5BrowseDestinationPathBt" fx:id="P5BrowseDestinationPathBt" mnemonicParsing="false" onAction="#p5BrowseDestFolder" styleClass="browseButtons" text="Browse...." GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label id="P5DestinationPathLb" fx:id="P5DestinationPathLb" alignment="CENTER" prefHeight="17.0" prefWidth="375.0" styleClass="pathLabels" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <ChoiceBox id="P5DestFileFormatCb" fx:id="P5DestFileFormatCb" prefHeight="25.0" prefWidth="157.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Button id="P5ConvertButton" fx:id="P5ConvertButton" mnemonicParsing="false" onAction="#p5Convert" styleClass="browseButtons" text="Convert" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <ChoiceBox id="P5SourceLanguageCb" fx:id="P5SourceLanguageCb" prefHeight="25.0" prefWidth="157.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button id="P5BrowseSourceFile" fx:id="P5BrowseSourceFile" mnemonicParsing="false" onAction="#p5BrowseFiles" styleClass="browseButtons" text="Browse...." GridPane.columnIndex="1" />
-                              <Label styleClass="infoLabels" text="Source language:" GridPane.rowIndex="1" />
-                              <Label styleClass="infoLabels" text="Destination format:" GridPane.rowIndex="3" />
-                              <Label styleClass="infoLabels" text="Destination path:" GridPane.rowIndex="2" />
-                              <Label styleClass="infoLabels" text="Destination filename:" GridPane.rowIndex="4" />
-                              <TextField id="P5DestinationFileNameTf" fx:id="P5DestinationFileNameTf" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                           </children>
-                        </GridPane>
-                        <Label layoutX="97.0" layoutY="408.0" styleClass="infoLabels" text="Destination folder:" />
+                        <Label layoutX="21.0" layoutY="54.0" prefHeight="25.0" prefWidth="61.0" styleClass="infoLabels" stylesheets="@style.css" text="File(s) path:" />
+                        <CheckBox alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="213.0" layoutY="58.0" mnemonicParsing="false" text="Choose multiple" />
+                        <Button id="P5BrowseSourceFile" fx:id="P5BrowseSourceFile" layoutX="23.0" layoutY="82.0" mnemonicParsing="false" onAction="#p5BrowseFiles" styleClass="browseButtons" text="Browse...." />
+                        <Label id="P5SourceFilePathLb" fx:id="P5SourceFilePathLb" alignment="CENTER" layoutX="334.0" layoutY="52.0" prefHeight="17.0" prefWidth="269.0" styleClass="pathLabels" />
+                        <Label layoutX="21.0" layoutY="124.0" styleClass="infoLabels" text="Document's language" />
+                        <Label layoutX="21.0" layoutY="23.0" prefHeight="25.0" prefWidth="149.0" text="Source" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox id="P5SourceLanguageCb" fx:id="P5SourceLanguageCb" layoutX="206.0" layoutY="122.0" prefHeight="25.0" prefWidth="157.0" />
+                        <Label layoutX="21.0" layoutY="164.0" prefHeight="25.0" prefWidth="149.0" text="Destination" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="21.0" layoutY="191.0" styleClass="infoLabels" text="Path:" />
+                        <Button id="P5BrowseDestinationPathBt" fx:id="P5BrowseDestinationPathBt" layoutX="23.0" layoutY="224.0" mnemonicParsing="false" onAction="#p5BrowseDestFolder" styleClass="browseButtons" text="Browse...." />
+                        <Label id="P5DestinationPathLb" fx:id="P5DestinationPathLb" alignment="CENTER" layoutX="334.0" layoutY="189.0" prefHeight="17.0" prefWidth="375.0" styleClass="pathLabels" />
+                        <Label layoutX="21.0" layoutY="261.0" styleClass="infoLabels" text="Format:" />
+                        <ChoiceBox id="P5DestFileFormatCb" fx:id="P5DestFileFormatCb" layoutX="206.0" layoutY="261.0" prefHeight="25.0" prefWidth="157.0" />
+                        <Label layoutX="21.0" layoutY="295.0" styleClass="infoLabels" text="File name:" />
+                        <TextField id="P5DestinationFileNameTf" fx:id="P5DestinationFileNameTf" layoutX="206.0" layoutY="295.0" />
+                        <Button id="P5ConvertButton" fx:id="P5ConvertButton" layoutX="302.0" layoutY="343.0" mnemonicParsing="false" onAction="#p5Convert" styleClass="browseButtons" text="Convert" />
                      </children>
                   </AnchorPane>
               </content>
