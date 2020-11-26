@@ -11,6 +11,8 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import net.sourceforge.tess4j.TesseractException;
 import service.getTextFromFiles.GetTextFromFiles;
+import service.getTextFromFiles.fileModels.DestinationFile;
+import service.getTextFromFiles.fileModels.SourceFile;
 import service.imagesToPdf.PdfFile;
 import service.imagesToPdf.ReadSourceImages;
 import service.imagesToPdf.WriteImagesIntoFile;
@@ -99,13 +101,14 @@ public class Controller {
             P5ConvertButton;
     @FXML
     ChoiceBox   P5DestFileFormatCb,
-                P5SourceLanguageCb,
-                P5SourceFilesAmountCb;
+                P5SourceLanguageCb;
     @FXML
     Label   P5DestinationPathLb,
             P5SourceFilePathLb;
     @FXML
     TextField P5DestinationFileNameTf;
+    @FXML
+    CheckBox P5ChooseMultipleFilesCb;
 
     @FXML
     public void initialize() {
@@ -259,13 +262,26 @@ public class Controller {
     // 5.
     @FXML
     public void p5BrowseFiles(ActionEvent e) {
-        FileChooser fc = new FileChooser();
-        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("*","*"));
-        File file = fc.showOpenDialog(null);
-        String sourceFilePath = file.getAbsolutePath();
+        boolean choseMultipleFiles = P5ChooseMultipleFilesCb.isSelected();
+        String sourcePath;
+        File file;
 
-        if(file != null && sourceFilePath != null) {
-            P5SourceFilePathLb.setText(sourceFilePath);
+        if(choseMultipleFiles) {
+            DirectoryChooser directoryChooser = new DirectoryChooser();
+            file = directoryChooser.showDialog(null);
+            sourcePath = file.getPath();
+        } else {
+            FileChooser fc = new FileChooser();
+            fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("*","*"));
+            file = fc.showOpenDialog(null);
+            sourcePath = file.getAbsolutePath();
+        }
+
+
+        if(file != null && sourcePath != null) {
+            P5SourceFilePathLb.setText(sourcePath);
+        }else {
+            P5SourceFilePathLb.setText("Incorrect!");
         }
     }
     @FXML
@@ -279,12 +295,18 @@ public class Controller {
     }
     @FXML
     public void p5Convert(ActionEvent e) {
-        String sourceFilePath = P5SourceFilePathLb.getText();
-        String destinationFolderPath = P5DestinationPathLb.getText();
-        String destinationFormat = P5DestFileFormatCb.getValue().toString();
-        String destinationFileName = P5DestinationFileNameTf.getText();
+        SourceFile sourceFile = new SourceFile();
+        sourceFile.setSourcePath(P5SourceFilePathLb.getText());
+        sourceFile.setSourceLanguage(P5SourceLanguageCb.getValue().toString());
+        sourceFile.setMultipleFiles(P5ChooseMultipleFilesCb.isSelected());
+
+        DestinationFile destinationFile = new DestinationFile();
+        destinationFile.setDestinationPath(P5DestinationPathLb.getText());
+        destinationFile.setDestinationFileName(P5DestinationFileNameTf.getText());
+        destinationFile.setDestinationFormat(P5DestFileFormatCb.getValue().toString());
+
         try {
-            GetTextFromFiles.convertToText(destinationFolderPath, destinationFormat, sourceFilePath,destinationFileName);
+            GetTextFromFiles.convertToText(sourceFile, destinationFile);
         } catch (TesseractException tesseractException) {
             tesseractException.printStackTrace();
         }
