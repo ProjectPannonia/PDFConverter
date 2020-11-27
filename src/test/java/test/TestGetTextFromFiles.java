@@ -18,4 +18,14 @@ public class TestGetTextFromFiles {
     public void testConvertToText() throws TesseractException {
         //GetTextFromFiles.convertToText("D:\\","JPG", "D:\\");
     }
+    @Test
+    public void testCreateDestinationFile() {
+        GetTextFromFiles.createDestinationFile("D:\\PDF converter tests\\testFileFolder","testFile", "pdf");
+    }
+    @Test
+    public void testCutPath() {
+        // Wanted -> D:\PDF converter tests
+        GetTextFromFiles.cutPath("D:\\PDF converter tests\\testFileFolder");
+        //assertEquals("D:\\PDF converter tests", GetTextFromFiles.cutPath("D:\\PDF converter tests\\testFileFolder"));
+    }
 }

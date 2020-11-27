@@ -13,6 +13,9 @@ import service.getTextFromFiles.fileModels.SourceFile;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class GetTextFromFiles {
     public static void convertToText(SourceFile sourceFile, DestinationFile destinationFile) throws TesseractException {
@@ -51,16 +54,16 @@ public class GetTextFromFiles {
     }
     private static void mainConverter(SourceFile sourceFile, DestinationFile destinationFile, Tesseract tesseract) {
         if(!sourceFile.isMultipleFiles()) {
-            oneFileToConvert(sourceFile, tesseract);
+            oneFileToConvert(sourceFile, tesseract, destinationFile);
         } else {
             multipleFileConverter(sourceFile);
         }
     }
-    public static void oneFileToConvert(SourceFile sourceFile, Tesseract tesseract) {
+    public static void oneFileToConvert(SourceFile sourceFile, Tesseract tesseract, DestinationFile destinationFile) {
         String sourceFormat = getFileFormat(sourceFile.getSourcePath()).toLowerCase();
 
         switch (sourceFormat) {
-            case "pdf" : readPdf(sourceFile.getSourcePath(), tesseract);
+            case "pdf" : readPdf(sourceFile.getSourcePath(), tesseract, destinationFile);
                         break;
             case "jpg" : readJpg(sourceFile.getSourcePath());
                         break;
@@ -74,10 +77,13 @@ public class GetTextFromFiles {
     private static void multipleFileConverter(SourceFile sourceFile) {
 
     }
-    private static void readPdf(String sourcePath, Tesseract tesseract) {
+    private static void readPdf(String sourcePath, Tesseract tesseract, DestinationFile destinationFile) {
+        String destinationPath = destinationFile.getDestinationPath();
+        String destinationFilename = destinationFile.getDestinationFileName();
+        String destinationFormat = destinationFile.getDestinationFormat();
         try {
             // TO-Do
-            File destinationFile = createDestinationFile();
+            File createdDestinationFile = createDestinationFile(destinationPath, destinationFilename, destinationFormat);
             File sourcePdf = new File(sourcePath);
             PDDocument pdDocument = PDDocument.load(sourcePdf);
             PDFRenderer renderer = new PDFRenderer(pdDocument);
@@ -100,10 +106,19 @@ public class GetTextFromFiles {
         return absolutePath.substring(dotPosition + 1);
     }
     public static File createDestinationFile(String destPath, String destFilename, String destFormat) {
+        createDestinationFolder(destPath);
         String purePath = cutPath(destPath);
         String fileNameAndFormat = purePath + "\\" + destFilename + "\\." + destFormat;
 
         return new File(fileNameAndFormat);
+    }
+    public static void createDestinationFolder(String destPath) {
+        try {
+            Path path = Paths.get(destPath);
+            Files.createDirectories(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public static String cutPath(String destPath) {
         int lastSlashPosition = destPath.lastIndexOf("\\");
