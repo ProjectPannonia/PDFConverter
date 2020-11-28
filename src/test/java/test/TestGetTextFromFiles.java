@@ -1,31 +1,23 @@
 package test;
 
 import net.sourceforge.tess4j.TesseractException;
-import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import service.getTextFromFiles.GetTextFromFiles;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-
+@RunWith(JUnit4.class)
 public class TestGetTextFromFiles {
-    @org.junit.jupiter.api.Test
-    public void testGetFileFormat() {
-        assertEquals("png", GetTextFromFiles.getFileFormat("D:\\image\\image.png"));
-        assertEquals("jpg", GetTextFromFiles.getFileFormat("D:\\image\\image.jpg"));
-        assertEquals("jpeg", GetTextFromFiles.getFileFormat("D:\\image\\image.jpeg"));
-    }
-    @Test
+
+    @org.junit.Test
     public void testConvertToText() throws TesseractException {
         //GetTextFromFiles.convertToText("D:\\","JPG", "D:\\");
     }
-    @Test
+    @org.junit.Test
+    public void testCreateDestinationFolder() {
+
+    }
+    @org.junit.Test
     public void testCreateDestinationFile() {
         GetTextFromFiles.createDestinationFile("D:\\PDF converter tests\\testFileFolder","testFile", "pdf");
-    }
-    @Test
-    public void testCutPath() {
-        // Wanted -> D:\PDF converter tests
-        GetTextFromFiles.cutPath("D:\\PDF converter tests\\testFileFolder");
-        //assertEquals("D:\\PDF converter tests", GetTextFromFiles.cutPath("D:\\PDF converter tests\\testFileFolder"));
     }
 }

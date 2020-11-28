@@ -28,4 +28,16 @@ public class SourceFile {
     public void setMultipleFiles(boolean multipleFiles) {
         this.multipleFiles = multipleFiles;
     }
+    public String getFileName() {
+        int slashPos = this.sourcePath.lastIndexOf("\\");
+        return this.sourcePath.substring(slashPos + 1);
+    }
+    public String getFormat() {
+        int dotPos = getFileName().indexOf(".");
+        return getFileName().substring(dotPos + 1).toLowerCase();
+    }
+    public String getPath() {
+        int dotPos = getFileName().indexOf(".");
+        return getFileName().substring(0,dotPos);
+    }
 }

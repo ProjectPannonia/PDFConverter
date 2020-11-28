@@ -54,36 +54,28 @@ public class GetTextFromFiles {
     }
     private static void mainConverter(SourceFile sourceFile, DestinationFile destinationFile, Tesseract tesseract) {
         if(!sourceFile.isMultipleFiles()) {
-            oneFileToConvert(sourceFile, tesseract, destinationFile);
+            oneFileConverter(sourceFile, tesseract, destinationFile);
         } else {
             multipleFileConverter(sourceFile);
         }
     }
-    public static void oneFileToConvert(SourceFile sourceFile, Tesseract tesseract, DestinationFile destinationFile) {
-        String sourceFormat = getFileFormat(sourceFile.getSourcePath()).toLowerCase();
+    public static void oneFileConverter(SourceFile sourceFile, Tesseract tesseract, DestinationFile destinationFile) {
+        String sourceFormat = sourceFile.getFormat();
 
         switch (sourceFormat) {
-            case "pdf" : readPdf(sourceFile.getSourcePath(), tesseract, destinationFile);
+            case "pdf" : readPdf(sourceFile.getPath(), tesseract, destinationFile);
                         break;
             case "jpg" : readJpg(sourceFile.getSourcePath());
                         break;
         }
     }
-
-    private static void readJpg(String sourcePath) {
-
-    }
-
-    private static void multipleFileConverter(SourceFile sourceFile) {
-
-    }
     private static void readPdf(String sourcePath, Tesseract tesseract, DestinationFile destinationFile) {
-        String destinationPath = destinationFile.getDestinationPath();
         String destinationFilename = destinationFile.getDestinationFileName();
         String destinationFormat = destinationFile.getDestinationFormat();
+
         try {
             // TO-Do
-            File createdDestinationFile = createDestinationFile(destinationPath, destinationFilename, destinationFormat);
+            File createdDestinationFile = createDestinationFile(sourcePath, destinationFilename, destinationFormat);
             File sourcePdf = new File(sourcePath);
             PDDocument pdDocument = PDDocument.load(sourcePdf);
             PDFRenderer renderer = new PDFRenderer(pdDocument);
@@ -101,27 +93,31 @@ public class GetTextFromFiles {
             e.printStackTrace();
         }
     }
-    public static String getFileFormat(String absolutePath) {
-        int dotPosition = absolutePath.lastIndexOf(".");
-        return absolutePath.substring(dotPosition + 1);
-    }
     public static File createDestinationFile(String destPath, String destFilename, String destFormat) {
-        createDestinationFolder(destPath);
-        String purePath = cutPath(destPath);
-        String fileNameAndFormat = purePath + "\\" + destFilename + "\\." + destFormat;
 
-        return new File(fileNameAndFormat);
+        //Path createdDestPath = createDestinationFolder(destPath);
+        String purePath = destPath;
+        String fileNameAndFormat = destFilename + "\\." + destFormat;
+
+        return null;
     }
     public static void createDestinationFolder(String destPath) {
+        Path path = null;
         try {
-            Path path = Paths.get(destPath);
+            path = Paths.get(destPath);
             Files.createDirectories(path);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public static String cutPath(String destPath) {
-        int lastSlashPosition = destPath.lastIndexOf("\\");
-        return destPath.substring(0,lastSlashPosition);
+    private static void readJpg(String sourcePath) {
+
     }
+
+    private static void multipleFileConverter(SourceFile sourceFile) {
+
+    }
+
+
+
 }
