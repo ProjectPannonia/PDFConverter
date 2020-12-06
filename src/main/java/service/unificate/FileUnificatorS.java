@@ -3,19 +3,16 @@ package service.unificate;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.PDPageTree;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import service.general.MyFile;
-import service.general.MyPdf;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileUnificator {
-
+public class FileUnificatorS {
     private String sourcePath;
     private String destPath;
     private String destFilename;
@@ -23,8 +20,7 @@ public class FileUnificator {
     private List<File> sortedFiles;
     private PDDocument destinationDoc;
 
-
-    public FileUnificator(String sourcePath, String destinationPath, String destinationFilename) {
+    public FileUnificatorS(String sourcePath, String destinationPath, String destinationFilename) {
         this.sourcePath = sourcePath;
         this.destPath = destinationPath;
         this.destFilename = destinationFilename;
@@ -33,29 +29,21 @@ public class FileUnificator {
     public void uniteImagesIntoPdf() {
         this.destinationAbsolutePath = this.destPath + "\\" + this.destFilename + ".pdf";
         this.sortedFiles = new ArrayList<>();
-        createEmptyDocument();
-    }
-    private void createEmptyDocument() {
-        this.destinationAbsolutePath = MyPdf.createDoc(destPath,destFilename);
-        addPagesToDocument();
-    }
-    private void addPagesToDocument() {
-//        int numOfFilesInFolder = new File(sourcePath).listFiles().length;
-//        MyPdf.addPages(destinationAbsolutePath, numOfFilesInFolder);
-        loadSourceFolder();
+
     }
 
     private void loadSourceFolder() {
         File[] filesInSourceFolder = new File(this.sourcePath).listFiles();
         sortSourcesByTheirNumberName(filesInSourceFolder);
     }
+
     private void sortSourcesByTheirNumberName(File[] unsortedFiles) {
         String filenameWithoutFormat;
 
-        for(int i = 0; i < unsortedFiles.length; i++) {
-            for(int x = 0; x < unsortedFiles.length; x++) {
+        for (int i = 0; i < unsortedFiles.length; i++) {
+            for (int x = 0; x < unsortedFiles.length; x++) {
                 filenameWithoutFormat = MyFile.giveFilename(unsortedFiles[x].getName());
-                if(Integer.valueOf(filenameWithoutFormat) == i) {
+                if (Integer.valueOf(filenameWithoutFormat) == i) {
                     this.sortedFiles.add(unsortedFiles[x]);
                     break;
                 }
@@ -63,42 +51,37 @@ public class FileUnificator {
         }
         writeToPdf();
     }
+
     private void writeToPdf() {
-        File file;
-
-            for (int i = 0; i < sortedFiles.size(); i++) {
-
-                file = sortedFiles.get(i);
-                System.out.println(file.getAbsolutePath());
-                writeToSpecifiedPdfPage(i,file);
-            }
-            this.destinationDoc = null;
-
-    }
-    private void writeToSpecifiedPdfPage(int wantedPage, File fileToWrite) {
+        int sortedFilesLength = this.sortedFiles.size();
         try {
-            this.destinationDoc = PDDocument.load(new File(this.destinationAbsolutePath));
+            for (int i = 0; i < sortedFilesLength; i++) {
+                this.destinationDoc = PDDocument.load(new File(this.destinationAbsolutePath));
+                File sourceFile = sortedFiles.get(i);
+                this.destinationDoc.addPage(new PDPage());
+                write(sourceFile,i);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void write(File sourceFile, int i) {
+
+        try {
             // Get the blank pd page
-            //PDPage page = this.destinationDoc.getPage(wantedPage);
-            this.destinationDoc.addPage(new PDPage(PDRectangle.A4));
-            PDPageTree allPages = this.destinationDoc.getDocumentCatalog().getPages();
-            PDPage lastPage = allPages.get(allPages.getCount() - 1);
-
+            PDPage page = this.destinationDoc.getPage(i);
             // Read image from disk
-            PDImageXObject pdImage = PDImageXObject.createFromFile(fileToWrite.getAbsolutePath(), this.destinationDoc);
-
-            PDPageContentStream contentStream = new PDPageContentStream(this.destinationDoc, lastPage);
+            PDImageXObject pdImage = PDImageXObject.createFromFile(sourceFile.getAbsolutePath(), this.destinationDoc);
+            PDPageContentStream contentStream = new PDPageContentStream(this.destinationDoc, page);
             contentStream.drawImage(pdImage,0,0, PDRectangle.A4.getWidth(), PDRectangle.A4.getHeight());
 
             contentStream.close();
             this.destinationDoc.save(this.destinationAbsolutePath);
             this.destinationDoc.close();
-            System.out.println("Saved: " + fileToWrite.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 
