@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import service.getTextFromFiles.fileModels.SourceFile;
+import service.panes.pane5.fileModels.SourceFile;
 
 import static org.junit.Assert.assertEquals;
 

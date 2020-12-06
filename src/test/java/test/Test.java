@@ -1,10 +1,9 @@
 package test;
 
 
-import service.imagesToPdf.ReadImagesFromFolder;
-import service.imagesToPdf.ReadSourceImages;
-import service.imagesToPdf.WriteImagesIntoFile;
-import service.pdfToImage.PdfToImage;
+import service.panes.pane4.ReadSourceImages;
+import service.panes.pane4.WriteImagesIntoFile;
+import service.panes.pane1.PdfToImage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,7 +45,7 @@ public class Test {
     @org.junit.jupiter.api.Test
     public void testReadImagesFromFolder() throws IOException {
         //SM_TASKalfa_2552ci_3252ci_4052ci_5052ci_6052ci_Rev4.pdf
-        ReadImagesFromFolder.uniteImagesIntoPDF("D:\\PDF converter tests\\images");
+        //ReadImagesFromFolder.uniteImagesIntoPDF("D:\\PDF converter tests\\images");
         //ReadImagesFromFolder.uniteImagesIntoPDF("C:\\testfiles\\PDFConverter test files\\images");
     }
     @org.junit.jupiter.api.Test

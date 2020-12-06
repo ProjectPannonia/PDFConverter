@@ -9,17 +9,16 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import net.sourceforge.tess4j.TesseractException;
-import service.getTextFromFiles.GetTextFromFiles;
-import service.getTextFromFiles.fileModels.DestinationFile;
-import service.getTextFromFiles.fileModels.SourceFile;
-import service.imagesToPdf.PdfFile;
-import service.imagesToPdf.ReadSourceImages;
-import service.imagesToPdf.WriteImagesIntoFile;
-import service.modify.PdfModifier;
-import service.pdfToImage.DataForImageGeneration;
-import service.pdfToImage.PdfToImage;
-import service.splitImage.ImageSplitter;
+import service.panes.pane5.GetTextFromFileRefR;
+import service.panes.pane5.fileModels.DestinationFile;
+import service.panes.pane5.fileModels.SourceFile;
+import service.panes.pane4.PdfFile;
+import service.panes.pane4.ReadSourceImages;
+import service.panes.pane4.WriteImagesIntoFile;
+import service.panes.pane3.PdfModifier;
+import service.panes.pane1.DataForImageGeneration;
+import service.panes.pane1.PdfToImage;
+import service.panes.pane2.ImageSplitter;
 
 import java.io.File;
 
@@ -29,7 +28,7 @@ public class Controller {
     private final ObservableList<String> targetDpi = FXCollections.observableArrayList("100", "200", "300", "400", "500", "600");
     private ObservableList<PdfFile> sourceFilesForTable = FXCollections.observableArrayList();
     private final ObservableList<String> p5FileFormats = FXCollections.observableArrayList("PDF", "JPG","JPEG","PNG","TIF","TIFF","GIF","BMP");
-    private final ObservableList<String> p5DestFileFormats = FXCollections.observableArrayList("DOC", "DOCX","TXT");
+    private final ObservableList<String> p5DestFileFormats = FXCollections.observableArrayList("DOC", "DOCX","TXT", "PDF");
     private final ObservableList<String> p5SourceLanguage = FXCollections.observableArrayList("ENG","HUN");
     // 1.
     @FXML
@@ -305,11 +304,10 @@ public class Controller {
         destinationFile.setDestinationFileName(P5DestinationFileNameTf.getText());
         destinationFile.setDestinationFormat(P5DestFileFormatCb.getValue().toString());
 
-        try {
-            GetTextFromFiles.convertToText(sourceFile, destinationFile);
-        } catch (TesseractException tesseractException) {
-            tesseractException.printStackTrace();
-        }
+
+            //GetTextFromFiles.convertToText(sourceFile, destinationFile);
+            GetTextFromFileRefR.convertToText(sourceFile, destinationFile);
+
     }
     @FXML
     public void quit(ActionEvent e) {
