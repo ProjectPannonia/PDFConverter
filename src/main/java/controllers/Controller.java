@@ -109,6 +109,15 @@ public class Controller {
     @FXML
     CheckBox P5ChooseMultipleFilesCb;
 
+    // 6.
+    @FXML
+    Button  P6BrowseSourceImagesFolderBt,
+            P6PathToSourcePDFBt;
+    @FXML
+    Label   P6BrowseSourceImagesFolderLb,
+            P6PathToSourcePDFLb;
+
+
     @FXML
     public void initialize() {
         P1DestinationFormat.setItems(fileFormats);
@@ -307,6 +316,14 @@ public class Controller {
 
             //GetTextFromFiles.convertToText(sourceFile, destinationFile);
             GetTextFromFileRefR.convertToText(sourceFile, destinationFile);
+
+    }
+    @FXML
+    public void p6BrowseImages(ActionEvent e) {
+        
+    }
+    @FXML
+    public void p6BrowseSourcePdf(ActionEvent e) {
 
     }
     @FXML

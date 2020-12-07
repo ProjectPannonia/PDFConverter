@@ -147,6 +147,31 @@
                   </AnchorPane>
               </content>
             </Tab>
+            <Tab text="Merge images into pdf">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="21.0" layoutY="54.0" prefHeight="25.0" prefWidth="61.0" styleClass="infoLabels" stylesheets="@style.css" text="Path to folder" />
+                        <Button id="P6BrowseSourceImagesFolderBt" fx:id="P6BrowseSourceImagesFolderBt" layoutX="23.0" layoutY="82.0" mnemonicParsing="false" onAction="#p6BrowseImages" styleClass="browseButtons" text="Browse...." />
+                        <Label id="P6BrowseSourceImagesFolderLb" fx:id="P6BrowseSourceImagesFolderLb" alignment="CENTER" layoutX="334.0" layoutY="52.0" prefHeight="17.0" prefWidth="269.0" styleClass="pathLabels" />
+                        <Label layoutX="21.0" layoutY="23.0" prefHeight="25.0" prefWidth="149.0" text="Source images" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="21.0" layoutY="164.0" prefHeight="25.0" prefWidth="149.0" text="Source pdf" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="21.0" layoutY="191.0" styleClass="infoLabels" text="Path:" />
+                        <Button id="P6PathToSourcePDFBt" fx:id="P6PathToSourcePDFBt" layoutX="23.0" layoutY="224.0" mnemonicParsing="false" onAction="#p6BrowseSourcePdf" styleClass="browseButtons" text="Browse...." />
+                        <Label id="P6PathToSourcePDFLb" fx:id="P6PathToSourcePDFLb" alignment="CENTER" layoutX="334.0" layoutY="189.0" prefHeight="17.0" prefWidth="375.0" styleClass="pathLabels" />
+                        <Button id="P5ConvertButton" fx:id="P5ConvertButton1" layoutX="302.0" layoutY="343.0" mnemonicParsing="false" onAction="#p5Convert" styleClass="browseButtons" text="Convert" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
       <Button id="QuitBt" fx:id="QuitBt" layoutX="610.0" layoutY="66.0" mnemonicParsing="false" onAction="#quit" styleClass="browseButtons" text="Quit" />
