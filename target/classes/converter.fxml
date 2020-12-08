@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -14,33 +15,35 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Controller">
    <children>
-      <Label alignment="CENTER" layoutX="2.0" layoutY="20.0" prefHeight="46.0" styleClass="appTitle" text="PDF converter">
+      <Label alignment="CENTER" layoutX="2.0" layoutY="20.0" maxWidth="1590.0" minWidth="1590.0" prefHeight="46.0" prefWidth="1590.0" styleClass="appTitle" text="PDF converter">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TabPane layoutX="11.0" layoutY="103.0" prefHeight="490.0" prefWidth="779.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="5.0" layoutY="113.0" maxWidth="1590.0" minWidth="1590.0" prefHeight="787.0" prefWidth="1590.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="PDF to image">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                         <Label layoutX="204.0" layoutY="29.0" styleClass="infoLabels" text="Original PDF file location:" />
-                         <Button id="P1ChoosePDFFile" fx:id="P1ChoosePDFFile" layoutX="9.0" layoutY="61.0" mnemonicParsing="false" onAction="#p1ChooseSourcePDF" styleClass="browseButtons" text="Choose PDF file" />
-                         <Label id="P1OriginalPDFFilePathLabel" fx:id="P1OriginalPDFFilePathLabel" alignment="CENTER" layoutX="204.0" layoutY="61.0" styleClass="pathLabels" />
+                         <Label layoutX="14.0" layoutY="14.0" styleClass="infoLabels" text="Original PDF file location:" />
+                         <Button id="P1ChoosePDFFile" fx:id="P1ChoosePDFFile" layoutX="16.0" layoutY="58.0" mnemonicParsing="false" onAction="#p1ChooseSourcePDF" styleClass="browseButtons" text="Choose PDF file" />
+                         <Label id="P1OriginalPDFFilePathLabel" fx:id="P1OriginalPDFFilePathLabel" alignment="CENTER" layoutX="215.0" layoutY="14.0" styleClass="pathLabels" />
 
-                         <Label layoutX="204.0" layoutY="113.0" styleClass="infoLabels" text="Converted images destination folder" />
-                         <Button id="P1ChooseDestinationFolderBtn" fx:id="P1ChooseDestinationFolderBtn" layoutX="9.0" layoutY="138.0" mnemonicParsing="false" onAction="#p1ChooseConversionDestinationFolder" styleClass="browseButtons" text="Choose destination folder" />
-                         <Label id="P1ChooseDestinationFolderLb" fx:id="P1ChooseDestinationFolderLb" alignment="CENTER" layoutX="204.0" layoutY="141.0" styleClass="pathLabels" />
+                         <Label layoutX="14.0" layoutY="113.0" styleClass="infoLabels" text="Converted images destination folder" />
+                         <Button id="P1ChooseDestinationFolderBtn" fx:id="P1ChooseDestinationFolderBtn" layoutX="16.0" layoutY="151.0" mnemonicParsing="false" onAction="#p1ChooseConversionDestinationFolder" styleClass="browseButtons" text="Choose destination folder" />
+                         <Label id="P1ChooseDestinationFolderLb" fx:id="P1ChooseDestinationFolderLb" alignment="CENTER" layoutX="215.0" layoutY="111.0" styleClass="pathLabels" />
 
                          <Button id="P1ConvertButton" fx:id="P1ConvertButton" layoutX="302.0" layoutY="400.0" mnemonicParsing="false" onAction="#p1Convert" styleClass="browseButtons" text="Convert" />
-                        <ChoiceBox id="P1DestinationFormat" fx:id="P1DestinationFormat" layoutX="400.0" layoutY="193.0" prefHeight="25.0" prefWidth="157.0" />
-                        <Label layoutX="204.0" layoutY="193.0" styleClass="infoLabels" text="Destination format:" />
-                        <Label layoutX="204.0" layoutY="251.0" styleClass="infoLabels" text="DPI:" />
-                        <ChoiceBox id="P1TargetDpi" fx:id="P1TargetDpi" layoutX="400.0" layoutY="251.0" prefHeight="25.0" prefWidth="157.0" />
-                        <CheckBox id="P1SplitImageCb" fx:id="P1SplitImageCb" layoutX="576.0" layoutY="142.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="131.0" text="Split" />
+                        <ChoiceBox id="P1DestinationFormat" fx:id="P1DestinationFormat" layoutX="224.0" layoutY="193.0" prefHeight="25.0" prefWidth="157.0" />
+                        <Label layoutX="14.0" layoutY="193.0" styleClass="infoLabels" text="Destination format:" />
+                        <Label layoutX="14.0" layoutY="239.0" styleClass="infoLabels" text="DPI:" />
+                        <ChoiceBox id="P1TargetDpi" fx:id="P1TargetDpi" layoutX="224.0" layoutY="239.0" prefHeight="25.0" prefWidth="157.0" />
+                        <CheckBox id="P1SplitImageCb" fx:id="P1SplitImageCb" layoutX="739.0" layoutY="111.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="131.0" text="Split" />
+                        <Separator layoutY="102.0" maxWidth="1590.0" minWidth="1590.0" prefHeight="0.0" prefWidth="1590.0" styleClass="lineSeparator" stylesheets="@style.css" />
+                        <Separator layoutX="9.0" layoutY="300.0" prefHeight="3.0" prefWidth="779.0" styleClass="lineSeparator" stylesheets="@style.css" />
                      </children>
                   </AnchorPane>
             </content>
@@ -147,8 +150,35 @@
                   </AnchorPane>
               </content>
             </Tab>
+            <Tab text="Merge images into pdf">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="593.0" prefWidth="1590.0">
+                     <children>
+                        <Label layoutX="21.0" layoutY="54.0" prefHeight="25.0" prefWidth="61.0" styleClass="infoLabels" stylesheets="@style.css" text="Path to folder" />
+                        <Button id="P6BrowseSourceImagesFolderBt" fx:id="P6BrowseSourceImagesFolderBt" layoutX="23.0" layoutY="82.0" mnemonicParsing="false" onAction="#p6BrowseImages" styleClass="browseButtons" text="Browse...." />
+                        <Label id="P6BrowseSourceImagesFolderLb" fx:id="P6BrowseSourceImagesFolderLb" alignment="CENTER" layoutX="217.0" layoutY="82.0" prefHeight="17.0" prefWidth="269.0" styleClass="pathLabels" />
+                        <Label layoutX="21.0" layoutY="23.0" prefHeight="25.0" prefWidth="149.0" text="Source images" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="21.0" layoutY="164.0" prefHeight="25.0" prefWidth="149.0" text="Source pdf" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="21.0" layoutY="191.0" styleClass="infoLabels" text="Path:" />
+                        <Button id="P6PathToSourcePDFBt" fx:id="P6PathToSourcePDFBt" layoutX="23.0" layoutY="224.0" mnemonicParsing="false" onAction="#p6BrowseSourcePdf" styleClass="browseButtons" text="Browse...." />
+                        <Label id="P6PathToSourcePDFLb" fx:id="P6PathToSourcePDFLb" alignment="CENTER" layoutX="228.0" layoutY="224.0" prefHeight="17.0" prefWidth="375.0" styleClass="pathLabels" />
+                        <Button id="P5ConvertButton" fx:id="P5ConvertButton1" layoutX="302.0" layoutY="343.0" mnemonicParsing="false" onAction="#p5Convert" styleClass="browseButtons" text="Convert" />
+                        <Separator layoutX="14.0" layoutY="148.0" maxWidth="1590.0" minWidth="1590.0" prefHeight="0.0" prefWidth="1590.0" styleClass="lineSeparator" stylesheets="@style.css" />
+                        <Separator layoutX="14.0" layoutY="307.0" maxWidth="1590.0" minWidth="1590.0" prefHeight="0.0" prefWidth="1590.0" styleClass="lineSeparator" stylesheets="@style.css" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
-      <Button id="QuitBt" fx:id="QuitBt" layoutX="610.0" layoutY="66.0" mnemonicParsing="false" onAction="#quit" styleClass="browseButtons" text="Quit" />
+      <Button id="QuitBt" fx:id="QuitBt" layoutX="1410.0" layoutY="75.0" mnemonicParsing="false" onAction="#quit" styleClass="browseButtons" text="Quit" />
    </children>
 </Pane>
