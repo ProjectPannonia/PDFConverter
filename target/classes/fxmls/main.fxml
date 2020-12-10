@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -20,7 +19,7 @@
    <children>
       <VBox fx:id="vbMenuBackground" prefHeight="600.0" prefWidth="300.0">
          <children>
-            <Pane fx:id="pnLogoBackground" prefHeight="123.0" prefWidth="297.0" styleClass="headerColor" stylesheets="@../../../../SceneBuilder-design-for-pdf-converter/style.css">
+            <Pane fx:id="pnLogoBackground" prefHeight="123.0" prefWidth="297.0" styleClass="headerColor" stylesheets="@../css/style.css">
                <children>
                   <Label alignment="CENTER" layoutX="86.0" layoutY="42.0" prefHeight="38.0" prefWidth="128.0" text="Logo@" textFill="WHITE">
                      <font>
@@ -29,45 +28,41 @@
                   </Label>
                </children>
             </Pane>
-            <Button fx:id="btPdfToImage" alignment="CENTER" mnemonicParsing="false" prefHeight="49.0" prefWidth="310.0" styleClass="mainButton" stylesheets="@../../../../SceneBuilder-design-for-pdf-converter/style.css" text="PDF to Image" textFill="WHITE">
+            <Button fx:id="btPdfToImage" alignment="CENTER" mnemonicParsing="false" prefHeight="49.0" prefWidth="310.0" styleClass="mainButton" stylesheets="@../css/style.css" text="PDF to Image" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btImageSplitter" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../../../../SceneBuilder-design-for-pdf-converter/style.css" text="Image splitter" textFill="WHITE">
+            <Button fx:id="btImageSplitter" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Image splitter" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btMergeIntoPDF" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../../../../SceneBuilder-design-for-pdf-converter/style.css" text="Merge images into PDF" textFill="WHITE">
+            <Button fx:id="btMergeIntoPDF" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Merge images into PDF" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btReadTextFromImages" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../../../../SceneBuilder-design-for-pdf-converter/style.css" text="Read text from images" textFill="WHITE">
+            <Button fx:id="btReadTextFromImages" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Read text from images" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../../../../SceneBuilder-design-for-pdf-converter/style.css" text="Button" textFill="WHITE">
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Button" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../../../../SceneBuilder-design-for-pdf-converter/style.css" text="Button" textFill="WHITE">
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Button" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
             <Pane prefHeight="127.0" prefWidth="300.0" style="-fx-background-color: #3F2B63;" />
-            <Button fx:id="btExit" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" text="Exit" textFill="WHITE">
+            <Button fx:id="btExit" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Exit" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
-               <stylesheets>
-                  <URL value="@style.css" />
-                  <URL value="@../../../../SceneBuilder-design-for-pdf-converter/style.css" />
-               </stylesheets>
             </Button>
          </children>
       </VBox>
@@ -128,7 +123,7 @@
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin></TextField>
-                  <Button fx:id="btP1ChoosePDFPath" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../../../../SceneBuilder-design-for-pdf-converter/style.css" text="Browse" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="2">
+                  <Button fx:id="btP1ChoosePDFPath" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Browse" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="2">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -141,7 +136,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btP1ChooseDestinationFolder" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../../../../SceneBuilder-design-for-pdf-converter/style.css" text="Browse" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="5">
+                  <Button fx:id="btP1ChooseDestinationFolder" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Browse" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="5">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -174,7 +169,7 @@
                         <Insets left="180.0" />
                      </GridPane.margin>
                   </ChoiceBox>
-                  <Button fx:id="btP1Convert" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../../../../SceneBuilder-design-for-pdf-converter/style.css" text="Convert" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="11">
+                  <Button fx:id="btP1Convert" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Convert" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="11">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -194,6 +189,6 @@
             </GridPane>
          </children>
       </StackPane>
-      <Pane layoutX="300.0" prefHeight="123.0" prefWidth="501.0" styleClass="headerColor" stylesheets="@../../../../SceneBuilder-design-for-pdf-converter/style.css" />
+      <Pane layoutX="300.0" prefHeight="123.0" prefWidth="501.0" styleClass="headerColor" stylesheets="@../css/style.css" />
    </children>
 </AnchorPane>

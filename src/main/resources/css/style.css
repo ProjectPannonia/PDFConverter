@@ -1,0 +1,12 @@
+.headerColor {
+    -fx-background-color :   #2A1C42;
+}
+.mainButton {
+    -fx-background-color :  #3F2B63;
+}
+.mainButton : hover {
+    -fx-background-color :  #2A1C42;
+}
+.mainButton : pressed {
+    -fx-background-color :  #7156DD;
+}

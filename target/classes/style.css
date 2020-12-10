@@ -1,13 +1,13 @@
 .pathLabels {
     -fx-border-style: solid;
     -fx-border-color: black;
-    -fx-pref-width: 500;
+    -fx-pref-width: 550;
     -fx-pref-height: 30;
 }
 .infoLabels {
-    -fx-pref-width: 180;
+    -fx-pref-width: 340;
     -fx-pref-height: 25;
-    -fx-font: 15px black;
+    -fx-font: 23px black;
     -fx-text-alignment: left;
     -fx-background-color: red;
 }
@@ -16,7 +16,7 @@
     -fx-alignment:center;
 }
 .browseButtons {
-    -fx-pref-width: 176;
+    -fx-pref-width: 210;
     -fx-pref-height: 30;
 }
 .lineSeparator {
