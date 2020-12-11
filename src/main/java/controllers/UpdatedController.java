@@ -4,14 +4,13 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -64,12 +63,16 @@ public class UpdatedController implements Initializable {
     @FXML
     public void handleClicks(ActionEvent event) {
         if(event.getSource() == btPdfToImage) {
+            gridpanePdfToImage.setBackground(new Background(new BackgroundFill(Color.rgb(99, 69, 153), CornerRadii.EMPTY, Insets.EMPTY)));
             gridpanePdfToImage.toFront();
         } else if(event.getSource() == btImageSplitter) {
+            gridpaneImageSplitter.setBackground(new Background(new BackgroundFill(Color.rgb(99, 69, 153), CornerRadii.EMPTY, Insets.EMPTY)));
             gridpaneImageSplitter.toFront();
         } else if(event.getSource() == btMergeIntoPDF) {
+            gridpaneMergeImagesIntoPDF.setBackground(new Background(new BackgroundFill(Color.rgb(99, 69, 153), CornerRadii.EMPTY, Insets.EMPTY)));
             gridpaneMergeImagesIntoPDF.toFront();
         } else if(event.getSource() == btReadTextFromImages) {
+            gridpaneReadTextFromImages.setBackground(new Background(new BackgroundFill(Color.rgb(99, 69, 153), CornerRadii.EMPTY, Insets.EMPTY)));
             gridpaneReadTextFromImages.toFront();
         } else if(event.getSource() == btExit) {
             Platform.exit();

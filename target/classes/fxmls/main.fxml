@@ -28,38 +28,38 @@
                   </Label>
                </children>
             </Pane>
-            <Button fx:id="btPdfToImage" alignment="CENTER" mnemonicParsing="false" prefHeight="49.0" prefWidth="310.0" styleClass="mainButton" stylesheets="@../css/style.css" text="PDF to Image" textFill="WHITE">
+            <Button fx:id="btPdfToImage" alignment="CENTER" mnemonicParsing="false" onAction="#handleClicks" prefHeight="49.0" prefWidth="310.0" styleClass="mainButton" stylesheets="@../css/style.css" text="PDF to Image" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btImageSplitter" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Image splitter" textFill="WHITE">
+            <Button fx:id="btImageSplitter" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Image splitter" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btMergeIntoPDF" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Merge images into PDF" textFill="WHITE">
+            <Button fx:id="btMergeIntoPDF" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Merge images into PDF" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btReadTextFromImages" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Read text from images" textFill="WHITE">
+            <Button fx:id="btReadTextFromImages" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Read text from images" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Button" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Button" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Button" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Button" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
             <Pane prefHeight="127.0" prefWidth="300.0" style="-fx-background-color: #3F2B63;" />
-            <Button fx:id="btExit" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Exit" textFill="WHITE">
+            <Button fx:id="btExit" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Exit" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -68,7 +68,18 @@
       </VBox>
       <StackPane layoutX="300.0" layoutY="123.0" prefHeight="482.0" prefWidth="501.0" style="-fx-background-color: #634599;">
          <children>
-            <GridPane fx:id="gridpaneImageSplitter" prefHeight="482.0" prefWidth="496.0">
+            <GridPane fx:id="gridpaneImageSplitter" prefHeight="482.0" prefWidth="496.0" style="-fx-background-color: #fff;">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label prefHeight="17.0" prefWidth="145.0" text="ImageSplitter" textFill="WHITE" />
+               </children>
+            </GridPane>
+            <GridPane fx:id="gridpaneMergeImagesIntoPDF" prefHeight="482.0" prefWidth="496.0" style="-fx-background-color: #fff;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -76,7 +87,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
-            <GridPane fx:id="gridpaneMergeImagesIntoPDF" prefHeight="482.0" prefWidth="496.0">
+            <GridPane fx:id="gridpaneReadTextFromImages" prefHeight="482.0" prefWidth="496.0" style="-fx-background-color: #fff;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -84,15 +95,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
-            <GridPane fx:id="gridpaneReadTextFromImages" prefHeight="482.0" prefWidth="496.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
-            <GridPane fx:id="gpPdfToImage" alignment="CENTER_LEFT" prefHeight="482.0" prefWidth="512.0">
+            <GridPane fx:id="gridpanePdfToImage" alignment="CENTER_LEFT" prefHeight="482.0" prefWidth="512.0" style="-fx-background-color: #fff;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
