@@ -107,7 +107,7 @@ public class UpdatedController implements Initializable {
             fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files","*.pdf"));
             File file = fileChooser.showOpenDialog(null);
-            System.out.println(file.getAbsolutePath());
+
             if (file != null) {
                 lbP1PDFPath.setText(file.getAbsolutePath());
                 sourceReady = true;
@@ -124,13 +124,25 @@ public class UpdatedController implements Initializable {
                 destinationDpiReady = true;
                 cbP1DestinationDPI.setDisable(false);
                 cbP1DestinationFormat.setDisable(false);
+                btP1Convert.setDisable(false);
             }
-        } else if(event.getSource() == btP1Convert && sourceReady && destinationReady && destinationDpiReady && destinationFormatReady) {
+       } else if(event.getSource() == btP1Convert /*&& sourceReady && destinationReady && destinationDpiReady && destinationFormatReady*/) {
             btP1Convert.setDisable(false);
             String pdfPath = lbP1PDFPath.getText();
-            String destinationPath = lbP1DestinationPath.getText();
-            DataForImageGeneration data = new DataForImageGeneration(pdfPath, destinationPath, cbP1SplitImage, destinationDpi, destinationFormat);
-            PdfToImage.convert(data);
+            System.out.println("PDF path: " + pdfPath);
+            String destinationPath = lbP1DestinationPath.getText() + "\\";
+            System.out.println("Destination path: " + destinationPath);
+            int destinationDpi = Integer.valueOf(cbP1DestinationDPI.getValue());
+            System.out.println("Destination dpi: " + destinationDpi);
+            boolean splitWanted = cbP1SplitImage.isSelected();
+            System.out.println("Split wanted: " + splitWanted);
+            String destinationFormat = cbP1DestinationFormat.getValue();
+            System.out.println("Destination format: " + destinationFormat);
+
+            if(pdfPath != null && destinationPath != null && destinationFormat != null) {
+                DataForImageGeneration data = new DataForImageGeneration(pdfPath, destinationPath, splitWanted, destinationDpi, destinationFormat);
+                PdfToImage.convert(data);
+            }
         }
     }
 }
