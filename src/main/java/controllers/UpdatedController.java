@@ -59,6 +59,12 @@ public class UpdatedController implements Initializable {
     private CheckBox cbP1SplitImage;
 
     /*** P2 -> Image splitter ***/
+    /** Buttons **/
+    @FXML
+    private Button btP2ChooseImages, btP2ChooseDestinationFolder, btP2Split;
+    /** Labels **/
+    @FXML
+    private Label lbP2ImagesFolderPath, lbP2DestinationFolderPath;
 
     /*** P3 -> Merge images into pdf ***/
 
@@ -129,20 +135,29 @@ public class UpdatedController implements Initializable {
        } else if(event.getSource() == btP1Convert /*&& sourceReady && destinationReady && destinationDpiReady && destinationFormatReady*/) {
             btP1Convert.setDisable(false);
             String pdfPath = lbP1PDFPath.getText();
-            System.out.println("PDF path: " + pdfPath);
             String destinationPath = lbP1DestinationPath.getText() + "\\";
-            System.out.println("Destination path: " + destinationPath);
             int destinationDpi = Integer.valueOf(cbP1DestinationDPI.getValue());
-            System.out.println("Destination dpi: " + destinationDpi);
             boolean splitWanted = cbP1SplitImage.isSelected();
-            System.out.println("Split wanted: " + splitWanted);
             String destinationFormat = cbP1DestinationFormat.getValue();
-            System.out.println("Destination format: " + destinationFormat);
+
 
             if(pdfPath != null && destinationPath != null && destinationFormat != null) {
                 DataForImageGeneration data = new DataForImageGeneration(pdfPath, destinationPath, splitWanted, destinationDpi, destinationFormat);
                 PdfToImage.convert(data);
             }
+        }
+    }
+    /*** P2 -> Image splitter -> Button event handler ***/
+    @FXML
+    public void handleSecondPaneClicks(ActionEvent event) {
+        if(event.getSource() == btP2ChooseImages) {
+            directoryChooser = new DirectoryChooser();
+            File directory = directoryChooser.showDialog(null);
+        } else if(event.getSource() == btP2ChooseDestinationFolder) {
+            directoryChooser = new DirectoryChooser();
+            File directory = directoryChooser.showDialog(null);
+        } else if (event.getSource() == btP2Split) {
+            
         }
     }
 }
