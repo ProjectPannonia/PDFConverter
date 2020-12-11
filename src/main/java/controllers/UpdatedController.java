@@ -132,7 +132,7 @@ public class UpdatedController implements Initializable {
                 cbP1DestinationFormat.setDisable(false);
                 btP1Convert.setDisable(false);
             }
-       } else if(event.getSource() == btP1Convert /*&& sourceReady && destinationReady && destinationDpiReady && destinationFormatReady*/) {
+       } else if(event.getSource() == btP1Convert) {
             btP1Convert.setDisable(false);
             String pdfPath = lbP1PDFPath.getText();
             String destinationPath = lbP1DestinationPath.getText() + "\\";
@@ -153,11 +153,14 @@ public class UpdatedController implements Initializable {
         if(event.getSource() == btP2ChooseImages) {
             directoryChooser = new DirectoryChooser();
             File directory = directoryChooser.showDialog(null);
+            if (directory != null) {
+                
+            }
         } else if(event.getSource() == btP2ChooseDestinationFolder) {
             directoryChooser = new DirectoryChooser();
             File directory = directoryChooser.showDialog(null);
         } else if (event.getSource() == btP2Split) {
-            
+
         }
     }
 }
