@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
@@ -24,7 +25,8 @@ import java.util.ResourceBundle;
 
 public class UpdatedController implements Initializable {
 
-    private ObservableList<String> fileFormats, targetDpi;
+    private ObservableList<String> imageFormats, targetDpi;
+    private ObservableList<PdfFile> sourceFilesForTable;
     private FileChooser fileChooser;
     private DirectoryChooser directoryChooser;
 
@@ -116,7 +118,7 @@ public class UpdatedController implements Initializable {
 
     @FXML
     TableColumn<Object, Object>     P3TableColumnSourceImageId,
-                                    P3TableColumnSourceImageName, 
+                                    P3TableColumnSourceImageName,
                                     P3TableColumnSourceImageFormat,
                                     P3TableColumnSourceImagePath;
 
@@ -129,17 +131,33 @@ public class UpdatedController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        fileFormats = FXCollections.observableArrayList("JPG","JPEG","PNG","TIF","TIFF","GIF","BMP");
-        P1ChoiceBoxDestinationFormat.setItems(fileFormats);
+        // Initialize default image formats
+        imageFormats = FXCollections.observableArrayList("JPG","JPEG","PNG","TIF","TIFF","GIF","BMP");
+        P1ChoiceBoxDestinationFormat.setItems(imageFormats);
+
         P1ChoiceBoxDestinationFormat.getStylesheets().add(getClass().getResource("../css/style.css").toExternalForm());
+
+        // Initialize default DPI values
         targetDpi = FXCollections.observableArrayList("100", "200", "300", "400", "500", "600");
         P1ChoiceBoxDestinationDPI.setItems(targetDpi);
+
+        // Initialize an empty table for pane 3
+        sourceFilesForTable = FXCollections.observableArrayList();
+        P3TableViewImagesToMerge.setEditable(true);
+        P3TableColumnSourceImageId.setCellValueFactory( new PropertyValueFactory<>("id"));
+        P3TableColumnSourceImageName.setCellValueFactory(new PropertyValueFactory<>("fileName"));
+        P3TableColumnSourceImageFormat.setCellValueFactory(new PropertyValueFactory<>("format"));
+        P3TableColumnSourceImagePath.setCellValueFactory(new PropertyValueFactory<>("path"));
+        P3TableViewImagesToMerge.setItems(sourceFilesForTable);
+
         P1GridPanePDFToImage.setBackground(new Background(new BackgroundFill(Color.rgb(99, 69, 153), CornerRadii.EMPTY, Insets.EMPTY)));
         P1GridPanePDFToImage.toFront();
+
         P1ButtonChooseDestinationFolder.setDisable(true);
         P1ButtonConvert.setDisable(true);
         P1ChoiceBoxDestinationFormat.setDisable(true);
         P1ChoiceBoxDestinationDPI.setDisable(true);
+
     }
     @FXML
     public void handleMainMenuClicks(ActionEvent event) {
