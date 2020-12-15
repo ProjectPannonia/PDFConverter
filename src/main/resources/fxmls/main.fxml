@@ -5,6 +5,8 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -15,9 +17,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="MainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdatedController">
+<AnchorPane fx:id="MainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdatedController">
    <children>
-      <VBox fx:id="MainVerticalBox" prefHeight="600.0" prefWidth="300.0">
+      <VBox fx:id="MainVerticalBox" prefHeight="768.0" prefWidth="300.0">
          <children>
             <Pane fx:id="MainPaneLogo" prefHeight="123.0" prefWidth="297.0" styleClass="headerColor" stylesheets="@../css/style.css">
                <children>
@@ -58,7 +60,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Pane prefHeight="127.0" prefWidth="300.0" style="-fx-background-color: #3F2B63;" />
+            <Pane prefHeight="296.0" prefWidth="300.0" style="-fx-background-color: #3F2B63;" />
             <Button fx:id="MainButtonExit" mnemonicParsing="false" onAction="#handleMainMenuClicks" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Exit" textFill="WHITE">
                <font>
                   <Font size="14.0" />
@@ -66,7 +68,7 @@
             </Button>
          </children>
       </VBox>
-      <StackPane layoutX="300.0" layoutY="123.0" prefHeight="482.0" prefWidth="501.0" style="-fx-background-color: #634599;">
+      <StackPane layoutX="300.0" layoutY="123.0" prefHeight="646.0" prefWidth="726.0" style="-fx-background-color: #634599;">
          <children>
             <GridPane fx:id="P4GridPaneReadText" prefHeight="482.0" prefWidth="496.0" visible="false">
                <columnConstraints>
@@ -253,7 +255,7 @@
                   </Label>
                </children>
             </GridPane>
-            <GridPane fx:id="P3GridPaneMergeImages" alignment="CENTER_LEFT" prefHeight="482.0" prefWidth="512.0">
+            <GridPane fx:id="P3GridPaneMergeImages" alignment="CENTER_LEFT" prefHeight="457.0" prefWidth="480.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -264,8 +266,8 @@
                   <RowConstraints maxHeight="127.0" minHeight="30.0" prefHeight="32.0" valignment="CENTER" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="145.0" minHeight="20.0" prefHeight="26.0" valignment="CENTER" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="185.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="173.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="87.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="212.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <Button fx:id="P3ButtonChooseImagesFolder" alignment="CENTER" mnemonicParsing="false" onAction="#handleThirdPaneClicks" prefHeight="17.0" prefWidth="108.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Browse" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="1">
@@ -273,10 +275,10 @@
                         <Font size="14.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="380.0" />
+                        <Insets />
                      </GridPane.margin>
                   </Button>
-                  <Label alignment="CENTER" prefHeight="39.0" prefWidth="501.0" text="Images path" textFill="#fffbfb" GridPane.rowIndex="2">
+                  <Label alignment="CENTER" prefHeight="39.0" prefWidth="722.0" text="Images path" textFill="#fffbfb" GridPane.rowIndex="2">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -286,10 +288,10 @@
                         <Font size="14.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="380.0" />
+                        <Insets left="10.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="P3ButtonConvert" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleThirdPaneClicks" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Convert" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="7">
+                  <Button fx:id="P3ButtonConvert" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleThirdPaneClicks" prefHeight="38.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Convert" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="7">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -297,40 +299,32 @@
                         <Insets left="180.0" />
                      </GridPane.margin>
                   </Button>
-                  <Label fx:id="P3LabelSourceImagesPath" prefHeight="28.0" prefWidth="357.0" style="-fx-border-color: purple;" textFill="WHITE" GridPane.rowIndex="1">
+                  <Label fx:id="P3LabelSourceImagesPath" prefHeight="28.0" prefWidth="576.0" style="-fx-border-color: purple;" textFill="WHITE" GridPane.rowIndex="1">
                      <font>
                         <Font size="14.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="10.0" />
+                        <Insets left="140.0" />
                      </GridPane.margin>
                      <padding>
                         <Insets left="2.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="P3LabelChooseConversionDestination" prefHeight="28.0" prefWidth="357.0" style="-fx-border-color: purple;" textFill="WHITE" GridPane.rowIndex="3">
+                  <Label fx:id="P3LabelChooseConversionDestination" prefHeight="28.0" prefWidth="571.0" style="-fx-border-color: purple;" textFill="WHITE" GridPane.rowIndex="3">
                      <font>
                         <Font size="14.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="10.0" />
+                        <Insets left="140.0" />
                      </GridPane.margin>
                      <padding>
                         <Insets left="2.0" />
                      </padding>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="36.0" prefWidth="492.0" text="Merge images" textFill="WHITE">
+                  <Label alignment="CENTER" prefHeight="36.0" prefWidth="721.0" text="Merge images" textFill="WHITE">
                      <font>
-                        <Font size="16.0" />
+                        <Font size="24.0" />
                      </font>
-                  </Label>
-                  <Label layoutX="20.0" layoutY="53.0" prefHeight="28.0" prefWidth="482.0" style="-fx-border-color: purple;" textFill="WHITE">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="2.0" />
-                     </padding>
                   </Label>
                   <Label alignment="CENTER" prefHeight="40.0" prefWidth="501.0" text="Destination name" textFill="#fffbfb" GridPane.rowIndex="4">
                      <font>
@@ -353,10 +347,24 @@
                         <Insets left="400.0" />
                      </GridPane.margin>
                   </CheckBox>
+                  <TableView id="P4SourceImagesTable" fx:id="P4SourceImagesTable" prefHeight="201.0" prefWidth="501.0" GridPane.rowIndex="6">
+                     <columns>
+                        <TableColumn id="P4SourceImageId" fx:id="P3TableColumnSourceImageId" editable="false" prefWidth="45.0" text="Id." />
+                        <TableColumn id="P4SourceImageName" fx:id="P3TableColumnSourceImageName" prefWidth="280.0" text="Name" />
+                        <TableColumn id="P4SourceImageFormat" fx:id="P3TableColumnSourceImageFormat" prefWidth="55.0" text="Format" />
+                        <TableColumn id="P4SourceImagePath" fx:id="P3TableColumnSourceImagePath" prefWidth="336.0" text="Path" />
+                     </columns>
+                     <GridPane.margin>
+                        <Insets left="15.0" right="15.0" />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets top="2.0" />
+                     </padding>
+                  </TableView>
                </children>
             </GridPane>
          </children>
       </StackPane>
-      <Pane layoutX="300.0" prefHeight="123.0" prefWidth="501.0" styleClass="headerColor" stylesheets="@../css/style.css" />
+      <Pane layoutX="300.0" prefHeight="123.0" prefWidth="726.0" styleClass="headerColor" stylesheets="@../css/style.css" />
    </children>
 </AnchorPane>

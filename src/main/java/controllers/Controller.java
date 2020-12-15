@@ -12,13 +12,13 @@ import javafx.stage.FileChooser;
 import service.panes.pane5.GetTextFromFileRefR;
 import service.panes.pane5.fileModels.DestinationFile;
 import service.panes.pane5.fileModels.SourceFile;
-import service.panes.pane4.PdfFile;
-import service.panes.pane4.ReadSourceImages;
-import service.panes.pane4.WriteImagesIntoFile;
+import service.panes.mergeimagesintopdf.pdfmodel.PdfFile;
+import service.panes.mergeimagesintopdf.read.ReadSourceImages;
+import service.panes.mergeimagesintopdf.WriteImagesIntoFile;
 import service.panes.pane3.PdfModifier;
-import service.panes.pane1.DataForImageGeneration;
-import service.panes.pane1.PdfToImage;
-import service.panes.pane2.ImageSplitter;
+import service.panes.pdftoimage.DataForImageGeneration;
+import service.panes.pdftoimage.PdfToImage;
+import service.panes.imageslicer.ImageSlicer;
 
 import java.io.File;
 
@@ -198,7 +198,7 @@ public class Controller {
         String pathToFile = P2ChooseSourceFolderLb.getText();
         String conversionDestinationPath = P2ChooseDestinationPath.getText();
         if (pathToFile != null) {
-            ImageSplitter.splitImage(pathToFile,conversionDestinationPath);
+            ImageSlicer.splitImage(pathToFile,conversionDestinationPath);
         }
 
     }

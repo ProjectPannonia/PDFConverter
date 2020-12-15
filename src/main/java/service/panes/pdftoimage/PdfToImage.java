@@ -1,4 +1,4 @@
-package service.panes.pane1;
+package service.panes.pdftoimage;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.ImageType;

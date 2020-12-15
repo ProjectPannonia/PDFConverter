@@ -1,7 +1,8 @@
-package service.panes.pane4;
+package service.panes.mergeimagesintopdf.read;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import service.panes.mergeimagesintopdf.pdfmodel.PdfFile;
 
 import java.io.File;
 

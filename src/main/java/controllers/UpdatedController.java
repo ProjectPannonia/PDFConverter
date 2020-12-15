@@ -13,11 +13,12 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import service.panes.pane1.DataForImageGeneration;
-import service.panes.pane1.PdfToImage;
-import service.panes.pane2.ImageSplitter;
-import service.panes.pane4.PdfFile;
-import service.panes.pane4.WriteImagesIntoFile;
+import service.panes.imageslicer.ImageSlicer;
+import service.panes.mergeimagesintopdf.WriteImagesIntoFile;
+import service.panes.mergeimagesintopdf.pdfmodel.PdfFile;
+import service.panes.mergeimagesintopdf.read.ReadSourceImages;
+import service.panes.pdftoimage.DataForImageGeneration;
+import service.panes.pdftoimage.PdfToImage;
 
 import java.io.File;
 import java.net.URL;
@@ -144,7 +145,7 @@ public class UpdatedController implements Initializable {
         // Initialize an empty table for pane 3
         sourceFilesForTable = FXCollections.observableArrayList();
         P3TableViewImagesToMerge.setEditable(true);
-        P3TableColumnSourceImageId.setCellValueFactory( new PropertyValueFactory<>("id"));
+        P3TableColumnSourceImageId.setCellValueFactory(new PropertyValueFactory<>("id"));
         P3TableColumnSourceImageName.setCellValueFactory(new PropertyValueFactory<>("fileName"));
         P3TableColumnSourceImageFormat.setCellValueFactory(new PropertyValueFactory<>("format"));
         P3TableColumnSourceImagePath.setCellValueFactory(new PropertyValueFactory<>("path"));
@@ -180,10 +181,6 @@ public class UpdatedController implements Initializable {
     /*** P1 -> PDF to images -> Button event handler ***/
     @FXML
     public void handleFirstPaneClicks(ActionEvent event) {
-        boolean sourceReady = false;
-        boolean destinationReady = false;
-        boolean destinationFormatReady = false;
-        boolean destinationDpiReady = false;
         if(event.getSource() == P1ButtonChoosePDF) {
             fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files","*.pdf"));
@@ -191,8 +188,6 @@ public class UpdatedController implements Initializable {
 
             if (file != null) {
                 P1LabelSourcePDFPath.setText(file.getAbsolutePath());
-                sourceReady = true;
-                file = null;
                 P1ButtonChooseDestinationFolder.setDisable(false);
             }
         } else if(event.getSource() == P1ButtonChooseDestinationFolder) {
@@ -200,9 +195,6 @@ public class UpdatedController implements Initializable {
             File directory = directoryChooser.showDialog(null);
             if (directory != null) {
                 P1LabelDestinationFolderPath.setText(directory.getAbsolutePath());
-                destinationReady = true;
-                destinationFormatReady = true;
-                destinationDpiReady = true;
                 P1ChoiceBoxDestinationDPI.setDisable(false);
                 P1ChoiceBoxDestinationFormat.setDisable(false);
                 P1ButtonConvert.setDisable(false);
@@ -214,7 +206,6 @@ public class UpdatedController implements Initializable {
             int destinationDpi = Integer.valueOf(P1ChoiceBoxDestinationDPI.getValue());
             boolean splitWanted = P1CheckBoxSliceImage.isSelected();
             String destinationFormat = P1ChoiceBoxDestinationFormat.getValue();
-
 
             if(pdfPath != null && destinationPath != null && destinationFormat != null) {
                 DataForImageGeneration data = new DataForImageGeneration(pdfPath, destinationPath, splitWanted, destinationDpi, destinationFormat);
@@ -245,7 +236,7 @@ public class UpdatedController implements Initializable {
             String pathToFile = P2LabelImagesFolderPath.getText();
             String conversionDestinationPath = P2LabelDestinationFolderPath.getText();
             if (pathToFile != null) {
-                ImageSplitter.splitImage(pathToFile,conversionDestinationPath);
+                ImageSlicer.splitImage(pathToFile,conversionDestinationPath);
             }
         }
     }
@@ -255,20 +246,22 @@ public class UpdatedController implements Initializable {
         if(event.getSource() == P3ButtonChooseImagesFolder) {
             directoryChooser = new DirectoryChooser();
             File direcotry = directoryChooser.showDialog(null);
-            String pathToDirectory = null;
+            String pathToDirectory;
 
             if (direcotry != null) {
                 pathToDirectory = direcotry.getAbsolutePath() + "\\";
                 P3LabelSourceImagesPath.setText(pathToDirectory);
+                sourceFilesForTable.addAll(ReadSourceImages.readSourceFiles(pathToDirectory));
             }
         }else if(event.getSource() == P3ButtonChooseDestinationFolder) {
             directoryChooser = new DirectoryChooser();
             File direcotry = directoryChooser.showDialog(null);
-            String pathToDirectory = null;
+            String pathToDirectory;
 
             if (direcotry != null) {
                 pathToDirectory = direcotry.getAbsolutePath() + "\\";
                 P3LabelChooseConversionDestination.setText(pathToDirectory);
+
             }
         }else if(event.getSource() == P3ButtonConvert) {
             String imagesPath = P3LabelChooseConversionDestination.getText();

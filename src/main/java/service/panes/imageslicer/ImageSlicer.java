@@ -1,4 +1,4 @@
-package service.panes.pane2;
+package service.panes.imageslicer;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImageSplitter {
+public class ImageSlicer {
     private static List<BufferedImage> imagesInFolder;
 
     public static void splitImage(String pathToRawFiles, String conversionDestinationPath) {

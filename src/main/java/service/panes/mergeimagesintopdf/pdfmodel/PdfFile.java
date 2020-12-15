@@ -1,4 +1,4 @@
-package service.panes.pane4;
+package service.panes.mergeimagesintopdf.pdfmodel;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;

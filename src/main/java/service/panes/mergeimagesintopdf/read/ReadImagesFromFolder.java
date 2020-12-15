@@ -1,4 +1,4 @@
-package service.panes.pane4;
+package service.panes.mergeimagesintopdf.read;
 
 import org.apache.pdfbox.tools.imageio.ImageIOUtil;
 

@@ -1,9 +1,9 @@
 package test;
 
 
-import service.panes.pane4.ReadSourceImages;
-import service.panes.pane4.WriteImagesIntoFile;
-import service.panes.pane1.PdfToImage;
+import service.panes.mergeimagesintopdf.read.ReadSourceImages;
+import service.panes.mergeimagesintopdf.WriteImagesIntoFile;
+import service.panes.pdftoimage.PdfToImage;
 
 import java.io.IOException;
 import java.util.ArrayList;

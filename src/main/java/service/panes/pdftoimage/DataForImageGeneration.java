@@ -1,4 +1,4 @@
-package service.panes.pane1;
+package service.panes.pdftoimage;
 
 public class DataForImageGeneration {
     private String sourceFilePath;

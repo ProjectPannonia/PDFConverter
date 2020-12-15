@@ -1,4 +1,4 @@
-package service.panes.pane4;
+package service.panes.mergeimagesintopdf;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;

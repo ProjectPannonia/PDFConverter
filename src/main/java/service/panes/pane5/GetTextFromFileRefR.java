@@ -4,8 +4,8 @@ import service.panes.pane5.fileModels.DestinationFile;
 import service.panes.pane5.fileModels.SourceFile;
 import service.panes.pane5.manipulate.PdfManipulate;
 import service.panes.pane5.recognitor.MyOcr;
-import service.panes.pane1.DataForImageGeneration;
-import service.panes.pane1.PdfToImage;
+import service.panes.pdftoimage.DataForImageGeneration;
+import service.panes.pdftoimage.PdfToImage;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
