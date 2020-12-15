@@ -15,6 +15,7 @@ import javafx.stage.FileChooser;
 import service.panes.pane1.DataForImageGeneration;
 import service.panes.pane1.PdfToImage;
 import service.panes.pane2.ImageSplitter;
+import service.panes.pane4.WriteImagesIntoFile;
 
 import java.io.File;
 import java.net.URL;
@@ -101,13 +102,18 @@ public class UpdatedController implements Initializable {
                     P3ButtonConvert;
     /* Labels */
     @FXML
-    private Label   P3LabelSourcePDFPath,
-                    P3LabelChooseImagesFolder;
+    private Label   P3LabelSourceImagesPath,
+                    P3LabelChooseConversionDestination;
+    @FXML
+    private TextField P3TextFieldDestinationName;
+    @FXML
+    private CheckBox P3CheckBoxSplitImage;
 
 
     /**
      P4 -> Read text from images
                                 **/
+
 
 
     @Override
@@ -217,7 +223,32 @@ public class UpdatedController implements Initializable {
     /*** P3 -> Merge images into a pdf -> Button event handler ***/
     @FXML
     public void handleThirdPaneClicks(ActionEvent event) {
+        if(event.getSource() == P3ButtonChooseImagesFolder) {
+            directoryChooser = new DirectoryChooser();
+            File direcotry = directoryChooser.showDialog(null);
+            String pathToDirectory = null;
 
+            if (direcotry != null) {
+                pathToDirectory = direcotry.getAbsolutePath() + "\\";
+                P3LabelSourceImagesPath.setText(pathToDirectory);
+            }
+        }else if(event.getSource() == P3ButtonChooseDestinationFolder) {
+            directoryChooser = new DirectoryChooser();
+            File direcotry = directoryChooser.showDialog(null);
+            String pathToDirectory = null;
+
+            if (direcotry != null) {
+                pathToDirectory = direcotry.getAbsolutePath() + "\\";
+                P3LabelChooseConversionDestination.setText(pathToDirectory);
+            }
+        }else if(event.getSource() == P3ButtonConvert) {
+            String imagesPath = P3LabelChooseConversionDestination.getText();
+            String destinationFileName = P3TextFieldDestinationName.getText();
+            String destinationPath = P3LabelChooseConversionDestination.getText();
+            boolean splitImages = P3CheckBoxSplitImage.isSelected();
+
+            WriteImagesIntoFile.uniteFilesIntoPdf(imagesPath,destinationFileName,destinationPath, splitImages);
+        }
     }
     /*** P4 -> Read text from images -> Button event handler ***/
     @FXML

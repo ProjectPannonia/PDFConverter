@@ -3,10 +3,13 @@
 }
 .mainButton {
     -fx-background-color :  #3F2B63;
+    -fx-border-radius: 0;
 }
 .mainButton:hover {
     -fx-background-color :  #2A1C42;
+    -fx-border-radius: 0;
 }
 .mainButton:pressed {
     -fx-background-color :  #7156DD;
+    -fx-border-radius: 0;
 }

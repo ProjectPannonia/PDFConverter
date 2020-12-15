@@ -5,6 +5,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -14,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pnMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdatedController">
+<AnchorPane fx:id="MainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdatedController">
    <children>
-      <VBox fx:id="vbMenuBackground" prefHeight="600.0" prefWidth="300.0">
+      <VBox fx:id="MainVerticalBox" prefHeight="600.0" prefWidth="300.0">
          <children>
-            <Pane fx:id="pnLogoBackground" prefHeight="123.0" prefWidth="297.0" styleClass="headerColor" stylesheets="@../css/style.css">
+            <Pane fx:id="MainPaneLogo" prefHeight="123.0" prefWidth="297.0" styleClass="headerColor" stylesheets="@../css/style.css">
                <children>
                   <Label alignment="CENTER" layoutX="86.0" layoutY="42.0" prefHeight="38.0" prefWidth="128.0" text="Logo@" textFill="WHITE">
                      <font>
@@ -27,22 +28,22 @@
                   </Label>
                </children>
             </Pane>
-            <Button fx:id="btPdfToImage" alignment="CENTER" mnemonicParsing="false" onAction="#handleMainMenuClicks" prefHeight="49.0" prefWidth="310.0" styleClass="mainButton" stylesheets="@../css/style.css" text="PDF to Image" textFill="WHITE">
+            <Button fx:id="MainButtonPDFToImage" alignment="CENTER" mnemonicParsing="false" onAction="#handleMainMenuClicks" prefHeight="49.0" prefWidth="310.0" styleClass="mainButton" stylesheets="@../css/style.css" text="PDF to Image" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btImageSplitter" mnemonicParsing="false" onAction="#handleMainMenuClicks" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Image splitter" textFill="WHITE">
+            <Button fx:id="MainButtonImageSplitter" mnemonicParsing="false" onAction="#handleMainMenuClicks" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Image slicer" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btMergeIntoPDF" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleMainMenuClicks" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Merge images into PDF" textFill="WHITE">
+            <Button fx:id="MainButtonMergeImages" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleMainMenuClicks" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Merge images into PDF" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btReadTextFromImages" mnemonicParsing="false" onAction="#handleMainMenuClicks" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Read text from images" textFill="WHITE">
+            <Button fx:id="MainButtonReadText" mnemonicParsing="false" onAction="#handleMainMenuClicks" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Read text from images" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -58,7 +59,7 @@
                </font>
             </Button>
             <Pane prefHeight="127.0" prefWidth="300.0" style="-fx-background-color: #3F2B63;" />
-            <Button fx:id="btExit" mnemonicParsing="false" onAction="#handleMainMenuClicks" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Exit" textFill="WHITE">
+            <Button fx:id="MainButtonExit" mnemonicParsing="false" onAction="#handleMainMenuClicks" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Exit" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -67,7 +68,7 @@
       </VBox>
       <StackPane layoutX="300.0" layoutY="123.0" prefHeight="482.0" prefWidth="501.0" style="-fx-background-color: #634599;">
          <children>
-            <GridPane fx:id="gridpaneMergeImagesIntoPDF" prefHeight="482.0" prefWidth="496.0" visible="false">
+            <GridPane fx:id="P4GridPaneReadText" prefHeight="482.0" prefWidth="496.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -75,15 +76,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
-            <GridPane fx:id="gridpaneReadTextFromImages" prefHeight="482.0" prefWidth="496.0" visible="false">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
-            <GridPane fx:id="gridpanePdfToImage" alignment="CENTER_LEFT" prefHeight="482.0" prefWidth="512.0">
+            <GridPane fx:id="P1GridPanePDFToImage" alignment="CENTER_LEFT" prefHeight="482.0" prefWidth="512.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -102,7 +95,7 @@
                   <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="87.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btP1ChoosePDFPath" alignment="CENTER" mnemonicParsing="false" onAction="#handleFirstPaneClicks" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Browse" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="2">
+                  <Button fx:id="P1ButtonChoosePDF" alignment="CENTER" mnemonicParsing="false" onAction="#handleFirstPaneClicks" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Browse" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="2">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -115,7 +108,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btP1ChooseDestinationFolder" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleFirstPaneClicks" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Browse" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="5">
+                  <Button fx:id="P1ButtonChooseDestinationFolder" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleFirstPaneClicks" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Browse" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="5">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -128,7 +121,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="cbP1DestinationFormat" prefHeight="25.0" prefWidth="150.0" GridPane.rowIndex="7">
+                  <ChoiceBox fx:id="P1ChoiceBoxDestinationFormat" prefHeight="25.0" prefWidth="150.0" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="180.0" />
                      </GridPane.margin>
@@ -138,12 +131,12 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="cbP1DestinationDPI" prefHeight="25.0" prefWidth="150.0" GridPane.rowIndex="9">
+                  <ChoiceBox fx:id="P1ChoiceBoxDestinationDPI" prefHeight="25.0" prefWidth="150.0" GridPane.rowIndex="9">
                      <GridPane.margin>
                         <Insets left="180.0" />
                      </GridPane.margin>
                   </ChoiceBox>
-                  <Button fx:id="btP1Convert" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleFirstPaneClicks" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Convert" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="11">
+                  <Button fx:id="P1ButtonConvert" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleFirstPaneClicks" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Convert" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="11">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -151,7 +144,7 @@
                         <Insets left="180.0" />
                      </GridPane.margin>
                   </Button>
-                  <CheckBox fx:id="cbP1SplitImage" mnemonicParsing="false" text="Split" textFill="WHITE" GridPane.rowIndex="10">
+                  <CheckBox fx:id="P1CheckBoxSliceImage" mnemonicParsing="false" text="Split" textFill="WHITE" GridPane.rowIndex="10">
                      <GridPane.margin>
                         <Insets left="220.0" />
                      </GridPane.margin>
@@ -159,7 +152,7 @@
                         <Font size="14.0" />
                      </font>
                   </CheckBox>
-                  <Label fx:id="lbP1PDFPath" prefHeight="28.0" prefWidth="482.0" style="-fx-border-color: purple;" textFill="WHITE" GridPane.rowIndex="1">
+                  <Label fx:id="P1LabelSourcePDFPath" prefHeight="28.0" prefWidth="482.0" style="-fx-border-color: purple;" textFill="WHITE" GridPane.rowIndex="1">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -170,7 +163,7 @@
                         <Insets left="2.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="lbP1DestinationPath" prefHeight="28.0" prefWidth="482.0" style="-fx-border-color: purple;" textFill="WHITE" GridPane.rowIndex="4">
+                  <Label fx:id="P1LabelDestinationFolderPath" prefHeight="28.0" prefWidth="482.0" style="-fx-border-color: purple;" textFill="WHITE" GridPane.rowIndex="4">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -188,21 +181,21 @@
                   </Label>
                </children>
             </GridPane>
-            <GridPane fx:id="gridpaneImageSplitter" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="482.0" prefWidth="512.0">
+            <GridPane fx:id="P2GridPaneImageSlicer" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="482.0" prefWidth="512.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints maxHeight="51.0" minHeight="36.0" prefHeight="36.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="66.0" minHeight="42.0" prefHeight="42.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="72.0" minHeight="51.0" prefHeight="53.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="86.0" minHeight="42.0" prefHeight="81.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="72.0" minHeight="50.0" prefHeight="55.0" valignment="CENTER" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="51.0" minHeight="30.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="87.0" minHeight="41.0" prefHeight="41.0" valignment="CENTER" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="96.0" minHeight="51.0" prefHeight="53.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="87.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="btP2ChooseImages" alignment="CENTER" mnemonicParsing="false" onAction="#handleSecondPaneClicks" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Browse" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="2">
+                  <Button fx:id="P2ButtonChooseImagesFolder" alignment="CENTER" mnemonicParsing="false" onAction="#handleSecondPaneClicks" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Browse" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="2">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -215,7 +208,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btP2ChooseDestinationFolder" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleSecondPaneClicks" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Browse" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="5">
+                  <Button fx:id="P2ButtonChooseDestinationFolder" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleSecondPaneClicks" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Browse" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="5">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -223,7 +216,7 @@
                         <Insets left="15.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="btP2Split" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleSecondPaneClicks" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Convert" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="6">
+                  <Button fx:id="P2ButtonSliceImages" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleSecondPaneClicks" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Convert" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="6">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -231,7 +224,7 @@
                         <Insets left="180.0" />
                      </GridPane.margin>
                   </Button>
-                  <Label fx:id="lbP2ImagesFolderPath" prefHeight="28.0" prefWidth="482.0" style="-fx-border-color: purple;" textFill="WHITE" GridPane.rowIndex="1">
+                  <Label fx:id="P2LabelImagesFolderPath" prefHeight="28.0" prefWidth="482.0" style="-fx-border-color: purple;" textFill="WHITE" GridPane.rowIndex="1">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -242,7 +235,7 @@
                         <Insets left="2.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="lbP2DestinationFolderPath" prefHeight="28.0" prefWidth="482.0" style="-fx-border-color: purple;" textFill="WHITE" GridPane.rowIndex="4">
+                  <Label fx:id="P2LabelDestinationFolderPath" prefHeight="28.0" prefWidth="482.0" style="-fx-border-color: purple;" textFill="WHITE" GridPane.rowIndex="4">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -258,6 +251,112 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
+               </children>
+            </GridPane>
+            <GridPane fx:id="P3GridPaneMergeImages" alignment="CENTER_LEFT" prefHeight="482.0" prefWidth="512.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="51.0" minHeight="36.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="66.0" minHeight="33.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="72.0" minHeight="42.0" prefHeight="42.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="51.0" minHeight="30.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="87.0" minHeight="41.0" prefHeight="41.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="96.0" minHeight="51.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="66.0" minHeight="24.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="433.0" minHeight="6.0" prefHeight="23.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="87.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Button fx:id="P3ButtonChooseImagesFolder" alignment="CENTER" mnemonicParsing="false" onAction="#handleThirdPaneClicks" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Browse" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="15.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label alignment="CENTER" prefHeight="39.0" prefWidth="501.0" text="Images path" textFill="#fffbfb" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="P3ButtonChooseDestinationFolder" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleThirdPaneClicks" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Browse" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="15.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="P3ButtonConvert" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleThirdPaneClicks" prefHeight="50.0" prefWidth="150.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Convert" textFill="WHITE" textOverrun="CLIP" GridPane.rowIndex="11">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="180.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label fx:id="P3LabelSourceImagesPath" prefHeight="28.0" prefWidth="482.0" style="-fx-border-color: purple;" textFill="WHITE" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets left="2.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="P3LabelChooseConversionDestination" prefHeight="28.0" prefWidth="482.0" style="-fx-border-color: purple;" textFill="WHITE" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets left="2.0" />
+                     </padding>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="36.0" prefWidth="492.0" text="Merge images" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="20.0" layoutY="53.0" prefHeight="28.0" prefWidth="482.0" style="-fx-border-color: purple;" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="2.0" />
+                     </padding>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="501.0" text="Destination name" textFill="#fffbfb" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="P3TextFieldDestinationName" GridPane.rowIndex="7">
+                     <GridPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <CheckBox fx:id="P3CheckBoxSplitImage" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Split" textFill="WHITE" GridPane.rowIndex="9">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="210.0" />
+                     </GridPane.margin>
+                  </CheckBox>
                </children>
             </GridPane>
          </children>
