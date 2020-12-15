@@ -15,6 +15,7 @@ import javafx.stage.FileChooser;
 import service.panes.pane1.DataForImageGeneration;
 import service.panes.pane1.PdfToImage;
 import service.panes.pane2.ImageSplitter;
+import service.panes.pane4.PdfFile;
 import service.panes.pane4.WriteImagesIntoFile;
 
 import java.io.File;
@@ -109,7 +110,17 @@ public class UpdatedController implements Initializable {
     @FXML
     private CheckBox P3CheckBoxSplitImage;
 
+    //
+    @FXML
+    TableView<PdfFile> P3TableViewImagesToMerge = new TableView<PdfFile>();
 
+    @FXML
+    TableColumn<Object, Object>     P3TableColumnSourceImageId,
+                                    P3TableColumnSourceImageName, 
+                                    P3TableColumnSourceImageFormat,
+                                    P3TableColumnSourceImagePath;
+
+    //
     /**
      P4 -> Read text from images
                                 **/
