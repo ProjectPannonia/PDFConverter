@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 public class UpdatedController implements Initializable {
 
     private ObservableList<String> imageFormats, targetDpi;
-    private ObservableList<PdfFile> sourceFilesForTable;
+    private ObservableList<PdfFile> sourceFilesForTable = FXCollections.observableArrayList();
     private FileChooser fileChooser;
     private DirectoryChooser directoryChooser;
 
@@ -142,14 +142,27 @@ public class UpdatedController implements Initializable {
         targetDpi = FXCollections.observableArrayList("100", "200", "300", "400", "500", "600");
         P1ChoiceBoxDestinationDPI.setItems(targetDpi);
 
+
+        sourceFilesForTable.add(new PdfFile(1, "xyz", "png", "D:\\xyz"));
         // Initialize an empty table for pane 3
-        sourceFilesForTable = FXCollections.observableArrayList();
         P3TableViewImagesToMerge.setEditable(true);
-        P3TableColumnSourceImageId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        P3TableColumnSourceImageName.setCellValueFactory(new PropertyValueFactory<>("fileName"));
-        P3TableColumnSourceImageFormat.setCellValueFactory(new PropertyValueFactory<>("format"));
-        P3TableColumnSourceImagePath.setCellValueFactory(new PropertyValueFactory<>("path"));
-        P3TableViewImagesToMerge.setItems(sourceFilesForTable);
+//        P3TableColumnSourceImageId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        TableColumn id = new TableColumn("Id");
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+//        P3TableColumnSourceImageName.setCellValueFactory(new PropertyValueFactory<>("fileName"));
+        TableColumn fileName = new TableColumn("File name");
+        fileName.setCellValueFactory(new PropertyValueFactory<>("fileName"));
+//        P3TableColumnSourceImageFormat.setCellValueFactory(new PropertyValueFactory<>("format"));
+        TableColumn format = new TableColumn("Format");
+        format.setCellValueFactory(new PropertyValueFactory<>("format"));
+//        P3TableColumnSourceImagePath.setCellValueFactory(new PropertyValueFactory<>("path"));
+        TableColumn path = new TableColumn("Path");
+        path.setCellValueFactory(new PropertyValueFactory<>("path"));
+
+        P3TableViewImagesToMerge.getColumns().addAll(id, fileName, format, path);
+
+
+//        P3TableViewImagesToMerge.setItems(sourceFilesForTable);
 
         P1GridPanePDFToImage.setBackground(new Background(new BackgroundFill(Color.rgb(99, 69, 153), CornerRadii.EMPTY, Insets.EMPTY)));
         P1GridPanePDFToImage.toFront();
@@ -251,7 +264,13 @@ public class UpdatedController implements Initializable {
             if (direcotry != null) {
                 pathToDirectory = direcotry.getAbsolutePath() + "\\";
                 P3LabelSourceImagesPath.setText(pathToDirectory);
-                sourceFilesForTable.addAll(ReadSourceImages.readSourceFiles(pathToDirectory));
+                sourceFilesForTable = ReadSourceImages.readSourceFiles(pathToDirectory);
+                //sourceFilesForTable.addAll(ReadSourceImages.readSourceFiles(pathToDirectory));
+                P3TableViewImagesToMerge.setItems(sourceFilesForTable);
+                for(int i = 0; i < sourceFilesForTable.size(); i++) {
+                    System.out.println(sourceFilesForTable.get(i).fileNameProperty());
+                    System.out.println(sourceFilesForTable.get(i).getPath());
+                }
             }
         }else if(event.getSource() == P3ButtonChooseDestinationFolder) {
             directoryChooser = new DirectoryChooser();
