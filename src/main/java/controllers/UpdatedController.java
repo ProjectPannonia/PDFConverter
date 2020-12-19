@@ -146,12 +146,16 @@ public class UpdatedController implements Initializable {
         P4SourceImagesTable.setEditable(true);
         TableColumn idCol = new TableColumn("Id");
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idCol.setPrefWidth(50);
         TableColumn fileNameCol = new TableColumn("File name");
         fileNameCol.setCellValueFactory(new PropertyValueFactory<>("fileName"));
+        fileNameCol.setPrefWidth(200);
         TableColumn formatCol = new TableColumn("Format");
         formatCol.setCellValueFactory(new PropertyValueFactory<>("format"));
+        formatCol.setPrefWidth(70);
         TableColumn pathCol = new TableColumn("Path");
         pathCol.setCellValueFactory(new PropertyValueFactory<>("path"));
+        pathCol.setPrefWidth(300);
         P4SourceImagesTable.getColumns().addAll(idCol, fileNameCol, formatCol, pathCol);
         P4SourceImagesTable.setItems(sourceFilesForTable);
         // Initialize firstpane
@@ -253,13 +257,13 @@ public class UpdatedController implements Initializable {
             String pathToDirectory;
 
             if (direcotry != null) {
-                pathToDirectory = direcotry.getAbsolutePath() /*+ "\\"*/;
+                pathToDirectory = direcotry.getAbsolutePath();
                 P3LabelSourceImagesPath.setText(pathToDirectory);
                 sourceFilesForTable = ReadSourceImages.readSourceFiles(pathToDirectory);
 
                 System.out.println("Data list: " + sourceFilesForTable.size());
                 P4SourceImagesTable.setItems(sourceFilesForTable);
-                
+
                 for(int i = 0; i < sourceFilesForTable.size(); i++) {
                     System.out.println(sourceFilesForTable.get(i).fileNameProperty());
                     System.out.println(sourceFilesForTable.get(i).getPath());

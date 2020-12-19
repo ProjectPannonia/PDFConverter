@@ -9,10 +9,11 @@ import java.io.File;
 public class ReadSourceImages {
 
     private static ObservableList<PdfFile> filesInFolder = FXCollections.observableArrayList();
+    private static ObservableList<PdfFile> sortedFilesInFolder = FXCollections.observableArrayList();
 
     public static ObservableList<PdfFile> readSourceFiles(String filePath) {
         readSourceFolder(filePath);
-        return filesInFolder;
+        return sortedFilesInFolder;
     }
     private static void readSourceFolder(String filePath) {
         readFilesFromSourceFolder(new File(filePath));
@@ -28,6 +29,20 @@ public class ReadSourceImages {
             PdfFile file = new PdfFile(i,fileName,fileFormat,filePath);
 
             filesInFolder.add(file);
+        }
+        sortByFilename();
+    }
+    private static void sortByFilename() {
+
+        int nextIntValue = 0;
+        while (sortedFilesInFolder.size() != filesInFolder.size()) {
+            for (int i = 0; i < filesInFolder.size(); i++) {
+                if(Integer.valueOf(filesInFolder.get(i).getFileName())== nextIntValue) {
+                    sortedFilesInFolder.add(filesInFolder.get(i));
+                    nextIntValue++;
+                    break;
+                }
+            }
         }
     }
     public static String getFileFormat(String fileName) {

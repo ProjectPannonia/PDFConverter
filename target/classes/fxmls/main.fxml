@@ -274,7 +274,7 @@
                         <Font size="14.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets />
+                        <Insets left="10.0" />
                      </GridPane.margin>
                   </Button>
                   <Label alignment="CENTER" prefHeight="39.0" prefWidth="722.0" text="Images path" textFill="#fffbfb" GridPane.rowIndex="2">
@@ -295,7 +295,7 @@
                         <Font size="14.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="180.0" />
+                        <Insets left="300.0" />
                      </GridPane.margin>
                   </Button>
                   <Label fx:id="P3LabelSourceImagesPath" prefHeight="28.0" prefWidth="576.0" style="-fx-border-color: purple;" textFill="WHITE" GridPane.rowIndex="1">
