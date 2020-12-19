@@ -5,7 +5,6 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -50,7 +49,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#handleMainMenuClicks" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="Button" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#handleMainMenuClicks" prefHeight="50.0" prefWidth="300.0" styleClass="mainButton" stylesheets="@../css/style.css" text="OCR" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -348,12 +347,6 @@
                      </GridPane.margin>
                   </CheckBox>
                   <TableView id="P4SourceImagesTable" fx:id="P4SourceImagesTable" prefHeight="201.0" prefWidth="501.0" GridPane.rowIndex="6">
-                     <columns>
-                        <TableColumn id="P4SourceImageId" fx:id="P3TableColumnSourceImageId" editable="false" prefWidth="45.0" text="Id." />
-                        <TableColumn id="P4SourceImageName" fx:id="P3TableColumnSourceImageName" prefWidth="280.0" text="Name" />
-                        <TableColumn id="P4SourceImageFormat" fx:id="P3TableColumnSourceImageFormat" prefWidth="55.0" text="Format" />
-                        <TableColumn id="P4SourceImagePath" fx:id="P3TableColumnSourceImagePath" prefWidth="336.0" text="Path" />
-                     </columns>
                      <GridPane.margin>
                         <Insets left="15.0" right="15.0" />
                      </GridPane.margin>
